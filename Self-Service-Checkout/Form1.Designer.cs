@@ -1,6 +1,6 @@
 ﻿namespace Self_Service_Checkout
 {
-    partial class Form1
+    partial class mainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,14 +30,15 @@
         {
             SuspendLayout();
             // 
-            // Form1
+            // mainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(785, 740);
             FormBorderStyle = FormBorderStyle.Fixed3D;
-            Name = "Form1";
-            Text = "Form1";
+            Name = "mainForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Self-Service-Checkout";
             ResumeLayout(false);
         }
 
