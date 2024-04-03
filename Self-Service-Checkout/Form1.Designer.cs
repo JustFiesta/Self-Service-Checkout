@@ -1,6 +1,6 @@
 ﻿namespace Self_Service_Checkout
 {
-    partial class Form1
+    partial class mainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,10 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            SuspendLayout();
+            // 
+            // mainForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(785, 740);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            Name = "mainForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Self-Service-Checkout";
+            ResumeLayout(false);
         }
 
         #endregion
