@@ -1,3 +1,5 @@
+using System.Windows.Forms;
+
 namespace Self_Service_Checkout
 {
     internal static class Program
@@ -8,10 +10,8 @@ namespace Self_Service_Checkout
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new mainForm());
+            Application.Run(new welcomeForm());
         }
     }
 }
