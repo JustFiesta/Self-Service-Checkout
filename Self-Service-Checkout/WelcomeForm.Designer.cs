@@ -111,6 +111,7 @@
             startButton.Text = "START";
             startButton.TextAlign = ContentAlignment.MiddleRight;
             startButton.UseVisualStyleBackColor = false;
+            startButton.Click += startButton_Click;
             startButton.MouseEnter += Button_MouseEnter;
             startButton.MouseLeave += Button_MouseLeave;
             // 
@@ -121,7 +122,7 @@
             adminButton.BackgroundImageLayout = ImageLayout.Zoom;
             adminButton.FlatAppearance.BorderColor = Color.LightBlue;
             adminButton.FlatStyle = FlatStyle.Flat;
-            adminButton.Location = new Point(2, 3);
+            adminButton.Location = new Point(3, 3);
             adminButton.Name = "adminButton";
             adminButton.Size = new Size(70, 70);
             adminButton.TabIndex = 5;

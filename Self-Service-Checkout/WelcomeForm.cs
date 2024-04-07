@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Self_Service_Checkout
         {
             InitializeComponent();
             RoundButton(startButton, 20);
-            
+
 
             int currentHour = DateTime.Now.Hour;
             if (currentHour >= 21 || currentHour < 4)
@@ -42,5 +43,17 @@ namespace Self_Service_Checkout
             btn.Region = new Region(path);
         }
 
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            mainForm mainForm = new mainForm();
+            mainForm.Show();
+            this.Hide();
+        }
+
+        //super special function that removes applications running in the background
+        private void welcomeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
