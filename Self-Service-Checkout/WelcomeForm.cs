@@ -50,7 +50,7 @@ namespace Self_Service_Checkout
             this.Hide();
         }
 
-        //a super special function that removes applications running in the background
+        //super special function that removes applications running in the background
         private void welcomeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
