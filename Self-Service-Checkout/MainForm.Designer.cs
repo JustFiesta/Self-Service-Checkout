@@ -28,14 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
+            adminButton = new Button();
             SuspendLayout();
+            // 
+            // adminButton
+            // 
+            adminButton.BackColor = Color.Red;
+            adminButton.BackgroundImage = Properties.Resources.admin_approve;
+            adminButton.BackgroundImageLayout = ImageLayout.Zoom;
+            adminButton.FlatAppearance.BorderColor = Color.LightBlue;
+            adminButton.FlatStyle = FlatStyle.Flat;
+            adminButton.Location = new Point(3, 3);
+            adminButton.Name = "adminButton";
+            adminButton.Size = new Size(70, 70);
+            adminButton.TabIndex = 6;
+            adminButton.UseVisualStyleBackColor = false;
             // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightBlue;
             ClientSize = new Size(785, 740);
+            Controls.Add(adminButton);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "mainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Self-Service-Checkout";
@@ -43,5 +61,7 @@
         }
 
         #endregion
+
+        private Button adminButton;
     }
 }
