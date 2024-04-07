@@ -111,6 +111,7 @@
             startButton.Text = "START";
             startButton.TextAlign = ContentAlignment.MiddleRight;
             startButton.UseVisualStyleBackColor = false;
+            startButton.Click += startButton_Click;
             startButton.MouseEnter += Button_MouseEnter;
             startButton.MouseLeave += Button_MouseLeave;
             // 
