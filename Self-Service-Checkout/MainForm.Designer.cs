@@ -44,9 +44,10 @@
             adminButton.BackgroundImageLayout = ImageLayout.Zoom;
             adminButton.FlatAppearance.BorderColor = Color.LightBlue;
             adminButton.FlatStyle = FlatStyle.Flat;
-            adminButton.Location = new Point(3, 3);
+            adminButton.Location = new Point(3, 4);
+            adminButton.Margin = new Padding(3, 4, 3, 4);
             adminButton.Name = "adminButton";
-            adminButton.Size = new Size(70, 70);
+            adminButton.Size = new Size(80, 93);
             adminButton.TabIndex = 6;
             adminButton.UseVisualStyleBackColor = false;
             // 
@@ -59,11 +60,12 @@
             list.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 238);
             list.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             list.HideSelection = true;
-            list.Location = new Point(12, 89);
+            list.Location = new Point(14, 119);
+            list.Margin = new Padding(3, 4, 3, 4);
             list.MultiSelect = false;
             list.Name = "list";
             list.Scrollable = false;
-            list.Size = new Size(380, 613);
+            list.Size = new Size(430, 816);
             list.TabIndex = 7;
             list.UseCompatibleStateImageBehavior = false;
             list.View = View.Details;
@@ -71,35 +73,37 @@
             // column_name
             // 
             column_name.Text = "Product ";
-            column_name.Width = 260;
+            column_name.Width = 280;
             // 
             // column_price
             // 
             column_price.Text = "Price";
-            column_price.Width = 129;
+            column_price.Width = 150;
             // 
             // logoBox
             // 
             logoBox.BackgroundImageLayout = ImageLayout.Zoom;
             logoBox.Image = Properties.Resources.logo;
-            logoBox.Location = new Point(667, 3);
+            logoBox.Location = new Point(762, 4);
+            logoBox.Margin = new Padding(3, 4, 3, 4);
             logoBox.Name = "logoBox";
-            logoBox.Size = new Size(110, 110);
+            logoBox.Size = new Size(126, 147);
             logoBox.SizeMode = PictureBoxSizeMode.StretchImage;
             logoBox.TabIndex = 8;
             logoBox.TabStop = false;
             // 
             // mainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
-            ClientSize = new Size(785, 740);
+            ClientSize = new Size(897, 987);
             Controls.Add(logoBox);
             Controls.Add(list);
             Controls.Add(adminButton);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "mainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Self-Service-Checkout";
