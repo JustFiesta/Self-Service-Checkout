@@ -123,9 +123,9 @@ namespace Self_Service_Checkout.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap drinks {
+        internal static System.Drawing.Bitmap drink {
             get {
-                object obj = ResourceManager.GetObject("drinks", resourceCulture);
+                object obj = ResourceManager.GetObject("drink", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

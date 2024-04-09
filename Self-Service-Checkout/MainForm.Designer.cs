@@ -35,6 +35,16 @@
             column_price = new ColumnHeader();
             logoBox = new PictureBox();
             finishButton = new Button();
+            vegetableButton = new Button();
+            fruitButton = new Button();
+            breadstuffButton = new Button();
+            meatButton = new Button();
+            drinkButton = new Button();
+            dairyButton = new Button();
+            sweetButton = new Button();
+            frozenfoodButton = new Button();
+            alcoholButton = new Button();
+            energydrinkButton = new Button();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             SuspendLayout();
             // 
@@ -72,12 +82,12 @@
             // column_name
             // 
             column_name.Text = "Product ";
-            column_name.Width = 280;
+            column_name.Width = 260;
             // 
             // column_price
             // 
             column_price.Text = "Price";
-            column_price.Width = 150;
+            column_price.Width = 170;
             // 
             // logoBox
             // 
@@ -96,17 +106,205 @@
             finishButton.BackgroundImage = Properties.Resources.credit_card;
             finishButton.BackgroundImageLayout = ImageLayout.None;
             finishButton.FlatAppearance.BorderColor = Color.LightBlue;
-            finishButton.FlatAppearance.BorderSize = 2;
             finishButton.FlatStyle = FlatStyle.Flat;
-            finishButton.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            finishButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             finishButton.ForeColor = Color.Transparent;
-            finishButton.Location = new Point(498, 607);
+            finishButton.Location = new Point(489, 624);
             finishButton.Name = "finishButton";
-            finishButton.Size = new Size(227, 95);
+            finishButton.Padding = new Padding(10, 0, 0, 0);
+            finishButton.Size = new Size(219, 78);
             finishButton.TabIndex = 9;
             finishButton.Text = "Finish and pay";
             finishButton.TextAlign = ContentAlignment.MiddleRight;
             finishButton.UseVisualStyleBackColor = false;
+            // 
+            // vegetableButton
+            // 
+            vegetableButton.BackColor = Color.White;
+            vegetableButton.BackgroundImage = Properties.Resources.vegetables;
+            vegetableButton.BackgroundImageLayout = ImageLayout.None;
+            vegetableButton.FlatAppearance.BorderColor = Color.RoyalBlue;
+            vegetableButton.FlatAppearance.BorderSize = 2;
+            vegetableButton.FlatStyle = FlatStyle.Flat;
+            vegetableButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            vegetableButton.Location = new Point(441, 147);
+            vegetableButton.Margin = new Padding(0);
+            vegetableButton.Name = "vegetableButton";
+            vegetableButton.RightToLeft = RightToLeft.No;
+            vegetableButton.Size = new Size(149, 75);
+            vegetableButton.TabIndex = 10;
+            vegetableButton.Text = "vegetables";
+            vegetableButton.TextAlign = ContentAlignment.MiddleRight;
+            vegetableButton.UseVisualStyleBackColor = false;
+            // 
+            // fruitButton
+            // 
+            fruitButton.BackColor = Color.White;
+            fruitButton.BackgroundImage = Properties.Resources.fruits;
+            fruitButton.BackgroundImageLayout = ImageLayout.None;
+            fruitButton.FlatAppearance.BorderColor = Color.RoyalBlue;
+            fruitButton.FlatAppearance.BorderSize = 2;
+            fruitButton.FlatStyle = FlatStyle.Flat;
+            fruitButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            fruitButton.Location = new Point(611, 147);
+            fruitButton.Name = "fruitButton";
+            fruitButton.Size = new Size(149, 75);
+            fruitButton.TabIndex = 11;
+            fruitButton.Text = "fruits";
+            fruitButton.TextAlign = ContentAlignment.MiddleRight;
+            fruitButton.UseVisualStyleBackColor = false;
+            // 
+            // breadstuffButton
+            // 
+            breadstuffButton.BackColor = Color.White;
+            breadstuffButton.BackgroundImage = Properties.Resources.bread;
+            breadstuffButton.BackgroundImageLayout = ImageLayout.None;
+            breadstuffButton.FlatAppearance.BorderColor = Color.RoyalBlue;
+            breadstuffButton.FlatAppearance.BorderSize = 2;
+            breadstuffButton.FlatStyle = FlatStyle.Flat;
+            breadstuffButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            breadstuffButton.Location = new Point(441, 240);
+            breadstuffButton.Margin = new Padding(0);
+            breadstuffButton.Name = "breadstuffButton";
+            breadstuffButton.RightToLeft = RightToLeft.No;
+            breadstuffButton.Size = new Size(149, 75);
+            breadstuffButton.TabIndex = 12;
+            breadstuffButton.Text = "breadstuff";
+            breadstuffButton.TextAlign = ContentAlignment.MiddleRight;
+            breadstuffButton.UseVisualStyleBackColor = false;
+            // 
+            // meatButton
+            // 
+            meatButton.BackColor = Color.White;
+            meatButton.BackgroundImage = Properties.Resources.meat;
+            meatButton.BackgroundImageLayout = ImageLayout.None;
+            meatButton.FlatAppearance.BorderColor = Color.RoyalBlue;
+            meatButton.FlatAppearance.BorderSize = 2;
+            meatButton.FlatStyle = FlatStyle.Flat;
+            meatButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            meatButton.Location = new Point(611, 240);
+            meatButton.Margin = new Padding(0);
+            meatButton.Name = "meatButton";
+            meatButton.RightToLeft = RightToLeft.No;
+            meatButton.Size = new Size(149, 75);
+            meatButton.TabIndex = 13;
+            meatButton.Text = "meat products";
+            meatButton.TextAlign = ContentAlignment.MiddleRight;
+            meatButton.UseVisualStyleBackColor = false;
+            // 
+            // drinkButton
+            // 
+            drinkButton.BackColor = Color.White;
+            drinkButton.BackgroundImage = Properties.Resources.drink;
+            drinkButton.BackgroundImageLayout = ImageLayout.None;
+            drinkButton.FlatAppearance.BorderColor = Color.RoyalBlue;
+            drinkButton.FlatAppearance.BorderSize = 2;
+            drinkButton.FlatStyle = FlatStyle.Flat;
+            drinkButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            drinkButton.Location = new Point(441, 335);
+            drinkButton.Margin = new Padding(0);
+            drinkButton.Name = "drinkButton";
+            drinkButton.RightToLeft = RightToLeft.No;
+            drinkButton.Size = new Size(149, 75);
+            drinkButton.TabIndex = 14;
+            drinkButton.Text = "drinks";
+            drinkButton.TextAlign = ContentAlignment.MiddleRight;
+            drinkButton.UseVisualStyleBackColor = false;
+            // 
+            // dairyButton
+            // 
+            dairyButton.BackColor = Color.White;
+            dairyButton.BackgroundImage = Properties.Resources.dairy;
+            dairyButton.BackgroundImageLayout = ImageLayout.None;
+            dairyButton.FlatAppearance.BorderColor = Color.RoyalBlue;
+            dairyButton.FlatAppearance.BorderSize = 2;
+            dairyButton.FlatStyle = FlatStyle.Flat;
+            dairyButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dairyButton.Location = new Point(611, 335);
+            dairyButton.Margin = new Padding(0);
+            dairyButton.Name = "dairyButton";
+            dairyButton.RightToLeft = RightToLeft.No;
+            dairyButton.Size = new Size(149, 75);
+            dairyButton.TabIndex = 15;
+            dairyButton.Text = "milk products";
+            dairyButton.TextAlign = ContentAlignment.MiddleRight;
+            dairyButton.UseVisualStyleBackColor = false;
+            // 
+            // sweetButton
+            // 
+            sweetButton.BackColor = Color.White;
+            sweetButton.BackgroundImage = Properties.Resources.sweet;
+            sweetButton.BackgroundImageLayout = ImageLayout.None;
+            sweetButton.FlatAppearance.BorderColor = Color.RoyalBlue;
+            sweetButton.FlatAppearance.BorderSize = 2;
+            sweetButton.FlatStyle = FlatStyle.Flat;
+            sweetButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            sweetButton.Location = new Point(441, 437);
+            sweetButton.Margin = new Padding(0);
+            sweetButton.Name = "sweetButton";
+            sweetButton.RightToLeft = RightToLeft.No;
+            sweetButton.Size = new Size(149, 75);
+            sweetButton.TabIndex = 16;
+            sweetButton.Text = "sweet";
+            sweetButton.TextAlign = ContentAlignment.MiddleRight;
+            sweetButton.UseVisualStyleBackColor = false;
+            // 
+            // frozenfoodButton
+            // 
+            frozenfoodButton.BackColor = Color.White;
+            frozenfoodButton.BackgroundImage = Properties.Resources.frozen_food;
+            frozenfoodButton.BackgroundImageLayout = ImageLayout.None;
+            frozenfoodButton.FlatAppearance.BorderColor = Color.RoyalBlue;
+            frozenfoodButton.FlatAppearance.BorderSize = 2;
+            frozenfoodButton.FlatStyle = FlatStyle.Flat;
+            frozenfoodButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            frozenfoodButton.Location = new Point(611, 437);
+            frozenfoodButton.Margin = new Padding(0);
+            frozenfoodButton.Name = "frozenfoodButton";
+            frozenfoodButton.RightToLeft = RightToLeft.No;
+            frozenfoodButton.Size = new Size(149, 75);
+            frozenfoodButton.TabIndex = 17;
+            frozenfoodButton.Text = "frozen food";
+            frozenfoodButton.TextAlign = ContentAlignment.MiddleRight;
+            frozenfoodButton.UseVisualStyleBackColor = false;
+            // 
+            // alcoholButton
+            // 
+            alcoholButton.BackColor = Color.White;
+            alcoholButton.BackgroundImage = Properties.Resources.alcohol;
+            alcoholButton.BackgroundImageLayout = ImageLayout.None;
+            alcoholButton.FlatAppearance.BorderColor = Color.RoyalBlue;
+            alcoholButton.FlatAppearance.BorderSize = 2;
+            alcoholButton.FlatStyle = FlatStyle.Flat;
+            alcoholButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            alcoholButton.Location = new Point(441, 539);
+            alcoholButton.Margin = new Padding(0);
+            alcoholButton.Name = "alcoholButton";
+            alcoholButton.RightToLeft = RightToLeft.No;
+            alcoholButton.Size = new Size(149, 75);
+            alcoholButton.TabIndex = 18;
+            alcoholButton.Text = "alcohol";
+            alcoholButton.TextAlign = ContentAlignment.MiddleRight;
+            alcoholButton.UseVisualStyleBackColor = false;
+            // 
+            // energydrinkButton
+            // 
+            energydrinkButton.BackColor = Color.White;
+            energydrinkButton.BackgroundImage = Properties.Resources.energy_drink;
+            energydrinkButton.BackgroundImageLayout = ImageLayout.None;
+            energydrinkButton.FlatAppearance.BorderColor = Color.RoyalBlue;
+            energydrinkButton.FlatAppearance.BorderSize = 2;
+            energydrinkButton.FlatStyle = FlatStyle.Flat;
+            energydrinkButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            energydrinkButton.Location = new Point(611, 539);
+            energydrinkButton.Margin = new Padding(0);
+            energydrinkButton.Name = "energydrinkButton";
+            energydrinkButton.RightToLeft = RightToLeft.No;
+            energydrinkButton.Size = new Size(149, 75);
+            energydrinkButton.TabIndex = 19;
+            energydrinkButton.Text = "energy drink";
+            energydrinkButton.TextAlign = ContentAlignment.MiddleRight;
+            energydrinkButton.UseVisualStyleBackColor = false;
             // 
             // mainForm
             // 
@@ -114,6 +312,16 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
             ClientSize = new Size(785, 740);
+            Controls.Add(energydrinkButton);
+            Controls.Add(alcoholButton);
+            Controls.Add(frozenfoodButton);
+            Controls.Add(sweetButton);
+            Controls.Add(dairyButton);
+            Controls.Add(drinkButton);
+            Controls.Add(meatButton);
+            Controls.Add(breadstuffButton);
+            Controls.Add(fruitButton);
+            Controls.Add(vegetableButton);
             Controls.Add(finishButton);
             Controls.Add(logoBox);
             Controls.Add(list);
@@ -135,5 +343,15 @@
         private ColumnHeader column_price;
         private PictureBox logoBox;
         private Button finishButton;
+        private Button vegetableButton;
+        private Button fruitButton;
+        private Button breadstuffButton;
+        private Button meatButton;
+        private Button drinkButton;
+        private Button dairyButton;
+        private Button sweetButton;
+        private Button frozenfoodButton;
+        private Button alcoholButton;
+        private Button energydrinkButton;
     }
 }
