@@ -45,6 +45,7 @@
             frozenfoodButton = new Button();
             alcoholButton = new Button();
             energydrinkButton = new Button();
+            barcodeButton = new Button();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             SuspendLayout();
             // 
@@ -67,12 +68,14 @@
             list.AutoArrange = false;
             list.BackColor = Color.RoyalBlue;
             list.Columns.AddRange(new ColumnHeader[] { column_name, column_price });
-            list.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            list.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            list.ForeColor = Color.Black;
             list.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             list.HideSelection = true;
             list.Location = new Point(12, 89);
             list.MultiSelect = false;
             list.Name = "list";
+            list.OwnerDraw = true;
             list.Scrollable = false;
             list.Size = new Size(377, 613);
             list.TabIndex = 7;
@@ -109,7 +112,7 @@
             finishButton.FlatStyle = FlatStyle.Flat;
             finishButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             finishButton.ForeColor = Color.Transparent;
-            finishButton.Location = new Point(489, 624);
+            finishButton.Location = new Point(432, 624);
             finishButton.Name = "finishButton";
             finishButton.Padding = new Padding(10, 0, 0, 0);
             finishButton.Size = new Size(219, 78);
@@ -127,7 +130,7 @@
             vegetableButton.FlatAppearance.BorderSize = 2;
             vegetableButton.FlatStyle = FlatStyle.Flat;
             vegetableButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            vegetableButton.Location = new Point(441, 147);
+            vegetableButton.Location = new Point(432, 142);
             vegetableButton.Margin = new Padding(0);
             vegetableButton.Name = "vegetableButton";
             vegetableButton.RightToLeft = RightToLeft.No;
@@ -146,7 +149,7 @@
             fruitButton.FlatAppearance.BorderSize = 2;
             fruitButton.FlatStyle = FlatStyle.Flat;
             fruitButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            fruitButton.Location = new Point(611, 147);
+            fruitButton.Location = new Point(612, 142);
             fruitButton.Name = "fruitButton";
             fruitButton.Size = new Size(149, 75);
             fruitButton.TabIndex = 11;
@@ -163,7 +166,7 @@
             breadstuffButton.FlatAppearance.BorderSize = 2;
             breadstuffButton.FlatStyle = FlatStyle.Flat;
             breadstuffButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            breadstuffButton.Location = new Point(441, 240);
+            breadstuffButton.Location = new Point(432, 235);
             breadstuffButton.Margin = new Padding(0);
             breadstuffButton.Name = "breadstuffButton";
             breadstuffButton.RightToLeft = RightToLeft.No;
@@ -182,7 +185,7 @@
             meatButton.FlatAppearance.BorderSize = 2;
             meatButton.FlatStyle = FlatStyle.Flat;
             meatButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            meatButton.Location = new Point(611, 240);
+            meatButton.Location = new Point(612, 235);
             meatButton.Margin = new Padding(0);
             meatButton.Name = "meatButton";
             meatButton.RightToLeft = RightToLeft.No;
@@ -201,7 +204,7 @@
             drinkButton.FlatAppearance.BorderSize = 2;
             drinkButton.FlatStyle = FlatStyle.Flat;
             drinkButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            drinkButton.Location = new Point(441, 335);
+            drinkButton.Location = new Point(432, 329);
             drinkButton.Margin = new Padding(0);
             drinkButton.Name = "drinkButton";
             drinkButton.RightToLeft = RightToLeft.No;
@@ -220,7 +223,7 @@
             dairyButton.FlatAppearance.BorderSize = 2;
             dairyButton.FlatStyle = FlatStyle.Flat;
             dairyButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dairyButton.Location = new Point(611, 335);
+            dairyButton.Location = new Point(612, 330);
             dairyButton.Margin = new Padding(0);
             dairyButton.Name = "dairyButton";
             dairyButton.RightToLeft = RightToLeft.No;
@@ -239,7 +242,7 @@
             sweetButton.FlatAppearance.BorderSize = 2;
             sweetButton.FlatStyle = FlatStyle.Flat;
             sweetButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            sweetButton.Location = new Point(441, 437);
+            sweetButton.Location = new Point(432, 432);
             sweetButton.Margin = new Padding(0);
             sweetButton.Name = "sweetButton";
             sweetButton.RightToLeft = RightToLeft.No;
@@ -258,7 +261,7 @@
             frozenfoodButton.FlatAppearance.BorderSize = 2;
             frozenfoodButton.FlatStyle = FlatStyle.Flat;
             frozenfoodButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            frozenfoodButton.Location = new Point(611, 437);
+            frozenfoodButton.Location = new Point(612, 432);
             frozenfoodButton.Margin = new Padding(0);
             frozenfoodButton.Name = "frozenfoodButton";
             frozenfoodButton.RightToLeft = RightToLeft.No;
@@ -277,7 +280,7 @@
             alcoholButton.FlatAppearance.BorderSize = 2;
             alcoholButton.FlatStyle = FlatStyle.Flat;
             alcoholButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            alcoholButton.Location = new Point(441, 539);
+            alcoholButton.Location = new Point(432, 533);
             alcoholButton.Margin = new Padding(0);
             alcoholButton.Name = "alcoholButton";
             alcoholButton.RightToLeft = RightToLeft.No;
@@ -296,7 +299,7 @@
             energydrinkButton.FlatAppearance.BorderSize = 2;
             energydrinkButton.FlatStyle = FlatStyle.Flat;
             energydrinkButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            energydrinkButton.Location = new Point(611, 539);
+            energydrinkButton.Location = new Point(612, 534);
             energydrinkButton.Margin = new Padding(0);
             energydrinkButton.Name = "energydrinkButton";
             energydrinkButton.RightToLeft = RightToLeft.No;
@@ -306,12 +309,29 @@
             energydrinkButton.TextAlign = ContentAlignment.MiddleRight;
             energydrinkButton.UseVisualStyleBackColor = false;
             // 
+            // barcodeButton
+            // 
+            barcodeButton.BackColor = Color.Transparent;
+            barcodeButton.BackgroundImage = Properties.Resources.barcode;
+            barcodeButton.BackgroundImageLayout = ImageLayout.Stretch;
+            barcodeButton.FlatAppearance.BorderSize = 0;
+            barcodeButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            barcodeButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            barcodeButton.FlatStyle = FlatStyle.Flat;
+            barcodeButton.Location = new Point(667, 624);
+            barcodeButton.Name = "barcodeButton";
+            barcodeButton.Size = new Size(80, 78);
+            barcodeButton.TabIndex = 20;
+            barcodeButton.TextAlign = ContentAlignment.BottomCenter;
+            barcodeButton.UseVisualStyleBackColor = false;
+            // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
             ClientSize = new Size(785, 740);
+            Controls.Add(barcodeButton);
             Controls.Add(energydrinkButton);
             Controls.Add(alcoholButton);
             Controls.Add(frozenfoodButton);
@@ -353,5 +373,6 @@
         private Button frozenfoodButton;
         private Button alcoholButton;
         private Button energydrinkButton;
+        private Button barcodeButton;
     }
 }

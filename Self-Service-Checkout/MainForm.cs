@@ -46,7 +46,7 @@ namespace Self_Service_Checkout
         private void list_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
         {
             e.Graphics.FillRectangle(Brushes.RoyalBlue, e.Bounds);
-            e.Graphics.DrawString(e.Header.Text, new Font("Segoe UI", 25, FontStyle.Bold), Brushes.White, e.Bounds);
+            e.Graphics.DrawString(e.Header.Text, new Font("Segoe UI", 17, FontStyle.Bold), Brushes.White, e.Bounds);
         }
 
         // adding products with default settings
@@ -80,7 +80,7 @@ namespace Self_Service_Checkout
             list.Items.Add(new ListViewItem(item1));
             list.Items.Add(new ListViewItem(item2));
             list.Items.Add(new ListViewItem(item3));
+            list.Items.Add(new ListViewItem(item4));
         }
-
     }
 }
