@@ -26,7 +26,7 @@ namespace Self_Service_Checkout
                 }
             };
 
-            RoundButton(finishButton,20);
+            RoundButton(finishButton, 20);
             //TESTING
             AddElem();
         }
