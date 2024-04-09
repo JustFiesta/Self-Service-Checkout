@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Self_Service_Checkout
@@ -10,11 +11,11 @@ namespace Self_Service_Checkout
         {
             InitializeComponent();
             //special place for initialization
-            this.FormClosed += mainForm_FormClosed; 
-            list.ColumnWidthChanging += list_ColumnWidthChanging; 
+            this.FormClosed += mainForm_FormClosed;
+            list.ColumnWidthChanging += list_ColumnWidthChanging;
             list.DrawColumnHeader += list_DrawColumnHeader;
             list.DrawItem += list_DrawItem;
-            list.OwnerDraw = true; 
+            list.OwnerDraw = true;
 
             //blocking the selection of options in the list
             list.ItemSelectionChanged += (sender, e) =>
@@ -25,6 +26,7 @@ namespace Self_Service_Checkout
                 }
             };
 
+            RoundButton(finishButton,20);
             //TESTING
             AddElem();
         }
@@ -43,8 +45,8 @@ namespace Self_Service_Checkout
         // header font, background color
         private void list_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
         {
-            e.Graphics.FillRectangle(Brushes.RoyalBlue, e.Bounds); 
-            e.Graphics.DrawString(e.Header.Text, new Font("Segoe UI", 25, FontStyle.Bold), Brushes.White, e.Bounds); 
+            e.Graphics.FillRectangle(Brushes.RoyalBlue, e.Bounds);
+            e.Graphics.DrawString(e.Header.Text, new Font("Segoe UI", 25, FontStyle.Bold), Brushes.White, e.Bounds);
         }
 
         // adding products with default settings
@@ -52,7 +54,19 @@ namespace Self_Service_Checkout
         {
             e.DrawDefault = true; // Rysowanie elementu z domyœlnymi ustawieniami
         }
-           
+
+        //function for rounding buttons
+        private void RoundButton(Button btn, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+            path.AddArc(0, 0, radius * 2, radius * 2, 180, 90);
+            path.AddArc(btn.Width - radius * 2, 0, radius * 2, radius * 2, 270, 90);
+            path.AddArc(btn.Width - radius * 2, btn.Height - radius * 2, radius * 2, radius * 2, 0, 90);
+            path.AddArc(0, btn.Height - radius * 2, radius * 2, radius * 2, 90, 90);
+            path.CloseFigure();
+            btn.Region = new Region(path);
+        }
+
         // ONLY FOR TESTING !
         private void AddElem()
         {
@@ -67,5 +81,6 @@ namespace Self_Service_Checkout
             list.Items.Add(new ListViewItem(item2));
             list.Items.Add(new ListViewItem(item3));
         }
+
     }
 }

@@ -34,6 +34,7 @@
             column_name = new ColumnHeader();
             column_price = new ColumnHeader();
             logoBox = new PictureBox();
+            finishButton = new Button();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             SuspendLayout();
             // 
@@ -44,10 +45,9 @@
             adminButton.BackgroundImageLayout = ImageLayout.Zoom;
             adminButton.FlatAppearance.BorderColor = Color.LightBlue;
             adminButton.FlatStyle = FlatStyle.Flat;
-            adminButton.Location = new Point(3, 4);
-            adminButton.Margin = new Padding(3, 4, 3, 4);
+            adminButton.Location = new Point(3, 3);
             adminButton.Name = "adminButton";
-            adminButton.Size = new Size(80, 93);
+            adminButton.Size = new Size(70, 70);
             adminButton.TabIndex = 6;
             adminButton.UseVisualStyleBackColor = false;
             // 
@@ -60,12 +60,11 @@
             list.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 238);
             list.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             list.HideSelection = true;
-            list.Location = new Point(14, 119);
-            list.Margin = new Padding(3, 4, 3, 4);
+            list.Location = new Point(12, 89);
             list.MultiSelect = false;
             list.Name = "list";
             list.Scrollable = false;
-            list.Size = new Size(430, 816);
+            list.Size = new Size(377, 613);
             list.TabIndex = 7;
             list.UseCompatibleStateImageBehavior = false;
             list.View = View.Details;
@@ -84,26 +83,43 @@
             // 
             logoBox.BackgroundImageLayout = ImageLayout.Zoom;
             logoBox.Image = Properties.Resources.logo;
-            logoBox.Location = new Point(762, 4);
-            logoBox.Margin = new Padding(3, 4, 3, 4);
+            logoBox.Location = new Point(667, 3);
             logoBox.Name = "logoBox";
-            logoBox.Size = new Size(126, 147);
+            logoBox.Size = new Size(110, 110);
             logoBox.SizeMode = PictureBoxSizeMode.StretchImage;
             logoBox.TabIndex = 8;
             logoBox.TabStop = false;
             // 
+            // finishButton
+            // 
+            finishButton.BackColor = Color.RoyalBlue;
+            finishButton.BackgroundImage = Properties.Resources.credit_card;
+            finishButton.BackgroundImageLayout = ImageLayout.None;
+            finishButton.FlatAppearance.BorderColor = Color.LightBlue;
+            finishButton.FlatAppearance.BorderSize = 2;
+            finishButton.FlatStyle = FlatStyle.Flat;
+            finishButton.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            finishButton.ForeColor = Color.Transparent;
+            finishButton.Location = new Point(498, 607);
+            finishButton.Name = "finishButton";
+            finishButton.Size = new Size(227, 95);
+            finishButton.TabIndex = 9;
+            finishButton.Text = "Finish and pay";
+            finishButton.TextAlign = ContentAlignment.MiddleRight;
+            finishButton.UseVisualStyleBackColor = false;
+            // 
             // mainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
-            ClientSize = new Size(897, 987);
+            ClientSize = new Size(785, 740);
+            Controls.Add(finishButton);
             Controls.Add(logoBox);
             Controls.Add(list);
             Controls.Add(adminButton);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 4, 3, 4);
             Name = "mainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Self-Service-Checkout";
@@ -118,5 +134,6 @@
         private ColumnHeader column_name;
         private ColumnHeader column_price;
         private PictureBox logoBox;
+        private Button finishButton;
     }
 }
