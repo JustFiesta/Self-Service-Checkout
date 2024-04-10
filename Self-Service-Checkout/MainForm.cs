@@ -66,7 +66,11 @@ namespace Self_Service_Checkout
             path.CloseFigure();
             btn.Region = new Region(path);
         }
-
+        private void barcodeButton_Click(object sender, EventArgs e)
+        {
+            Barcode barcode = new Barcode();
+            barcode.Show();
+        }
         // ONLY FOR TESTING !
         private void AddElem()
         {
@@ -82,5 +86,6 @@ namespace Self_Service_Checkout
             list.Items.Add(new ListViewItem(item3));
             list.Items.Add(new ListViewItem(item4));
         }
+
     }
 }

@@ -324,6 +324,7 @@
             barcodeButton.TabIndex = 20;
             barcodeButton.TextAlign = ContentAlignment.BottomCenter;
             barcodeButton.UseVisualStyleBackColor = false;
+            barcodeButton.Click += barcodeButton_Click;
             // 
             // mainForm
             // 
