@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Barcode));
             label1 = new Label();
             barcodeInput = new MaskedTextBox();
             quantityInput = new MaskedTextBox();
@@ -166,6 +167,7 @@
             Controls.Add(barcodeInput);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Barcode";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Barcode";
