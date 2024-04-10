@@ -170,7 +170,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Barcode";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Barcode";
+            Text = "Self-Service-Checkout";
             ((System.ComponentModel.ISupportInitialize)logoBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
