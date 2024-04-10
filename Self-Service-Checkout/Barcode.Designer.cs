@@ -28,25 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            barcodeLabel = new Label();
+            label1 = new Label();
             barcodeInput = new MaskedTextBox();
             quantityInput = new MaskedTextBox();
-            quantityLabel = new Label();
+            label2 = new Label();
             logoBox = new PictureBox();
             backButton = new Button();
+            infoLabel = new Label();
+            confirmButton = new Button();
+            cancelButton = new Button();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             SuspendLayout();
             // 
-            // barcodeLabel
+            // label1
             // 
-            barcodeLabel.AutoSize = true;
-            barcodeLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            barcodeLabel.ForeColor = Color.MidnightBlue;
-            barcodeLabel.Location = new Point(46, 95);
-            barcodeLabel.Name = "barcodeLabel";
-            barcodeLabel.Size = new Size(118, 21);
-            barcodeLabel.TabIndex = 0;
-            barcodeLabel.Text = "enter barcode:";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label1.ForeColor = Color.MidnightBlue;
+            label1.Location = new Point(46, 95);
+            label1.Name = "label1";
+            label1.Size = new Size(118, 21);
+            label1.TabIndex = 0;
+            label1.Text = "enter barcode:";
             // 
             // barcodeInput
             // 
@@ -66,16 +69,16 @@
             quantityInput.Size = new Size(100, 23);
             quantityInput.TabIndex = 3;
             // 
-            // quantityLabel
+            // label2
             // 
-            quantityLabel.AutoSize = true;
-            quantityLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            quantityLabel.ForeColor = Color.MidnightBlue;
-            quantityLabel.Location = new Point(46, 143);
-            quantityLabel.Name = "quantityLabel";
-            quantityLabel.Size = new Size(117, 21);
-            quantityLabel.TabIndex = 2;
-            quantityLabel.Text = "enter quantity:";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label2.ForeColor = Color.MidnightBlue;
+            label2.Location = new Point(46, 143);
+            label2.Name = "label2";
+            label2.Size = new Size(117, 21);
+            label2.TabIndex = 2;
+            label2.Text = "enter quantity:";
             // 
             // logoBox
             // 
@@ -106,18 +109,63 @@
             backButton.MouseEnter += BackButton_MouseEnter;
             backButton.MouseLeave += BackButton_MouseLeave;
             // 
+            // infoLabel
+            // 
+            infoLabel.AutoSize = true;
+            infoLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            infoLabel.ForeColor = Color.MidnightBlue;
+            infoLabel.Location = new Point(46, 209);
+            infoLabel.Name = "infoLabel";
+            infoLabel.Size = new Size(125, 21);
+            infoLabel.TabIndex = 11;
+            infoLabel.Text = "Your product is:";
+            infoLabel.Visible = false;
+            // 
+            // confirmButton
+            // 
+            confirmButton.BackColor = Color.RoyalBlue;
+            confirmButton.FlatAppearance.BorderSize = 0;
+            confirmButton.FlatStyle = FlatStyle.Flat;
+            confirmButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            confirmButton.ForeColor = Color.White;
+            confirmButton.Location = new Point(46, 324);
+            confirmButton.Name = "confirmButton";
+            confirmButton.Size = new Size(117, 57);
+            confirmButton.TabIndex = 12;
+            confirmButton.Text = "CONFIRM";
+            confirmButton.UseVisualStyleBackColor = false;
+            // 
+            // cancelButton
+            // 
+            cancelButton.BackColor = Color.RoyalBlue;
+            cancelButton.FlatAppearance.BorderSize = 0;
+            cancelButton.FlatStyle = FlatStyle.Flat;
+            cancelButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            cancelButton.ForeColor = Color.White;
+            cancelButton.Location = new Point(188, 324);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new Size(117, 57);
+            cancelButton.TabIndex = 13;
+            cancelButton.Text = "CANCEL";
+            cancelButton.UseVisualStyleBackColor = false;
+            cancelButton.Click += cancelButton_Click;
+            // 
             // Barcode
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
             ClientSize = new Size(434, 412);
+            Controls.Add(cancelButton);
+            Controls.Add(confirmButton);
+            Controls.Add(infoLabel);
             Controls.Add(backButton);
             Controls.Add(logoBox);
             Controls.Add(quantityInput);
-            Controls.Add(quantityLabel);
+            Controls.Add(label2);
             Controls.Add(barcodeInput);
-            Controls.Add(barcodeLabel);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "Barcode";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Barcode";
@@ -128,11 +176,14 @@
 
         #endregion
 
-        private Label barcodeLabel;
+        private Label label1;
         private MaskedTextBox barcodeInput;
         private MaskedTextBox quantityInput;
-        private Label quantityLabel;
+        private Label label2;
         private PictureBox logoBox;
         private Button backButton;
+        private Label infoLabel;
+        private Button confirmButton;
+        private Button cancelButton;
     }
 }

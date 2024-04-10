@@ -25,20 +25,24 @@ namespace Self_Service_Checkout
 
         private void BackButton_MouseEnter(object sender, EventArgs e)
         {
-            // Zmiana obrazka przycisku na wersję "hover" przy najechaniu myszką
             backButton.Image = Properties.Resources.backHover;
 
         }
 
         private void BackButton_MouseLeave(object sender, EventArgs e)
         {
-            // Powrót do domyślnego obrazka przycisku po zjechaniu myszką
             backButton.Image = Properties.Resources.back;
         }
 
         private void backButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            barcodeInput.ResetText();
+            quantityInput.ResetText();
         }
     }
 }
