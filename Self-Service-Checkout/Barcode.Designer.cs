@@ -113,13 +113,13 @@
             // infoLabel
             // 
             infoLabel.AutoSize = true;
-            infoLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            infoLabel.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 238);
             infoLabel.ForeColor = Color.MidnightBlue;
-            infoLabel.Location = new Point(46, 209);
+            infoLabel.Location = new Point(46, 207);
             infoLabel.Name = "infoLabel";
-            infoLabel.Size = new Size(125, 21);
+            infoLabel.Size = new Size(335, 30);
             infoLabel.TabIndex = 11;
-            infoLabel.Text = "Your product is:";
+            infoLabel.Text = "Label that will display messages!";
             infoLabel.Visible = false;
             // 
             // confirmButton
@@ -141,7 +141,7 @@
             cancelButton.BackColor = Color.RoyalBlue;
             cancelButton.FlatAppearance.BorderSize = 0;
             cancelButton.FlatStyle = FlatStyle.Flat;
-            cancelButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            cancelButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             cancelButton.ForeColor = Color.White;
             cancelButton.Location = new Point(188, 324);
             cancelButton.Name = "cancelButton";
