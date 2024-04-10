@@ -16,5 +16,11 @@ namespace Self_Service_Checkout
         {
             InitializeComponent();
         }
+
+        //super special function that removes applications running in the background
+        private void barcode_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
