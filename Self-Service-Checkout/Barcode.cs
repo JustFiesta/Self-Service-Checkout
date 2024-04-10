@@ -18,7 +18,6 @@ namespace Self_Service_Checkout
             InitializeComponent();
             RoundButton(confirmButton, 20);
             RoundButton(cancelButton, 20);
-
         }
 
         //super special function that removes applications running in the background
@@ -31,7 +30,6 @@ namespace Self_Service_Checkout
         private void BackButton_MouseEnter(object sender, EventArgs e)
         {
             backButton.Image = Properties.Resources.backHover;
-
         }
         //changing the image when you leave the button
         private void BackButton_MouseLeave(object sender, EventArgs e)
