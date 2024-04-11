@@ -87,5 +87,54 @@ namespace Self_Service_Checkout
             list.Items.Add(new ListViewItem(item4));
         }
 
+        //
+        //  section for forwarding the appropriate product category to display
+        //
+        private void vegetableButton_Click(object sender, EventArgs e)
+        {
+            OpenProductList("Vegetables");
+        }
+        private void fruitButton_Click(object sender, EventArgs e)
+        {
+            OpenProductList("Fruits");
+        }
+        private void breadstuffButton_Click(object sender, EventArgs e)
+        {
+            OpenProductList("Breadstuff");
+        }
+        private void meatButton_Click(object sender, EventArgs e)
+        {
+            OpenProductList("Meat products");
+        }
+        private void drinkButton_Click(object sender, EventArgs e)
+        {
+            OpenProductList("Drinks");
+        }
+        private void dairyButton_Click(object sender, EventArgs e)
+        {
+            OpenProductList("Milk Products");
+        }
+        private void sweetButton_Click(object sender, EventArgs e)
+        {
+            OpenProductList("Sweet");
+        }
+        private void frozenfoodButton_Click(object sender, EventArgs e)
+        {
+            OpenProductList("Frozen Food");
+        }
+        private void alcoholButton_Click(object sender, EventArgs e)
+        {
+            OpenProductList("Alcohol");
+        }
+        private void energydrinkButton_Click(object sender, EventArgs e)
+        {
+            OpenProductList("Energy Drinks");
+        }
+        private void OpenProductList(string category)
+        {
+            Console.WriteLine("IM HERE");
+            ProductsList productsList = new ProductsList(category);
+            productsList.Show();
+        }
     }
 }

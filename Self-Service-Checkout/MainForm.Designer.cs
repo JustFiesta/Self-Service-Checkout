@@ -139,6 +139,7 @@
             vegetableButton.Text = "vegetables";
             vegetableButton.TextAlign = ContentAlignment.MiddleRight;
             vegetableButton.UseVisualStyleBackColor = false;
+            vegetableButton.Click += vegetableButton_Click;
             // 
             // fruitButton
             // 
@@ -156,6 +157,7 @@
             fruitButton.Text = "fruits";
             fruitButton.TextAlign = ContentAlignment.MiddleRight;
             fruitButton.UseVisualStyleBackColor = false;
+            fruitButton.Click += fruitButton_Click;
             // 
             // breadstuffButton
             // 
@@ -175,6 +177,7 @@
             breadstuffButton.Text = "breadstuff";
             breadstuffButton.TextAlign = ContentAlignment.MiddleRight;
             breadstuffButton.UseVisualStyleBackColor = false;
+            breadstuffButton.Click += breadstuffButton_Click;
             // 
             // meatButton
             // 
@@ -194,6 +197,7 @@
             meatButton.Text = "meat products";
             meatButton.TextAlign = ContentAlignment.MiddleRight;
             meatButton.UseVisualStyleBackColor = false;
+            meatButton.Click += meatButton_Click;
             // 
             // drinkButton
             // 
@@ -213,6 +217,7 @@
             drinkButton.Text = "drinks";
             drinkButton.TextAlign = ContentAlignment.MiddleRight;
             drinkButton.UseVisualStyleBackColor = false;
+            drinkButton.Click += drinkButton_Click;
             // 
             // dairyButton
             // 
@@ -232,6 +237,7 @@
             dairyButton.Text = "milk products";
             dairyButton.TextAlign = ContentAlignment.MiddleRight;
             dairyButton.UseVisualStyleBackColor = false;
+            dairyButton.Click += dairyButton_Click;
             // 
             // sweetButton
             // 
@@ -251,6 +257,7 @@
             sweetButton.Text = "sweet";
             sweetButton.TextAlign = ContentAlignment.MiddleRight;
             sweetButton.UseVisualStyleBackColor = false;
+            sweetButton.Click += sweetButton_Click;
             // 
             // frozenfoodButton
             // 
@@ -270,6 +277,7 @@
             frozenfoodButton.Text = "frozen food";
             frozenfoodButton.TextAlign = ContentAlignment.MiddleRight;
             frozenfoodButton.UseVisualStyleBackColor = false;
+            frozenfoodButton.Click += frozenfoodButton_Click;
             // 
             // alcoholButton
             // 
@@ -289,6 +297,7 @@
             alcoholButton.Text = "alcohol";
             alcoholButton.TextAlign = ContentAlignment.MiddleRight;
             alcoholButton.UseVisualStyleBackColor = false;
+            alcoholButton.Click += alcoholButton_Click;
             // 
             // energydrinkButton
             // 
@@ -308,6 +317,7 @@
             energydrinkButton.Text = "energy drink";
             energydrinkButton.TextAlign = ContentAlignment.MiddleRight;
             energydrinkButton.UseVisualStyleBackColor = false;
+            energydrinkButton.Click += energydrinkButton_Click;
             // 
             // barcodeButton
             // 
