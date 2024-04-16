@@ -16,6 +16,7 @@ public partial class Employee
     public string Email { get; set; } = null!;
 
     public int AccessCode { get; set; }
+    public EmployeeType employeeType { get; set; }
 
     public virtual ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
 }
