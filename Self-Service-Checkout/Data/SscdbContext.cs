@@ -34,7 +34,9 @@ public partial class SscdbContext : DbContext
     {
         modelBuilder
             .HasPostgresEnum("employee_type", new[] { "cashier", "beginner", "admin" })
-            .HasPostgresEnum("product_category", new[] { "fruit", "vegetable", "breadstuff", "meat", "drink", "dairy", "sweet", "frozen food", "alcohol", "energy drink" });
+            .HasPostgresEnum("product_category", new[] { "fruit", "vegetable", "breadstuff", "meat", "drink", "dairy", "sweet", "frozen food", "alcohol", "energy drink" })
+            .HasPostgresEnum<Product_Category>("product_category")
+            .HasPostgresEnum<EmployeeType>("employee_type");
 
         modelBuilder.Entity<Customer>(entity =>
         {
@@ -65,6 +67,8 @@ public partial class SscdbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.AccessCode).HasColumnName("access_code");
+            entity.Property(e => e.employeeType).HasColumnName("employee_type")
+                    .HasConversion<string>();
             entity.Property(e => e.Email)
                 .HasColumnType("character varying")
                 .HasColumnName("email");
@@ -88,6 +92,9 @@ public partial class SscdbContext : DbContext
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Barcode).HasColumnName("barcode");
             entity.Property(e => e.Price).HasColumnName("price");
+            entity.Property(e => e.ProductCategory).HasColumnName("product_type")
+                    .HasConversion<string>(); 
+
             entity.Property(e => e.ProductName)
                 .HasColumnType("character varying")
                 .HasColumnName("product_name");
