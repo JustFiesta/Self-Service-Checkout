@@ -115,10 +115,10 @@ namespace Self_Service_Checkout
                 string productBarcode = selectedRow.Cells["Barcode"].Value.ToString();
 
                 // message content
-                string message = $"Nazwa produktu: {productName}\nCena: {productPrice}\nKod: {productBarcode}";
+                string message = $"Product name: {productName}\nPrice: {productPrice}\nBarcode: {productBarcode}";
 
                 // popupwindow
-                MessageBox.Show(message, "Informacje o produkcie", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(message, "Product information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
