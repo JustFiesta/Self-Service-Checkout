@@ -111,6 +111,10 @@
             // 
             // dataView
             // 
+            dataView.AllowUserToAddRows = false;
+            dataView.AllowUserToDeleteRows = false;
+            dataView.AllowUserToResizeColumns = false;
+            dataView.AllowUserToResizeRows = false;
             dataView.BackgroundColor = Color.LightBlue;
             dataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataView.Dock = DockStyle.Fill;
@@ -118,6 +122,7 @@
             dataView.Name = "dataView";
             dataView.Size = new Size(785, 624);
             dataView.TabIndex = 1;
+            dataView.CellDoubleClick += dataView_CellClick;
             // 
             // panel2
             // 
