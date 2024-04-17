@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductsList));
             panel1 = new Panel();
             label1 = new Label();
@@ -35,13 +36,19 @@
             logoBox = new PictureBox();
             productType = new Label();
             dataView = new DataGridView();
+            productBindingSource = new BindingSource(components);
             panel2 = new Panel();
             cardButton = new Button();
             maskedTextBox1 = new MaskedTextBox();
             label2 = new Label();
+            ProductName = new DataGridViewTextBoxColumn();
+            Price = new DataGridViewTextBoxColumn();
+            Weight = new DataGridViewTextBoxColumn();
+            Barcode = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -115,14 +122,22 @@
             dataView.AllowUserToDeleteRows = false;
             dataView.AllowUserToResizeColumns = false;
             dataView.AllowUserToResizeRows = false;
+            dataView.AutoGenerateColumns = false;
             dataView.BackgroundColor = Color.LightBlue;
             dataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataView.Columns.AddRange(new DataGridViewColumn[] { ProductName, Price, Weight, Barcode });
+            dataView.DataSource = productBindingSource;
             dataView.Dock = DockStyle.Fill;
             dataView.Location = new Point(0, 116);
             dataView.Name = "dataView";
+            dataView.ReadOnly = true;
             dataView.Size = new Size(785, 624);
             dataView.TabIndex = 1;
             dataView.CellDoubleClick += dataView_CellClick;
+            // 
+            // productBindingSource
+            // 
+            productBindingSource.DataSource = typeof(Models.Product);
             // 
             // panel2
             // 
@@ -175,6 +190,38 @@
             label2.TabIndex = 0;
             label2.Text = "Enter quantity: ";
             // 
+            // ProductName
+            // 
+            ProductName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ProductName.DataPropertyName = "ProductName";
+            ProductName.HeaderText = "Product";
+            ProductName.Name = "ProductName";
+            ProductName.ReadOnly = true;
+            // 
+            // Price
+            // 
+            Price.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Price.DataPropertyName = "Price";
+            Price.HeaderText = "Price";
+            Price.Name = "Price";
+            Price.ReadOnly = true;
+            // 
+            // Weight
+            // 
+            Weight.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Weight.DataPropertyName = "Weight";
+            Weight.HeaderText = "Weight";
+            Weight.Name = "Weight";
+            Weight.ReadOnly = true;
+            // 
+            // Barcode
+            // 
+            Barcode.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Barcode.DataPropertyName = "Barcode";
+            Barcode.HeaderText = "Barcode";
+            Barcode.Name = "Barcode";
+            Barcode.ReadOnly = true;
+            // 
             // ProductsList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -193,6 +240,7 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)logoBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -210,5 +258,10 @@
         private Label label2;
         private MaskedTextBox maskedTextBox1;
         private Button cardButton;
+        private BindingSource productBindingSource;
+        private DataGridViewTextBoxColumn ProductName;
+        private DataGridViewTextBoxColumn Price;
+        private DataGridViewTextBoxColumn Weight;
+        private DataGridViewTextBoxColumn Barcode;
     }
 }
