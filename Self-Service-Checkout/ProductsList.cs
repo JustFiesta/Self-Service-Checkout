@@ -25,17 +25,6 @@ namespace Self_Service_Checkout
             productType.Text = selectedCategory;
 
             dataView.DataSource = GetProducts(selectedCategory);
-            if (selectedCategory.Equals("Alcohol") || selectedCategory.Equals("Energy Drinks"))
-            {
-                dataView.Columns["Weight"].Visible = true;
-            }
-            else
-            {
-                dataView.Columns["Weight"].Visible = false;
-            }
-            dataView.Columns["Id"].Visible = false;
-            dataView.Columns["ProductCategory"].Visible = false;
-            dataView.Columns["TransactionItems"].Visible = false;
         }
         //super special function that removes applications running in the background
         private void productList_FormClosed(object sender, FormClosedEventArgs e)
@@ -122,11 +111,11 @@ namespace Self_Service_Checkout
 
                 // data from clicked row
                 string productName = selectedRow.Cells["ProductName"].Value.ToString();
-                string productCategory = selectedRow.Cells["ProductCategory"].Value.ToString();
+                string productPrice = selectedRow.Cells["Price"].Value.ToString();
                 string productBarcode = selectedRow.Cells["Barcode"].Value.ToString();
 
                 // message content
-                string message = $"Nazwa produktu: {productName}\nKategoria: {productCategory}\nKod: {productBarcode}";
+                string message = $"Nazwa produktu: {productName}\nCena: {productPrice}\nKod: {productBarcode}";
 
                 // popupwindow
                 MessageBox.Show(message, "Informacje o produkcie", MessageBoxButtons.OK, MessageBoxIcon.Information);
