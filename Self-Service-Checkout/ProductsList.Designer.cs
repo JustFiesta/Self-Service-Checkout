@@ -28,6 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductsList));
             panel1 = new Panel();
             label1 = new Label();
@@ -35,6 +42,11 @@
             logoBox = new PictureBox();
             productType = new Label();
             dataView = new DataGridView();
+            ProductName = new DataGridViewTextBoxColumn();
+            Price = new DataGridViewTextBoxColumn();
+            Weight = new DataGridViewTextBoxColumn();
+            Barcode = new DataGridViewTextBoxColumn();
+            productBindingSource = new BindingSource(components);
             panel2 = new Panel();
             cardButton = new Button();
             maskedTextBox1 = new MaskedTextBox();
@@ -42,6 +54,7 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -115,14 +128,82 @@
             dataView.AllowUserToDeleteRows = false;
             dataView.AllowUserToResizeColumns = false;
             dataView.AllowUserToResizeRows = false;
+            dataView.AutoGenerateColumns = false;
             dataView.BackgroundColor = Color.LightBlue;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.LightBlue;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = Color.LightBlue;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataView.Columns.AddRange(new DataGridViewColumn[] { ProductName, Price, Weight, Barcode });
+            dataView.DataSource = productBindingSource;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.LightBlue;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dataView.DefaultCellStyle = dataGridViewCellStyle6;
             dataView.Dock = DockStyle.Fill;
+            dataView.GridColor = SystemColors.MenuText;
             dataView.Location = new Point(0, 116);
+            dataView.Margin = new Padding(30);
             dataView.Name = "dataView";
+            dataView.ReadOnly = true;
+            dataView.RowHeadersVisible = false;
+            dataView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataView.Size = new Size(785, 624);
             dataView.TabIndex = 1;
             dataView.CellDoubleClick += dataView_CellClick;
+            // 
+            // ProductName
+            // 
+            ProductName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ProductName.DataPropertyName = "ProductName";
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            ProductName.DefaultCellStyle = dataGridViewCellStyle2;
+            ProductName.HeaderText = "Product";
+            ProductName.Name = "ProductName";
+            ProductName.ReadOnly = true;
+            // 
+            // Price
+            // 
+            Price.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Price.DataPropertyName = "Price";
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            Price.DefaultCellStyle = dataGridViewCellStyle3;
+            Price.HeaderText = "Price";
+            Price.Name = "Price";
+            Price.ReadOnly = true;
+            // 
+            // Weight
+            // 
+            Weight.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Weight.DataPropertyName = "Weight";
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            Weight.DefaultCellStyle = dataGridViewCellStyle4;
+            Weight.HeaderText = "Weight";
+            Weight.Name = "Weight";
+            Weight.ReadOnly = true;
+            // 
+            // Barcode
+            // 
+            Barcode.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Barcode.DataPropertyName = "Barcode";
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            Barcode.DefaultCellStyle = dataGridViewCellStyle5;
+            Barcode.HeaderText = "Barcode";
+            Barcode.Name = "Barcode";
+            Barcode.ReadOnly = true;
+            // 
+            // productBindingSource
+            // 
+            productBindingSource.DataSource = typeof(Models.Product);
             // 
             // panel2
             // 
@@ -193,6 +274,7 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)logoBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -210,5 +292,10 @@
         private Label label2;
         private MaskedTextBox maskedTextBox1;
         private Button cardButton;
+        private BindingSource productBindingSource;
+        private DataGridViewTextBoxColumn ProductName;
+        private DataGridViewTextBoxColumn Price;
+        private DataGridViewTextBoxColumn Weight;
+        private DataGridViewTextBoxColumn Barcode;
     }
 }
