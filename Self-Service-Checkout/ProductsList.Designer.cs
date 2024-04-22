@@ -159,7 +159,8 @@
             dataView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataView.Size = new Size(785, 624);
             dataView.TabIndex = 1;
-            dataView.CellDoubleClick += dataView_CellClick;
+            dataView.CellClick += dataView_CellClick;
+            dataView.CellDoubleClick += dataView_CellDoubleClick;
             // 
             // ProductName
             // 
@@ -232,6 +233,7 @@
             cardButton.Size = new Size(80, 80);
             cardButton.TabIndex = 13;
             cardButton.UseVisualStyleBackColor = false;
+            cardButton.Click += cardButton_Click;
             cardButton.MouseLeave += cardButton_MouseLeave;
             cardButton.MouseHover += cardButton_MouseEnter;
             // 
@@ -241,9 +243,12 @@
             maskedTextBox1.BorderStyle = BorderStyle.FixedSingle;
             maskedTextBox1.Font = new Font("Segoe UI", 14F);
             maskedTextBox1.Location = new Point(225, 34);
+            maskedTextBox1.Mask = "00000";
             maskedTextBox1.Name = "maskedTextBox1";
             maskedTextBox1.Size = new Size(60, 32);
             maskedTextBox1.TabIndex = 1;
+            maskedTextBox1.TextAlign = HorizontalAlignment.Center;
+            maskedTextBox1.ValidatingType = typeof(int);
             // 
             // label2
             // 
