@@ -32,8 +32,8 @@
             adminButton = new Button();
             list = new ListView();
             column_name = new ColumnHeader();
-            column_price = new ColumnHeader();
             column_amount = new ColumnHeader();
+            column_price = new ColumnHeader();
             logoBox = new PictureBox();
             finishButton = new Button();
             vegetableButton = new Button();
@@ -68,7 +68,7 @@
             list.Activation = ItemActivation.TwoClick;
             list.AutoArrange = false;
             list.BackColor = Color.RoyalBlue;
-            list.Columns.AddRange(new ColumnHeader[] { column_name, column_price, column_amount });
+            list.Columns.AddRange(new ColumnHeader[] { column_name, column_amount, column_price });
             list.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             list.ForeColor = Color.Black;
             list.HeaderStyle = ColumnHeaderStyle.Nonclickable;
@@ -78,7 +78,7 @@
             list.Name = "list";
             list.OwnerDraw = true;
             list.Scrollable = false;
-            list.Size = new Size(377, 613);
+            list.Size = new Size(390, 613);
             list.TabIndex = 7;
             list.UseCompatibleStateImageBehavior = false;
             list.View = View.Details;
@@ -86,17 +86,17 @@
             // column_name
             // 
             column_name.Text = "Product ";
-            column_name.Width = 215;
+            column_name.Width = 200;
+            // 
+            // column_amount
+            // 
+            column_amount.Text = "Amount";
+            column_amount.Width = 110;
             // 
             // column_price
             // 
             column_price.Text = "Price";
             column_price.Width = 80;
-            // 
-            // column_amount
-            // 
-            column_amount.Text = "Amount";
-            column_amount.Width = 80;
             // 
             // logoBox
             // 

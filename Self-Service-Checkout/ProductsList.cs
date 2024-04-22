@@ -103,46 +103,59 @@ namespace Self_Service_Checkout
             return products;
         }
 
-        //function to view data by double-clicking specified cell
+        //function to adding one product after double clicking
         private void dataView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // check if correct cell was clicked
+            if (e.RowIndex >= 0) // Sprawdzamy, czy kliknięto poprawną komórkę
             {
-                DataGridViewRow selectedRow = dataView.Rows[e.RowIndex]; // get clicked row
+                DataGridViewRow selectedRow = dataView.Rows[e.RowIndex]; // Pobieramy kliknięty wiersz
 
-                selected_item[0] = selectedRow.Cells["ProductName"].Value.ToString();
-                selected_item[1] = selectedRow.Cells["Price"].Value.ToString();
-                selected_item[2] = "1";
-                mainForm.list.Items.Add(new ListViewItem(selected_item));
+                string productName = selectedRow.Cells["ProductName"].Value.ToString();
+                string price = selectedRow.Cells["Price"].Value.ToString();
+                mainForm.list.Items.Add(new ListViewItem(new string[] { productName, "1" ,price }));
                 this.Close();
-                // message content
-                //string message = $"Product name: {productTuple.Item1}\nPrice: {productTuple.Item2}";
-
-                // popupwindow
-                //MessageBox.Show(message, "Product information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
-        private void dataView_CellClick(object sender, DataGridViewCellEventArgs e)
+        //Function of adding a product via a button
+        private void cardButton_Click(object sender, EventArgs e)
         {
-            if (e.RowIndex >= 0) // check if correct cell was clicked
-            {
-                DataGridViewRow selectedRow = dataView.Rows[e.RowIndex]; // get clicked row
+            DataGridViewRow selectedRow = dataView.CurrentRow;
 
+            if (selected_item.Length != 0 && IsValidInput(maskedTextBox1.Text))
+            {
                 selected_item[0] = selectedRow.Cells["ProductName"].Value.ToString();
                 selected_item[1] = selectedRow.Cells["Price"].Value.ToString();
-            }
-        }
-
-        private  void cardButton_Click(object sender, EventArgs e)
-        {
-            if(selected_item.Length != 0 && maskedTextBox1.Text.Length != 0)
-            {
-                selected_item[2] = maskedTextBox1.Text;
+                selected_item[2] = maskedTextBox1.Text; // ustawiamy ilość
                 mainForm.list.Items.Add(new ListViewItem(selected_item));
                 this.Close();
             }
-            
         }
+
+        // Function for validating the entered product quantity
+        private bool IsValidInput(string input)
+        {
+            bool isValid = false;
+            if (!string.IsNullOrEmpty(input) && decimal.TryParse(input, out decimal value) && value >= 0)
+            {
+                if (value <= 50) 
+                {
+                    isValid = true;
+                    infoLabel.Visible = false; 
+                }
+                else
+                {
+                    infoLabel.Visible = true; 
+                    infoLabel.Text = "The quantity exceeds the limit!"; 
+                }
+            }
+            else
+            {
+                infoLabel.Visible = true; 
+                infoLabel.Text = "Please enter a valid non-negative number!"; 
+            }
+            return isValid;
+        }
+
     }
 }

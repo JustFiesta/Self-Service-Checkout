@@ -48,6 +48,7 @@
             Barcode = new DataGridViewTextBoxColumn();
             productBindingSource = new BindingSource(components);
             panel2 = new Panel();
+            infoLabel = new Label();
             cardButton = new Button();
             maskedTextBox1 = new MaskedTextBox();
             label2 = new Label();
@@ -159,7 +160,6 @@
             dataView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataView.Size = new Size(785, 624);
             dataView.TabIndex = 1;
-            dataView.CellClick += dataView_CellClick;
             dataView.CellDoubleClick += dataView_CellDoubleClick;
             // 
             // ProductName
@@ -209,6 +209,7 @@
             // panel2
             // 
             panel2.BackColor = Color.RoyalBlue;
+            panel2.Controls.Add(infoLabel);
             panel2.Controls.Add(cardButton);
             panel2.Controls.Add(maskedTextBox1);
             panel2.Controls.Add(label2);
@@ -217,6 +218,18 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(785, 91);
             panel2.TabIndex = 2;
+            // 
+            // infoLabel
+            // 
+            infoLabel.AutoSize = true;
+            infoLabel.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            infoLabel.ForeColor = Color.White;
+            infoLabel.Location = new Point(291, 36);
+            infoLabel.Name = "infoLabel";
+            infoLabel.Size = new Size(58, 21);
+            infoLabel.TabIndex = 14;
+            infoLabel.Text = "label3";
+            infoLabel.Visible = false;
             // 
             // cardButton
             // 
@@ -239,16 +252,15 @@
             // 
             // maskedTextBox1
             // 
+            maskedTextBox1.AccessibleRole = AccessibleRole.None;
             maskedTextBox1.BackColor = Color.LightBlue;
             maskedTextBox1.BorderStyle = BorderStyle.FixedSingle;
             maskedTextBox1.Font = new Font("Segoe UI", 14F);
             maskedTextBox1.Location = new Point(225, 34);
-            maskedTextBox1.Mask = "00000";
             maskedTextBox1.Name = "maskedTextBox1";
             maskedTextBox1.Size = new Size(60, 32);
             maskedTextBox1.TabIndex = 1;
             maskedTextBox1.TextAlign = HorizontalAlignment.Center;
-            maskedTextBox1.ValidatingType = typeof(int);
             // 
             // label2
             // 
@@ -302,5 +314,6 @@
         private DataGridViewTextBoxColumn Price;
         private DataGridViewTextBoxColumn Weight;
         private DataGridViewTextBoxColumn Barcode;
+        private Label infoLabel;
     }
 }
