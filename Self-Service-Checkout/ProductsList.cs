@@ -17,6 +17,7 @@ namespace Self_Service_Checkout
     {
         private string selectedCategory;
         private SscdbContext context = new SscdbContext();
+        private string[] selected_item = new string[3];
 
         public ProductsList(string category)
         {
@@ -103,23 +104,45 @@ namespace Self_Service_Checkout
         }
 
         //function to view data by double-clicking specified cell
+        private void dataView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // check if correct cell was clicked
+            {
+                DataGridViewRow selectedRow = dataView.Rows[e.RowIndex]; // get clicked row
+
+                selected_item[0] = selectedRow.Cells["ProductName"].Value.ToString();
+                selected_item[1] = selectedRow.Cells["Price"].Value.ToString();
+                selected_item[2] = "1";
+                mainForm.list.Items.Add(new ListViewItem(selected_item));
+                this.Close();
+                // message content
+                //string message = $"Product name: {productTuple.Item1}\nPrice: {productTuple.Item2}";
+
+                // popupwindow
+                //MessageBox.Show(message, "Product information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         private void dataView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0) // check if correct cell was clicked
             {
                 DataGridViewRow selectedRow = dataView.Rows[e.RowIndex]; // get clicked row
 
-                // data from clicked row
-                string productName = selectedRow.Cells["ProductName"].Value.ToString();
-                string productPrice = selectedRow.Cells["Price"].Value.ToString();
-                string productBarcode = selectedRow.Cells["Barcode"].Value.ToString();
-
-                // message content
-                string message = $"Product name: {productName}\nPrice: {productPrice}\nBarcode: {productBarcode}";
-
-                // popupwindow
-                MessageBox.Show(message, "Product information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                selected_item[0] = selectedRow.Cells["ProductName"].Value.ToString();
+                selected_item[1] = selectedRow.Cells["Price"].Value.ToString();
             }
+        }
+
+        private  void cardButton_Click(object sender, EventArgs e)
+        {
+            if(selected_item.Length != 0 && maskedTextBox1.Text.Length != 0)
+            {
+                selected_item[2] = maskedTextBox1.Text;
+                mainForm.list.Items.Add(new ListViewItem(selected_item));
+                this.Close();
+            }
+            
         }
     }
 }
