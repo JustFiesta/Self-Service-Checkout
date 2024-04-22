@@ -27,8 +27,6 @@ namespace Self_Service_Checkout
             };
 
             RoundButton(finishButton, 20);
-            //TESTING
-            AddElem();
         }
 
         //super special function that removes applications running in the background
@@ -71,22 +69,6 @@ namespace Self_Service_Checkout
             Barcode barcode = new Barcode();
             barcode.Show();
         }
-        // ONLY FOR TESTING !
-        private void AddElem()
-        {
-            // Dodanie przyk³adowych elementów do listy
-            string[] item1 = new string[] { "Laptop", "1000" };
-            string[] item2 = new string[] { "Smartphone", "800" };
-            string[] item3 = new string[] { "Tablet", "500" };
-            string[] item4 = new string[] { "Potato", "10.99" };
-
-            // Dodanie elementów do kontrolki ListView
-            list.Items.Add(new ListViewItem(item1));
-            list.Items.Add(new ListViewItem(item2));
-            list.Items.Add(new ListViewItem(item3));
-            list.Items.Add(new ListViewItem(item4));
-        }
-
         //
         //  section for forwarding the appropriate product category to display
         //
