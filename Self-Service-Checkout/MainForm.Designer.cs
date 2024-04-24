@@ -32,7 +32,7 @@
             adminButton = new Button();
             list = new ListView();
             column_name = new ColumnHeader();
-            column_amount = new ColumnHeader();
+            column_quantity = new ColumnHeader();
             column_price = new ColumnHeader();
             logoBox = new PictureBox();
             finishButton = new Button();
@@ -47,7 +47,12 @@
             alcoholButton = new Button();
             energydrinkButton = new Button();
             barcodeButton = new Button();
+            panel1 = new Panel();
+            amountLabel = new Label();
+            label1 = new Label();
+            panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // adminButton
@@ -68,17 +73,17 @@
             list.Activation = ItemActivation.TwoClick;
             list.AutoArrange = false;
             list.BackColor = Color.RoyalBlue;
-            list.Columns.AddRange(new ColumnHeader[] { column_name, column_amount, column_price });
-            list.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            list.Columns.AddRange(new ColumnHeader[] { column_name, column_price, column_quantity });
+            list.Font = new Font("Segoe UI", 13.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             list.ForeColor = Color.Black;
             list.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             list.HideSelection = true;
-            list.Location = new Point(12, 89);
+            list.Location = new Point(12, 79);
             list.MultiSelect = false;
             list.Name = "list";
             list.OwnerDraw = true;
             list.Scrollable = false;
-            list.Size = new Size(390, 613);
+            list.Size = new Size(390, 623);
             list.TabIndex = 7;
             list.UseCompatibleStateImageBehavior = false;
             list.View = View.Details;
@@ -88,10 +93,10 @@
             column_name.Text = "Product ";
             column_name.Width = 200;
             // 
-            // column_amount
+            // column_quantity
             // 
-            column_amount.Text = "Amount";
-            column_amount.Width = 110;
+            column_quantity.Text = "Quantity";
+            column_quantity.Width = 110;
             // 
             // column_price
             // 
@@ -342,12 +347,56 @@
             barcodeButton.UseVisualStyleBackColor = false;
             barcodeButton.Click += barcodeButton_Click;
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.RoyalBlue;
+            panel1.Controls.Add(amountLabel);
+            panel1.Controls.Add(label1);
+            panel1.Location = new Point(12, 664);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(390, 38);
+            panel1.TabIndex = 21;
+            // 
+            // amountLabel
+            // 
+            amountLabel.AutoSize = true;
+            amountLabel.BackColor = Color.Transparent;
+            amountLabel.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold);
+            amountLabel.ForeColor = Color.White;
+            amountLabel.Location = new Point(258, 0);
+            amountLabel.Name = "amountLabel";
+            amountLabel.Size = new Size(78, 30);
+            amountLabel.TabIndex = 1;
+            amountLabel.Text = "0.00 €";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(36, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(104, 30);
+            label1.TabIndex = 0;
+            label1.Text = "Amount:";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.White;
+            panel2.Location = new Point(33, 656);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(349, 5);
+            panel2.TabIndex = 22;
+            // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
             ClientSize = new Size(785, 740);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Controls.Add(barcodeButton);
             Controls.Add(energydrinkButton);
             Controls.Add(alcoholButton);
@@ -369,6 +418,8 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Self-Service-Checkout";
             ((System.ComponentModel.ISupportInitialize)logoBox).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -390,7 +441,11 @@
         private Button alcoholButton;
         private Button energydrinkButton;
         private Button barcodeButton;
-        private ColumnHeader column_amount;
+        private ColumnHeader column_quantity;
+        private Panel panel1;
+        private Label label1;
+        private Label amountLabel;
+        private Panel panel2;
         public static ListView list;
     }
 }

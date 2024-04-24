@@ -18,13 +18,14 @@ namespace Self_Service_Checkout
         private string selectedCategory;
         private SscdbContext context = new SscdbContext();
         private string[] selected_item = new string[3];
+        private mainForm _mainForm;
 
         public ProductsList(string category)
         {
             InitializeComponent();
             selectedCategory += category;
             productType.Text = selectedCategory;
-
+            _mainForm = mainForm.Instance;
             dataView.DataSource = GetProducts(selectedCategory);
         }
         //super special function that removes applications running in the background
@@ -112,7 +113,7 @@ namespace Self_Service_Checkout
 
                 string productName = selectedRow.Cells["ProductName"].Value.ToString();
                 string price = selectedRow.Cells["Price"].Value.ToString();
-                mainForm.list.Items.Add(new ListViewItem(new string[] { productName, "1" ,price }));
+                mainForm.list.Items.Add(new ListViewItem(new string[] { productName,price, "1" }));
                 this.Close();
             }
         }
@@ -128,6 +129,9 @@ namespace Self_Service_Checkout
                 selected_item[1] = selectedRow.Cells["Price"].Value.ToString();
                 selected_item[2] = maskedTextBox1.Text; // ustawiamy ilość
                 mainForm.list.Items.Add(new ListViewItem(selected_item));
+
+                //calculating cart total amount
+                _mainForm.CalculateTotalPrice();
                 this.Close();
             }
         }

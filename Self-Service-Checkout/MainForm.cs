@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -7,6 +8,7 @@ namespace Self_Service_Checkout
 {
     public partial class mainForm : Form
     {
+        public static mainForm Instance { get; private set; }
         public mainForm()
         {
             InitializeComponent();
@@ -16,6 +18,7 @@ namespace Self_Service_Checkout
             list.DrawColumnHeader += list_DrawColumnHeader;
             list.DrawItem += list_DrawItem;
             list.OwnerDraw = true;
+            Instance = this;
 
             //blocking the selection of options in the list
             list.ItemSelectionChanged += (sender, e) =>
@@ -44,7 +47,7 @@ namespace Self_Service_Checkout
         private void list_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
         {
             e.Graphics.FillRectangle(Brushes.RoyalBlue, e.Bounds);
-            e.Graphics.DrawString(e.Header.Text, new Font("Segoe UI", 17, FontStyle.Bold), Brushes.White, e.Bounds);
+            e.Graphics.DrawString(e.Header.Text, new Font("Segoe UI", (float)16.5, FontStyle.Bold), Brushes.White, e.Bounds);
         }
 
         // adding products with default settings
@@ -114,9 +117,31 @@ namespace Self_Service_Checkout
         }
         private void OpenProductList(string category)
         {
-            Console.WriteLine("IM HERE");
             ProductsList productsList = new ProductsList(category);
             productsList.Show();
         }
+
+        // Funkcja do zliczania ³¹cznej ceny produktów
+        public void CalculateTotalPrice()
+        {
+            decimal totalPrice = 0;
+
+            // Iteracja przez elementy listy i dodanie do ³¹cznej ceny
+            foreach (ListViewItem item in list.Items)
+            {
+                int quantity = int.Parse(item.SubItems[2].Text);
+
+                decimal price = 0;
+                if (decimal.TryParse(item.SubItems[1].Text, out decimal parsedPrice))
+                {
+                    price = parsedPrice;
+                }
+                totalPrice += quantity * price;
+            }
+
+            // Aktualizacja etykiety z ³¹czn¹ cen¹
+            amountLabel.Text = $"{totalPrice}€";
+        }
+
     }
 }
