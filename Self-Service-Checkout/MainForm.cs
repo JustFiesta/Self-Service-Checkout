@@ -114,9 +114,10 @@ namespace Self_Service_Checkout
         }
         private void OpenProductList(string category)
         {
-            Console.WriteLine("IM HERE");
             ProductsList productsList = new ProductsList(category);
             productsList.Show();
         }
+
+
     }
 }
