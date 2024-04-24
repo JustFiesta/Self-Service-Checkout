@@ -32,8 +32,8 @@
             adminButton = new Button();
             list = new ListView();
             column_name = new ColumnHeader();
-            column_quantity = new ColumnHeader();
             column_price = new ColumnHeader();
+            column_quantity = new ColumnHeader();
             logoBox = new PictureBox();
             finishButton = new Button();
             vegetableButton = new Button();
@@ -51,6 +51,7 @@
             amountLabel = new Label();
             label1 = new Label();
             panel2 = new Panel();
+            confirmationLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -67,6 +68,7 @@
             adminButton.Size = new Size(70, 70);
             adminButton.TabIndex = 6;
             adminButton.UseVisualStyleBackColor = false;
+            adminButton.Click += adminButton_Click;
             // 
             // list
             // 
@@ -93,15 +95,15 @@
             column_name.Text = "Product ";
             column_name.Width = 200;
             // 
-            // column_quantity
-            // 
-            column_quantity.Text = "Quantity";
-            column_quantity.Width = 110;
-            // 
             // column_price
             // 
             column_price.Text = "Price";
             column_price.Width = 80;
+            // 
+            // column_quantity
+            // 
+            column_quantity.Text = "Quantity";
+            column_quantity.Width = 110;
             // 
             // logoBox
             // 
@@ -389,12 +391,25 @@
             panel2.Size = new Size(349, 5);
             panel2.TabIndex = 22;
             // 
+            // confirmationLabel
+            // 
+            confirmationLabel.AutoSize = true;
+            confirmationLabel.Font = new Font("Segoe UI", 17.25F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 238);
+            confirmationLabel.ForeColor = Color.Red;
+            confirmationLabel.Location = new Point(432, 93);
+            confirmationLabel.Name = "confirmationLabel";
+            confirmationLabel.Size = new Size(244, 31);
+            confirmationLabel.TabIndex = 23;
+            confirmationLabel.Text = "Proof of age required";
+            confirmationLabel.Visible = false;
+            // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
             ClientSize = new Size(785, 740);
+            Controls.Add(confirmationLabel);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(barcodeButton);
@@ -421,6 +436,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -446,6 +462,7 @@
         private Label label1;
         private Label amountLabel;
         private Panel panel2;
+        private Label confirmationLabel;
         public static ListView list;
     }
 }

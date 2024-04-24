@@ -120,13 +120,11 @@ namespace Self_Service_Checkout
             ProductsList productsList = new ProductsList(category);
             productsList.Show();
         }
-
-        // Funkcja do zliczania ³¹cznej ceny produktów
+    
+        //function for calculate total price of shopping cart
         public void CalculateTotalPrice()
         {
             decimal totalPrice = 0;
-
-            // Iteracja przez elementy listy i dodanie do ³¹cznej ceny
             foreach (ListViewItem item in list.Items)
             {
                 int quantity = int.Parse(item.SubItems[2].Text);
@@ -138,10 +136,12 @@ namespace Self_Service_Checkout
                 }
                 totalPrice += quantity * price;
             }
-
-            // Aktualizacja etykiety z ³¹czn¹ cen¹
             amountLabel.Text = $"{totalPrice}€";
         }
 
+        private void adminButton_Click(object sender, EventArgs e)
+        {
+            //what the dog doin
+        }
     }
 }
