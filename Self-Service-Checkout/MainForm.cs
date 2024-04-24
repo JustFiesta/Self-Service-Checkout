@@ -44,7 +44,7 @@ namespace Self_Service_Checkout
         private void list_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
         {
             e.Graphics.FillRectangle(Brushes.RoyalBlue, e.Bounds);
-            e.Graphics.DrawString(e.Header.Text, new Font("Segoe UI", 17, FontStyle.Bold), Brushes.White, e.Bounds);
+            e.Graphics.DrawString(e.Header.Text, new Font("Segoe UI", (float)16.5, FontStyle.Bold), Brushes.White, e.Bounds);
         }
 
         // adding products with default settings
