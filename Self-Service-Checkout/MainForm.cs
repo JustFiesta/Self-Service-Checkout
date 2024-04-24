@@ -141,7 +141,8 @@ namespace Self_Service_Checkout
 
         private void adminButton_Click(object sender, EventArgs e)
         {
-            //what the dog doin
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
         }
     }
 }
