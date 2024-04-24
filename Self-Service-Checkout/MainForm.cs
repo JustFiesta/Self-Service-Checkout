@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -7,6 +8,7 @@ namespace Self_Service_Checkout
 {
     public partial class mainForm : Form
     {
+        public static mainForm Instance { get; private set; }
         public mainForm()
         {
             InitializeComponent();
@@ -16,6 +18,7 @@ namespace Self_Service_Checkout
             list.DrawColumnHeader += list_DrawColumnHeader;
             list.DrawItem += list_DrawItem;
             list.OwnerDraw = true;
+            Instance = this;
 
             //blocking the selection of options in the list
             list.ItemSelectionChanged += (sender, e) =>
@@ -118,6 +121,27 @@ namespace Self_Service_Checkout
             productsList.Show();
         }
 
+        // Funkcja do zliczania ³¹cznej ceny produktów
+        public void CalculateTotalPrice()
+        {
+            decimal totalPrice = 0;
+
+            // Iteracja przez elementy listy i dodanie do ³¹cznej ceny
+            foreach (ListViewItem item in list.Items)
+            {
+                int quantity = int.Parse(item.SubItems[2].Text);
+
+                decimal price = 0;
+                if (decimal.TryParse(item.SubItems[1].Text, out decimal parsedPrice))
+                {
+                    price = parsedPrice;
+                }
+                totalPrice += quantity * price;
+            }
+
+            // Aktualizacja etykiety z ³¹czn¹ cen¹
+            amountLabel.Text = $"{totalPrice}€";
+        }
 
     }
 }

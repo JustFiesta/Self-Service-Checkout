@@ -73,7 +73,7 @@
             list.Activation = ItemActivation.TwoClick;
             list.AutoArrange = false;
             list.BackColor = Color.RoyalBlue;
-            list.Columns.AddRange(new ColumnHeader[] { column_name, column_quantity, column_price });
+            list.Columns.AddRange(new ColumnHeader[] { column_name, column_price, column_quantity });
             list.Font = new Font("Segoe UI", 13.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
             list.ForeColor = Color.Black;
             list.HeaderStyle = ColumnHeaderStyle.Nonclickable;

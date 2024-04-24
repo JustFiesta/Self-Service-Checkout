@@ -18,11 +18,13 @@ namespace Self_Service_Checkout
     public partial class Barcode : Form
     {
         private SscdbContext context = new SscdbContext();
+        private mainForm _mainForm;
         public Barcode()
         {
             InitializeComponent();
             RoundButton(confirmButton, 20);
             RoundButton(cancelButton, 20);
+            _mainForm = mainForm.Instance;
         }
 
         //super special function that removes applications running in the background
@@ -85,8 +87,11 @@ namespace Self_Service_Checkout
             {
                 infoLabel.Visible = true;
                 infoLabel.Text = $"{product.ProductName} has been added to your cart";
-                ListViewItem newItem = new ListViewItem(new string[] { product.ProductName, quantity.ToString(), product.Price.ToString() });
+                ListViewItem newItem = new ListViewItem(new string[] { product.ProductName, product.Price.ToString(), quantity.ToString() });
                 mainForm.list.Items.Add(newItem);
+
+                //calculating cart total amount
+                _mainForm.CalculateTotalPrice();
             }
             else
             {
