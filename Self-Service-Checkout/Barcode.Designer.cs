@@ -116,6 +116,7 @@
             infoLabel.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 238);
             infoLabel.ForeColor = Color.MidnightBlue;
             infoLabel.Location = new Point(46, 207);
+            infoLabel.MaximumSize = new Size(335, 300);
             infoLabel.Name = "infoLabel";
             infoLabel.Size = new Size(335, 30);
             infoLabel.TabIndex = 11;
@@ -135,6 +136,7 @@
             confirmButton.TabIndex = 12;
             confirmButton.Text = "CONFIRM";
             confirmButton.UseVisualStyleBackColor = false;
+            confirmButton.Click += confirmButton_Click;
             // 
             // cancelButton
             // 
