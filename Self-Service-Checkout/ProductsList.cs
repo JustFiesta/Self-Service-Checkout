@@ -113,7 +113,8 @@ namespace Self_Service_Checkout
 
                 string productName = selectedRow.Cells["ProductName"].Value.ToString();
                 string price = selectedRow.Cells["Price"].Value.ToString();
-                mainForm.list.Items.Add(new ListViewItem(new string[] { productName,price, "1" }));
+                _mainForm.list.Items.Add(new ListViewItem(new string[] { productName,price, "1" }));
+                _mainForm.CalculateTotalPrice();
                 this.Close();
             }
         }
@@ -128,7 +129,7 @@ namespace Self_Service_Checkout
                 selected_item[0] = selectedRow.Cells["ProductName"].Value.ToString();
                 selected_item[1] = selectedRow.Cells["Price"].Value.ToString();
                 selected_item[2] = maskedTextBox1.Text; // ustawiamy ilość
-                mainForm.list.Items.Add(new ListViewItem(selected_item));
+                _mainForm.list.Items.Add(new ListViewItem(selected_item));
 
                 //calculating cart total amount
                 _mainForm.CalculateTotalPrice();

@@ -88,7 +88,7 @@ namespace Self_Service_Checkout
                 infoLabel.Visible = true;
                 infoLabel.Text = $"{product.ProductName} has been added to your cart";
                 ListViewItem newItem = new ListViewItem(new string[] { product.ProductName, product.Price.ToString(), quantity.ToString() });
-                mainForm.list.Items.Add(newItem);
+                _mainForm.list.Items.Add(newItem);
 
                 //calculating cart total amount
                 _mainForm.CalculateTotalPrice();

@@ -463,6 +463,6 @@
         private Label amountLabel;
         private Panel panel2;
         private Label confirmationLabel;
-        public static ListView list;
+        public ListView list;
     }
 }
