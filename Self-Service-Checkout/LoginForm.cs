@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Self_Service_Checkout.Data;
+using Self_Service_Checkout.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -72,12 +75,67 @@ namespace Self_Service_Checkout
                 codeInput.PasswordChar = '●';
             }
         }
-        //if the data is correct - a new cart management window
+
+
+        //function for employee login validation
         private void loginButton_Click(object sender, EventArgs e)
         {
-            CartManagementForm cartManagementForm = new CartManagementForm();
-            cartManagementForm.Show();
-            this.Close();
+            //creating new context - db connection class
+            SscdbContext context = new SscdbContext();
+
+            //checking if input fields are empty or not
+            if(nameInput.Text.Equals("") || codeInput.Text.Equals(""))
+            {
+                //if yes, error message
+                infoLabel.Visible = true;
+            } 
+            else
+            {
+                //if not empty, creating null employee object for validation
+                Employee employee = null;
+
+                //try catch for parsing input fields to int32
+                try
+                {
+                    //finding employee with given ID, if employee doesnt exist sets employee to null
+                    employee = context.Employees.Find(Int32.Parse(nameInput.Text));
+
+                    //checking if employee is null and access code is matching
+                    if (employee != null && employee.AccessCode == Int32.Parse(codeInput.Text))
+                    {
+                        //setting admin flag if employee type is admin
+                        if (employee.employeeType.Equals(EmployeeType.admin))
+                        {
+                            LoginFlag.flag = true;
+                            Debug.WriteLine("Admin logged");
+                        }
+
+                        //type of window you want to open after succesfull login
+                        CartManagementForm cartManagementForm = new CartManagementForm();
+                        cartManagementForm.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        //error if employee is null and code doesnt match
+                        infoLabel.Visible = true;
+                    }
+                } 
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    //error message if parsing make exception
+                    infoLabel.Visible = true;
+                }
+            }
         }
+    }
+
+
+    //proposal for login flag like this?
+    public class LoginFlag
+    {
+        //false if no admin permission
+        public static Boolean flag = false;
     }
 }
