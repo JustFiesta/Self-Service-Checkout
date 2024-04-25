@@ -127,6 +127,7 @@
             adminButton.Size = new Size(70, 70);
             adminButton.TabIndex = 5;
             adminButton.UseVisualStyleBackColor = false;
+            adminButton.Click += adminButton_Click;
             // 
             // welcomeForm
             // 

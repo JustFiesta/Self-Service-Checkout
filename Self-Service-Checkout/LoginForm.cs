@@ -75,7 +75,9 @@ namespace Self_Service_Checkout
         //if the data is correct - a new cart management window
         private void loginButton_Click(object sender, EventArgs e)
         {
-            
+            CartManagementForm cartManagementForm = new CartManagementForm();
+            cartManagementForm.Show();
+            this.Close();
         }
     }
 }

@@ -55,5 +55,11 @@ namespace Self_Service_Checkout
         {
             Application.Exit();
         }
+
+        private void adminButton_Click(object sender, EventArgs e)
+        {
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
+        }
     }
 }
