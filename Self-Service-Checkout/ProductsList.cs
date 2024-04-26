@@ -142,12 +142,14 @@ namespace Self_Service_Checkout
             }
         }
 
+        // Function for checking if any prohibited item is added to cart - if so show label and disable finish button
         private bool checkProhibitedItems()
         {
 
-            if (selectedCategory.Equals("Alcohol") || selectedCategory.Equals("Energy Drink"))
+            if (selectedCategory.Equals("Alcohol") || selectedCategory.Equals("Energy Drinks"))
             {
-                Debug.WriteLine("prohibited item");
+                _mainForm.confirmationLabel.Visible = true;
+                _mainForm.finishButton.Enabled = false;
                 return true;
             }
 
