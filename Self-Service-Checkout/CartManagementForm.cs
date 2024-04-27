@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace Self_Service_Checkout
 {
     public partial class CartManagementForm : Form
     {
+        private mainForm _mainForm = mainForm.Instance;
+
         public CartManagementForm()
         {
             InitializeComponent();
@@ -70,6 +73,27 @@ namespace Self_Service_Checkout
             {
                 checkBoxYES.Checked = false;
             }
+        }
+
+        // Function for save buton actions
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            // Check checkbox input
+            if (checkBoxYES.Checked)
+            {
+                confirmBuyerAge();
+            }
+
+            // TODO removeProhibitedItems();
+
+            this.Close();
+        }
+
+        // Function for confirming buyers age - hide label and enable finalize button
+        public void confirmBuyerAge()
+        {
+            _mainForm.confirmationLabel.Visible = false;
+            _mainForm.finishButton.Enabled = true;
         }
     }
 }

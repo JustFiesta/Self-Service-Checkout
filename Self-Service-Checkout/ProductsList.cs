@@ -114,6 +114,9 @@ namespace Self_Service_Checkout
                 string productName = selectedRow.Cells["ProductName"].Value.ToString();
                 string price = selectedRow.Cells["Price"].Value.ToString();
                 _mainForm.list.Items.Add(new ListViewItem(new string[] { productName,price, "1" }));
+
+                checkProhibitedItems();
+
                 _mainForm.CalculateTotalPrice();
                 this.Close();
             }
@@ -131,10 +134,26 @@ namespace Self_Service_Checkout
                 selected_item[2] = maskedTextBox1.Text; // ustawiamy ilość
                 _mainForm.list.Items.Add(new ListViewItem(selected_item));
 
+                checkProhibitedItems();
+
                 //calculating cart total amount
                 _mainForm.CalculateTotalPrice();
                 this.Close();
             }
+        }
+
+        // Function for checking if any prohibited item is added to cart - if so show label and disable finish button
+        private bool checkProhibitedItems()
+        {
+
+            if (selectedCategory.Equals("Alcohol") || selectedCategory.Equals("Energy Drinks"))
+            {
+                _mainForm.confirmationLabel.Visible = true;
+                _mainForm.finishButton.Enabled = false;
+                return true;
+            }
+
+            return false;
         }
 
         // Function for validating the entered product quantity

@@ -137,6 +137,7 @@
             saveButton.SizeMode = PictureBoxSizeMode.Zoom;
             saveButton.TabIndex = 21;
             saveButton.TabStop = false;
+            saveButton.Click += saveButton_Click;
             saveButton.MouseEnter += Save_Button_MouseEnter;
             saveButton.MouseLeave += SaveButton_MouseLeave;
             // 

@@ -445,7 +445,7 @@
         private ColumnHeader column_name;
         private ColumnHeader column_price;
         private PictureBox logoBox;
-        private Button finishButton;
+        public Button finishButton;
         private Button vegetableButton;
         private Button fruitButton;
         private Button breadstuffButton;
@@ -462,7 +462,7 @@
         private Label label1;
         private Label amountLabel;
         private Panel panel2;
-        private Label confirmationLabel;
+        public Label confirmationLabel;
         public ListView list;
     }
 }
