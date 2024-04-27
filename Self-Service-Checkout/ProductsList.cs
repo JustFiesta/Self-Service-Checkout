@@ -111,13 +111,9 @@ namespace Self_Service_Checkout
             {
                 DataGridViewRow selectedRow = dataView.Rows[e.RowIndex]; // Pobieramy kliknięty wiersz
 
-                string productName = selectedRow.Cells["ProductName"].Value.ToString();
-                string price = selectedRow.Cells["Price"].Value.ToString();
-                _mainForm.list.Items.Add(new ListViewItem(new string[] { productName,price, "1" }));
-
                 //adding new item to datagridview instead of listview !! CHECK PLZ IF DELETE
-                string[] row = { productName, price, "1" };
-                _mainForm.ListViewTest.Rows.Add(row);
+                _mainForm.ListViewTest.Rows.Add(selectedRow.Cells["ProductName"].Value, selectedRow.Cells["Price"].Value, "1");
+
                 checkProhibitedItems();
 
                 _mainForm.CalculateTotalPrice();
@@ -132,15 +128,8 @@ namespace Self_Service_Checkout
 
             if (selected_item.Length != 0 && IsValidInput(maskedTextBox1.Text))
             {
-                selected_item[0] = selectedRow.Cells["ProductName"].Value.ToString();
-                selected_item[1] = selectedRow.Cells["Price"].Value.ToString();
-                selected_item[2] = maskedTextBox1.Text; // ustawiamy ilość
-                
-                _mainForm.list.Items.Add(new ListViewItem(selected_item));
-
                 //adding new item to datagridview instead of listview !! CHECK PLZ IF DELETE
-                string[] row = selected_item;
-                _mainForm.ListViewTest.Rows.Add(row);
+                _mainForm.ListViewTest.Rows.Add(selectedRow.Cells["ProductName"].Value, selectedRow.Cells["Price"].Value, maskedTextBox1.Text);
 
 
                 checkProhibitedItems();

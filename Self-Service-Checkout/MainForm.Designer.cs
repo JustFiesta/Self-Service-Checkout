@@ -52,15 +52,11 @@
             label1 = new Label();
             panel2 = new Panel();
             confirmationLabel = new Label();
-            column_name = new ColumnHeader();
-            column_price = new ColumnHeader();
-            column_quantity = new ColumnHeader();
-            list = new ListView();
             ListViewTest = new DataGridView();
-            productBindingSource = new BindingSource(components);
             Product = new DataGridViewTextBoxColumn();
             Price = new DataGridViewTextBoxColumn();
             Quantity = new DataGridViewTextBoxColumn();
+            productBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ListViewTest).BeginInit();
@@ -362,7 +358,7 @@
             // panel2
             // 
             panel2.BackColor = Color.White;
-            panel2.Location = new Point(33, 656);
+            panel2.Location = new Point(29, 653);
             panel2.Name = "panel2";
             panel2.Size = new Size(349, 5);
             panel2.TabIndex = 22;
@@ -379,42 +375,6 @@
             confirmationLabel.Text = "Proof of age required";
             confirmationLabel.Visible = false;
             // 
-            // column_name
-            // 
-            column_name.Text = "Product ";
-            column_name.Width = 200;
-            // 
-            // column_price
-            // 
-            column_price.Text = "Price";
-            column_price.Width = 80;
-            // 
-            // column_quantity
-            // 
-            column_quantity.Text = "Quantity";
-            column_quantity.Width = 110;
-            // 
-            // list
-            // 
-            list.Activation = ItemActivation.TwoClick;
-            list.AutoArrange = false;
-            list.BackColor = Color.RoyalBlue;
-            list.Columns.AddRange(new ColumnHeader[] { column_name, column_price, column_quantity });
-            list.Font = new Font("Segoe UI", 13.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            list.ForeColor = Color.Black;
-            list.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            list.HideSelection = true;
-            list.Location = new Point(12, 79);
-            list.MultiSelect = false;
-            list.Name = "list";
-            list.OwnerDraw = true;
-            list.Scrollable = false;
-            list.Size = new Size(390, 623);
-            list.TabIndex = 7;
-            list.UseCompatibleStateImageBehavior = false;
-            list.View = View.Details;
-            list.Visible = false;
-            // 
             // ListViewTest
             // 
             ListViewTest.AllowUserToAddRows = false;
@@ -422,6 +382,10 @@
             ListViewTest.AllowUserToResizeColumns = false;
             ListViewTest.AllowUserToResizeRows = false;
             ListViewTest.BackgroundColor = Color.RoyalBlue;
+            ListViewTest.BorderStyle = BorderStyle.None;
+            ListViewTest.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            ListViewTest.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+            ListViewTest.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.RoyalBlue;
             dataGridViewCellStyle1.Font = new Font("Segoe UI Symbol", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -440,8 +404,10 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.WindowText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             ListViewTest.DefaultCellStyle = dataGridViewCellStyle2;
+            ListViewTest.EditMode = DataGridViewEditMode.EditProgrammatically;
+            ListViewTest.Enabled = false;
             ListViewTest.GridColor = Color.RoyalBlue;
-            ListViewTest.Location = new Point(12, 79);
+            ListViewTest.Location = new Point(12, 93);
             ListViewTest.Name = "ListViewTest";
             ListViewTest.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -453,12 +419,8 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             ListViewTest.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             ListViewTest.RowHeadersVisible = false;
-            ListViewTest.Size = new Size(390, 571);
+            ListViewTest.Size = new Size(390, 578);
             ListViewTest.TabIndex = 24;
-            // 
-            // productBindingSource
-            // 
-            productBindingSource.DataSource = typeof(Models.Product);
             // 
             // Product
             // 
@@ -482,16 +444,20 @@
             Quantity.Name = "Quantity";
             Quantity.ReadOnly = true;
             // 
+            // productBindingSource
+            // 
+            productBindingSource.DataSource = typeof(Models.Product);
+            // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
             ClientSize = new Size(785, 740);
-            Controls.Add(ListViewTest);
-            Controls.Add(confirmationLabel);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Controls.Add(ListViewTest);
+            Controls.Add(confirmationLabel);
             Controls.Add(barcodeButton);
             Controls.Add(energydrinkButton);
             Controls.Add(alcoholButton);
@@ -505,7 +471,6 @@
             Controls.Add(vegetableButton);
             Controls.Add(finishButton);
             Controls.Add(logoBox);
-            Controls.Add(list);
             Controls.Add(adminButton);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -524,8 +489,6 @@
         #endregion
 
         private Button adminButton;
-        private ColumnHeader column_name;
-        private ColumnHeader column_price;
         private PictureBox logoBox;
         public Button finishButton;
         private Button vegetableButton;
@@ -539,13 +502,11 @@
         private Button alcoholButton;
         private Button energydrinkButton;
         private Button barcodeButton;
-        private ColumnHeader column_quantity;
         private Panel panel1;
         private Label label1;
         private Label amountLabel;
         private Panel panel2;
         public Label confirmationLabel;
-        public ListView list;
         public DataGridView ListViewTest;
         private BindingSource productBindingSource;
         private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
