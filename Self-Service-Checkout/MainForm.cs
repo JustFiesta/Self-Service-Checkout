@@ -14,20 +14,11 @@ namespace Self_Service_Checkout
             InitializeComponent();
             //special place for initialization
             this.FormClosed += mainForm_FormClosed;
-            list.ColumnWidthChanging += list_ColumnWidthChanging;
-            list.DrawColumnHeader += list_DrawColumnHeader;
-            list.DrawItem += list_DrawItem;
-            list.OwnerDraw = true;
+            //list.ColumnWidthChanging += list_ColumnWidthChanging;
+            //list.DrawColumnHeader += list_DrawColumnHeader;
+            //list.DrawItem += list_DrawItem;
+            //list.OwnerDraw = true;
             Instance = this;
-
-            //blocking the selection of options in the list
-            list.ItemSelectionChanged += (sender, e) =>
-            {
-                if (list.SelectedItems.Count > 0)
-                {
-                    list.SelectedItems[0].Selected = false;
-                }
-            };
 
             RoundButton(finishButton, 20);
         }
@@ -36,24 +27,6 @@ namespace Self_Service_Checkout
         private void mainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
-        }
-        // blocking header expansion
-        private void list_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
-        {
-            e.Cancel = true;
-            e.NewWidth = list.Columns[e.ColumnIndex].Width;
-        }
-        // header font, background color
-        private void list_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
-        {
-            e.Graphics.FillRectangle(Brushes.RoyalBlue, e.Bounds);
-            e.Graphics.DrawString(e.Header.Text, new Font("Segoe UI", (float)16.5, FontStyle.Bold), Brushes.White, e.Bounds);
-        }
-
-        // adding products with default settings
-        private void list_DrawItem(object sender, DrawListViewItemEventArgs e)
-        {
-            e.DrawDefault = true; // Rysowanie elementu z domyœlnymi ustawieniami
         }
 
         //function for rounding buttons
@@ -120,20 +93,15 @@ namespace Self_Service_Checkout
             ProductsList productsList = new ProductsList(category);
             productsList.Show();
         }
-    
+
         //function for calculate total price of shopping cart
         public void CalculateTotalPrice()
         {
             decimal totalPrice = 0;
-            foreach (ListViewItem item in list.Items)
+            foreach (DataGridViewRow row in ListViewTest.Rows)
             {
-                int quantity = int.Parse(item.SubItems[2].Text);
-
-                decimal price = 0;
-                if (decimal.TryParse(item.SubItems[1].Text, out decimal parsedPrice))
-                {
-                    price = parsedPrice;
-                }
+                int quantity = Convert.ToInt32(row.Cells[2].Value);
+                decimal price = Convert.ToDecimal(row.Cells[1].Value);
                 totalPrice += quantity * price;
             }
             amountLabel.Text = $"{totalPrice}€";
@@ -144,5 +112,6 @@ namespace Self_Service_Checkout
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
         }
+
     }
 }
