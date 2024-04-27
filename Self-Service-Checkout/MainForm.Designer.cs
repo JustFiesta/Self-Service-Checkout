@@ -30,6 +30,8 @@
         {
             components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             adminButton = new Button();
             logoBox = new PictureBox();
@@ -55,10 +57,10 @@
             column_quantity = new ColumnHeader();
             list = new ListView();
             ListViewTest = new DataGridView();
+            productBindingSource = new BindingSource(components);
             Product = new DataGridViewTextBoxColumn();
             Price = new DataGridViewTextBoxColumn();
             Quantity = new DataGridViewTextBoxColumn();
-            productBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ListViewTest).BeginInit();
@@ -421,27 +423,47 @@
             ListViewTest.AllowUserToResizeRows = false;
             ListViewTest.BackgroundColor = Color.RoyalBlue;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.BackColor = Color.RoyalBlue;
             dataGridViewCellStyle1.Font = new Font("Segoe UI Symbol", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.RoyalBlue;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             ListViewTest.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ListViewTest.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ListViewTest.Columns.AddRange(new DataGridViewColumn[] { Product, Price, Quantity });
-            ListViewTest.GridColor = SystemColors.MenuText;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.RoyalBlue;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.RoyalBlue;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            ListViewTest.DefaultCellStyle = dataGridViewCellStyle2;
+            ListViewTest.GridColor = Color.RoyalBlue;
             ListViewTest.Location = new Point(12, 79);
             ListViewTest.Name = "ListViewTest";
             ListViewTest.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.RoyalBlue;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.RoyalBlue;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            ListViewTest.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             ListViewTest.RowHeadersVisible = false;
-            ListViewTest.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             ListViewTest.Size = new Size(390, 571);
             ListViewTest.TabIndex = 24;
+            // 
+            // productBindingSource
+            // 
+            productBindingSource.DataSource = typeof(Models.Product);
             // 
             // Product
             // 
             Product.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Product.FillWeight = 200F;
             Product.HeaderText = "Product";
             Product.Name = "Product";
             Product.ReadOnly = true;
@@ -459,10 +481,6 @@
             Quantity.HeaderText = "Quantity";
             Quantity.Name = "Quantity";
             Quantity.ReadOnly = true;
-            // 
-            // productBindingSource
-            // 
-            productBindingSource.DataSource = typeof(Models.Product);
             // 
             // mainForm
             // 
@@ -532,8 +550,8 @@
         private BindingSource productBindingSource;
         private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn Quantity;
         private DataGridViewTextBoxColumn Product;
         private DataGridViewTextBoxColumn Price;
+        private DataGridViewTextBoxColumn Quantity;
     }
 }
