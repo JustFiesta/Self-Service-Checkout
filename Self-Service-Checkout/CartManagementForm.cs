@@ -17,7 +17,9 @@ namespace Self_Service_Checkout
 
         public CartManagementForm()
         {
+            
             InitializeComponent();
+            copyDataGridView();
         }
 
         //super special function that removes applications running in the background
@@ -95,5 +97,21 @@ namespace Self_Service_Checkout
             _mainForm.confirmationLabel.Visible = false;
             _mainForm.finishButton.Enabled = true;
         }
+
+
+        //function to copy rows from another datagridview
+        private void copyDataGridView()
+        {
+            foreach (DataGridViewRow row in _mainForm.ListViewTest.Rows)
+            {
+                DataGridViewRow newRow = (DataGridViewRow)row.Clone();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    newRow.Cells[cell.ColumnIndex].Value = cell.Value;
+                }
+                cashierList.Rows.Add(newRow);
+            }
+        }
+
     }
 }
