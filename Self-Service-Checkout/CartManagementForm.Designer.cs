@@ -424,7 +424,6 @@
             cashierList.Location = new Point(0, 111);
             cashierList.Margin = new Padding(30);
             cashierList.Name = "cashierList";
-            cashierList.ReadOnly = true;
             cashierList.RowHeadersVisible = false;
             cashierList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             cashierList.Size = new Size(593, 526);
@@ -436,21 +435,18 @@
             Product.FillWeight = 150F;
             Product.HeaderText = "Product";
             Product.Name = "Product";
-            Product.ReadOnly = true;
             // 
             // Price
             // 
             Price.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Price.HeaderText = "Price";
             Price.Name = "Price";
-            Price.ReadOnly = true;
             // 
             // Quantity
             // 
             Quantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Quantity.HeaderText = "Quantity";
             Quantity.Name = "Quantity";
-            Quantity.ReadOnly = true;
             // 
             // panel3
             // 

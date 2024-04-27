@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             adminButton = new Button();
-            list = new ListView();
-            column_name = new ColumnHeader();
-            column_price = new ColumnHeader();
-            column_quantity = new ColumnHeader();
             logoBox = new PictureBox();
             finishButton = new Button();
             vegetableButton = new Button();
@@ -52,8 +50,19 @@
             label1 = new Label();
             panel2 = new Panel();
             confirmationLabel = new Label();
+            column_name = new ColumnHeader();
+            column_price = new ColumnHeader();
+            column_quantity = new ColumnHeader();
+            list = new ListView();
+            ListViewTest = new DataGridView();
+            Product = new DataGridViewTextBoxColumn();
+            Price = new DataGridViewTextBoxColumn();
+            Quantity = new DataGridViewTextBoxColumn();
+            productBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ListViewTest).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
             SuspendLayout();
             // 
             // adminButton
@@ -69,41 +78,6 @@
             adminButton.TabIndex = 6;
             adminButton.UseVisualStyleBackColor = false;
             adminButton.Click += adminButton_Click;
-            // 
-            // list
-            // 
-            list.Activation = ItemActivation.TwoClick;
-            list.AutoArrange = false;
-            list.BackColor = Color.RoyalBlue;
-            list.Columns.AddRange(new ColumnHeader[] { column_name, column_price, column_quantity });
-            list.Font = new Font("Segoe UI", 13.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            list.ForeColor = Color.Black;
-            list.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            list.HideSelection = true;
-            list.Location = new Point(12, 79);
-            list.MultiSelect = false;
-            list.Name = "list";
-            list.OwnerDraw = true;
-            list.Scrollable = false;
-            list.Size = new Size(390, 623);
-            list.TabIndex = 7;
-            list.UseCompatibleStateImageBehavior = false;
-            list.View = View.Details;
-            // 
-            // column_name
-            // 
-            column_name.Text = "Product ";
-            column_name.Width = 200;
-            // 
-            // column_price
-            // 
-            column_price.Text = "Price";
-            column_price.Width = 80;
-            // 
-            // column_quantity
-            // 
-            column_quantity.Text = "Quantity";
-            column_quantity.Width = 110;
             // 
             // logoBox
             // 
@@ -403,12 +377,100 @@
             confirmationLabel.Text = "Proof of age required";
             confirmationLabel.Visible = false;
             // 
+            // column_name
+            // 
+            column_name.Text = "Product ";
+            column_name.Width = 200;
+            // 
+            // column_price
+            // 
+            column_price.Text = "Price";
+            column_price.Width = 80;
+            // 
+            // column_quantity
+            // 
+            column_quantity.Text = "Quantity";
+            column_quantity.Width = 110;
+            // 
+            // list
+            // 
+            list.Activation = ItemActivation.TwoClick;
+            list.AutoArrange = false;
+            list.BackColor = Color.RoyalBlue;
+            list.Columns.AddRange(new ColumnHeader[] { column_name, column_price, column_quantity });
+            list.Font = new Font("Segoe UI", 13.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            list.ForeColor = Color.Black;
+            list.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            list.HideSelection = true;
+            list.Location = new Point(12, 79);
+            list.MultiSelect = false;
+            list.Name = "list";
+            list.OwnerDraw = true;
+            list.Scrollable = false;
+            list.Size = new Size(390, 623);
+            list.TabIndex = 7;
+            list.UseCompatibleStateImageBehavior = false;
+            list.View = View.Details;
+            list.Visible = false;
+            // 
+            // ListViewTest
+            // 
+            ListViewTest.AllowUserToAddRows = false;
+            ListViewTest.AllowUserToDeleteRows = false;
+            ListViewTest.AllowUserToResizeColumns = false;
+            ListViewTest.AllowUserToResizeRows = false;
+            ListViewTest.BackgroundColor = Color.RoyalBlue;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Symbol", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            ListViewTest.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            ListViewTest.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ListViewTest.Columns.AddRange(new DataGridViewColumn[] { Product, Price, Quantity });
+            ListViewTest.GridColor = SystemColors.MenuText;
+            ListViewTest.Location = new Point(12, 79);
+            ListViewTest.Name = "ListViewTest";
+            ListViewTest.ReadOnly = true;
+            ListViewTest.RowHeadersVisible = false;
+            ListViewTest.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            ListViewTest.Size = new Size(390, 571);
+            ListViewTest.TabIndex = 24;
+            // 
+            // Product
+            // 
+            Product.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Product.HeaderText = "Product";
+            Product.Name = "Product";
+            Product.ReadOnly = true;
+            // 
+            // Price
+            // 
+            Price.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Price.HeaderText = "Price";
+            Price.Name = "Price";
+            Price.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            Quantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Quantity.HeaderText = "Quantity";
+            Quantity.Name = "Quantity";
+            Quantity.ReadOnly = true;
+            // 
+            // productBindingSource
+            // 
+            productBindingSource.DataSource = typeof(Models.Product);
+            // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
             ClientSize = new Size(785, 740);
+            Controls.Add(ListViewTest);
             Controls.Add(confirmationLabel);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -435,6 +497,8 @@
             ((System.ComponentModel.ISupportInitialize)logoBox).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ListViewTest).EndInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -464,5 +528,12 @@
         private Panel panel2;
         public Label confirmationLabel;
         public ListView list;
+        public DataGridView ListViewTest;
+        private BindingSource productBindingSource;
+        private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn Quantity;
+        private DataGridViewTextBoxColumn Product;
+        private DataGridViewTextBoxColumn Price;
     }
 }
