@@ -150,6 +150,7 @@
             deleteButton.SizeMode = PictureBoxSizeMode.Zoom;
             deleteButton.TabIndex = 20;
             deleteButton.TabStop = false;
+            deleteButton.Click += deleteButton_Click;
             deleteButton.MouseEnter += DeleteButton_MouseEnter;
             deleteButton.MouseLeave += DeleteButton_MouseLeave;
             // 
@@ -199,10 +200,9 @@
             label11.ForeColor = Color.White;
             label11.Location = new Point(177, 42);
             label11.Name = "label11";
-            label11.Size = new Size(97, 31);
+            label11.Size = new Size(20, 31);
             label11.TabIndex = 16;
-            label11.Text = "Banana";
-            label11.Visible = false;
+            label11.Text = " ";
             // 
             // label12
             // 
@@ -429,6 +429,7 @@
             cashierList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             cashierList.Size = new Size(593, 526);
             cashierList.TabIndex = 14;
+            cashierList.CellClick += cashierList_CellClick;
             // 
             // Product
             // 

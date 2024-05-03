@@ -8,16 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Self_Service_Checkout.Models;
 
 namespace Self_Service_Checkout
 {
     public partial class CartManagementForm : Form
     {
         private mainForm _mainForm = mainForm.Instance;
+        private string[] selected_item = new string[3];
 
         public CartManagementForm()
         {
-            
+
             InitializeComponent();
             copyDataGridView();
         }
@@ -85,10 +87,21 @@ namespace Self_Service_Checkout
             {
                 confirmBuyerAge();
             }
+            else if (checkBoxNO.Checked)
+            {
+                //TODO removeProhibitedItems();
+            }
 
-            // TODO removeProhibitedItems();
+            // Check if quantity field is invalid
+            if (!string.IsNullOrEmpty(textBox3.Text) && int.TryParse(textBox3.Text, out int newQuantity) && newQuantity > 0)
+            {
+                updateProductQuantity(newQuantity);
+            }
+            else
+            {
+                MessageBox.Show("Invalid quantity. Please enter an integer greater than zero.", "Error:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-            this.Close();
         }
 
         // Function for confirming buyers age - hide label and enable finalize button
@@ -98,6 +111,41 @@ namespace Self_Service_Checkout
             _mainForm.finishButton.Enabled = true;
         }
 
+        
+
+        // Function to change product quantity
+        public void updateProductQuantity(int newQuantity)
+        {
+            // Get index of selected row
+            int selectedRowIndex = cashierList.SelectedCells[0].RowIndex;
+
+            // Update quantity in selected row - in cartManagementForm
+            cashierList.SelectedCells[2].Value = newQuantity;
+
+            // Update quantity in selected row - in mainForm
+            _mainForm.UpdateProductQuantity(selectedRowIndex, newQuantity);
+        }
+
+        // Function for removing products
+        public void removeProduct()
+        {
+            if (cashierList.SelectedRows.Count > 0)
+            {
+                int selectedIndex = cashierList.SelectedRows[0].Index;
+
+                //remove product fro DataGridView locally
+                cashierList.Rows.RemoveAt(selectedIndex);
+                cashierList.Refresh();
+
+                //remove product in main cart
+                _mainForm.RemoveProductFromCart(selectedIndex);
+            }
+            else
+            {
+                // Jeśli żaden wiersz nie jest zaznaczony, wyświetl komunikat lub podejmij odpowiednie działania
+                MessageBox.Show("Select a row to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
         //function to copy rows from another datagridview
         private void copyDataGridView()
@@ -113,5 +161,25 @@ namespace Self_Service_Checkout
             }
         }
 
+        // Function to handle CellClick in Cashier DataGridView
+        private void cashierList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if correct column was selected
+            if (e.RowIndex >= 0 && e.ColumnIndex == cashierList.Columns["Quantity"].Index)
+            {
+                // Get vaslues from Product and Quantity fields
+                string quantity = cashierList.Rows[e.RowIndex].Cells["Quantity"].Value.ToString();
+                string productName = cashierList.Rows[e.RowIndex].Cells["Product"].Value.ToString();
+
+                // Set fetched values into fields 
+                textBox3.Text = quantity;
+                label11.Text = productName;
+            }
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            removeProduct();
+        }
     }
 }
