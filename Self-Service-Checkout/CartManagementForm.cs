@@ -93,15 +93,21 @@ namespace Self_Service_Checkout
             }
 
             // Check if quantity field is invalid
-            if (!string.IsNullOrEmpty(textBox3.Text) && int.TryParse(textBox3.Text, out int newQuantity) && newQuantity > 0)
+            if (!string.IsNullOrEmpty(textBox3.Text))
             {
-                updateProductQuantity(newQuantity);
+                if (int.TryParse(textBox3.Text, out int newQuantity) && newQuantity > 0)
+                {
+                    updateProductQuantity(newQuantity);
+                }
+                else if (newQuantity == 0)
+                {
+                    removeProduct();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid quantity. Please enter an integer greater than zero.", "Error:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
-            {
-                MessageBox.Show("Invalid quantity. Please enter an integer greater than zero.", "Error:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         // Function for confirming buyers age - hide label and enable finalize button
