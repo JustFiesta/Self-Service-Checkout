@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using Self_Service_Checkout.Models;
 
 namespace Self_Service_Checkout
 {
@@ -106,6 +107,40 @@ namespace Self_Service_Checkout
             }
             amountLabel.Text = $"{totalPrice}€";
         }
+
+        // Function to update quantity in main ListViewTest
+        public void UpdateProductQuantity(int rowIndex, int newQuantity)
+        {
+            // Doublecheck row index
+            if (rowIndex >= 0 && rowIndex < ListViewTest.Rows.Count)
+            {
+                // Update product quantity
+                ListViewTest.Rows[rowIndex].Cells["Quantity"].Value = newQuantity;
+            }
+
+            UpdateCart(); // update cart
+        }
+
+        // Function to update cart state
+        public void UpdateCart()
+        {
+            // Calculate price
+            CalculateTotalPrice();
+
+            // Refresh DataGridView
+            ListViewTest.Refresh();
+        }
+
+        // Remove product at given index 
+        public void RemoveProductFromCart(int index)
+        {
+            if (index >= 0 && index < ListViewTest.Rows.Count)
+            {
+                ListViewTest.Rows.RemoveAt(index);
+                UpdateCart();
+            }
+        }
+
 
         private void adminButton_Click(object sender, EventArgs e)
         {
