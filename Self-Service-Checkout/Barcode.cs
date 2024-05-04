@@ -87,8 +87,9 @@ namespace Self_Service_Checkout
             {
                 infoLabel.Visible = true;
                 infoLabel.Text = $"{product.ProductName} has been added to your cart";
-                ListViewItem newItem = new ListViewItem(new string[] { product.ProductName, product.Price.ToString(), quantity.ToString() });
-                _mainForm.ListViewTest.Rows.Add(newItem);
+
+                //fixed adding product via barcode
+                _mainForm.ListViewTest.Rows.Add(product.ProductName, product.Price, quantity);
 
                 //calculating cart total amount
                 _mainForm.CalculateTotalPrice();
