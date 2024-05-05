@@ -194,7 +194,7 @@ namespace Self_Service_Checkout
         private void cashierList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Check if correct column was selected
-            if (e.RowIndex >= 0 && e.ColumnIndex == cashierList.Columns["Quantity"].Index)
+            if (e.RowIndex >= 0)
             {
                 // Get vaslues from Product and Quantity fields
                 string quantity = cashierList.Rows[e.RowIndex].Cells["Quantity"].Value.ToString();
