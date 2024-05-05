@@ -157,17 +157,17 @@
             // panel12
             // 
             panel12.BackColor = Color.White;
-            panel12.Location = new Point(304, 71);
+            panel12.Location = new Point(369, 71);
             panel12.Name = "panel12";
-            panel12.Size = new Size(210, 2);
+            panel12.Size = new Size(170, 2);
             panel12.TabIndex = 19;
             // 
             // panel11
             // 
             panel11.BackColor = Color.White;
-            panel11.Location = new Point(12, 71);
+            panel11.Location = new Point(3, 71);
             panel11.Name = "panel11";
-            panel11.Size = new Size(255, 2);
+            panel11.Size = new Size(300, 2);
             panel11.TabIndex = 19;
             // 
             // textBox3
@@ -176,42 +176,42 @@
             textBox3.BorderStyle = BorderStyle.None;
             textBox3.Font = new Font("Segoe UI Black", 17.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             textBox3.ForeColor = Color.White;
-            textBox3.Location = new Point(408, 42);
+            textBox3.Location = new Point(484, 37);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 31);
+            textBox3.Size = new Size(72, 31);
             textBox3.TabIndex = 18;
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI Semibold", 17F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label10.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label10.ForeColor = Color.White;
-            label10.Location = new Point(304, 42);
+            label10.Location = new Point(372, 42);
             label10.Name = "label10";
-            label10.Size = new Size(109, 31);
+            label10.Size = new Size(105, 30);
             label10.TabIndex = 17;
             label10.Text = "Quantity:";
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI Black", 17.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label11.Font = new Font("Segoe UI Black", 12.3F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label11.ForeColor = Color.White;
-            label11.Location = new Point(177, 42);
+            label11.Location = new Point(162, 47);
             label11.Name = "label11";
-            label11.Size = new Size(20, 31);
+            label11.Size = new Size(15, 23);
             label11.TabIndex = 16;
             label11.Text = " ";
             // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI Semibold", 17F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label12.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label12.ForeColor = Color.White;
-            label12.Location = new Point(12, 42);
+            label12.Location = new Point(0, 42);
             label12.Name = "label12";
-            label12.Size = new Size(176, 31);
+            label12.Size = new Size(167, 30);
             label12.TabIndex = 15;
             label12.Text = "Product Name: ";
             // 
