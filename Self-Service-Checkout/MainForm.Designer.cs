@@ -419,6 +419,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             ListViewTest.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             ListViewTest.RowHeadersVisible = false;
+            ListViewTest.ScrollBars = ScrollBars.None;
             ListViewTest.Size = new Size(390, 578);
             ListViewTest.TabIndex = 24;
             // 

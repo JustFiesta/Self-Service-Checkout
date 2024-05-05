@@ -19,6 +19,7 @@ namespace Self_Service_Checkout
     {
         private SscdbContext context = new SscdbContext();
         private mainForm _mainForm;
+        private string selectedCategory;
         public Barcode()
         {
             InitializeComponent();
@@ -91,6 +92,11 @@ namespace Self_Service_Checkout
                 //fixed adding product via barcode
                 _mainForm.ListViewTest.Rows.Add(product.ProductName, product.Price, quantity);
 
+                if (checkProhibitedItems(product))
+                {
+                    _mainForm.prohibitedProductsInCart.Add((string)product.ProductName);
+                }
+
                 //calculating cart total amount
                 _mainForm.CalculateTotalPrice();
             }
@@ -134,6 +140,22 @@ namespace Self_Service_Checkout
             }
 
             return true;
+        }
+
+        // Function for checking if any prohibited item is added to cart - if so show label and disable finish button
+        private bool checkProhibitedItems(Product product)
+        {
+            selectedCategory = product.ProductCategory.ToString(); 
+
+            if (selectedCategory.Equals(Product_Category.alcohol.ToString()) ||
+                selectedCategory.Equals(Product_Category.energy_drink.ToString()))
+            {
+                _mainForm.confirmationLabel.Visible = true;
+                _mainForm.finishButton.Enabled = false;
+                return true;
+            }
+
+            return false;
         }
 
     }
