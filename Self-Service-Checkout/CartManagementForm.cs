@@ -89,7 +89,8 @@ namespace Self_Service_Checkout
             }
             else if (checkBoxNO.Checked)
             {
-                //TODO removeProhibitedItems();
+                removeProhibitedItems();
+                confirmBuyerAge(); // disable labels after items were removed
             }
 
             // Check if quantity field is invalid
@@ -133,7 +134,7 @@ namespace Self_Service_Checkout
         }
 
         // Function for removing products
-        public void removeProduct()
+        private void removeProduct()
         {
             if (cashierList.SelectedRows.Count > 0)
             {
@@ -150,6 +151,28 @@ namespace Self_Service_Checkout
             {
                 // Jeśli żaden wiersz nie jest zaznaczony, wyświetl komunikat lub podejmij odpowiednie działania
                 MessageBox.Show("Select a row to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        // Function for removing all prohibited products from cart
+        private void removeProhibitedItems()
+        {
+            // Iterate thourgh all items in prohibited items list
+            foreach (string productName in _mainForm.prohibitedProductsInCart.ToList())
+            {
+                // Double check if product is in cart
+                foreach (DataGridViewRow row in cashierList.Rows)
+                {
+                    if (row.Cells["Product"].Value != null && row.Cells["Product"].Value.ToString() == productName)
+                    {
+                        // Get row index
+                        int rowIndex = row.Index;
+
+                        // Remove item at index in both lists
+                        cashierList.Rows.RemoveAt(rowIndex);
+                        _mainForm.RemoveProductFromCart(rowIndex);
+                    }
+                }
             }
         }
 

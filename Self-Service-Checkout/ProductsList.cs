@@ -114,7 +114,10 @@ namespace Self_Service_Checkout
                 //adding new item to datagridview instead of listview !! CHECK PLZ IF DELETE
                 _mainForm.ListViewTest.Rows.Add(selectedRow.Cells["ProductName"].Value, selectedRow.Cells["Price"].Value, "1");
 
-                checkProhibitedItems();
+                if (checkProhibitedItems())
+                {
+                    _mainForm.prohibitedProductsInCart.Add((string)selectedRow.Cells["ProductName"].Value);
+                }
 
                 _mainForm.CalculateTotalPrice();
                 this.Close();
@@ -132,7 +135,10 @@ namespace Self_Service_Checkout
                 _mainForm.ListViewTest.Rows.Add(selectedRow.Cells["ProductName"].Value, selectedRow.Cells["Price"].Value, maskedTextBox1.Text);
 
 
-                checkProhibitedItems();
+                if (checkProhibitedItems())
+                {
+                    _mainForm.prohibitedProductsInCart.Add((string)selectedRow.Cells["ProductName"].Value);
+                }
 
                 //calculating cart total amount
                 _mainForm.CalculateTotalPrice();
