@@ -112,7 +112,7 @@ namespace Self_Service_Checkout
 
                         //type of window you want to open after succesfull login
                         CartManagementForm cartManagementForm = new CartManagementForm();
-                        cartManagementForm.Show();
+                        cartManagementForm.ShowDialog();
                         this.Close();
                     }
                     else

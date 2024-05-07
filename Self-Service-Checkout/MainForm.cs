@@ -45,7 +45,7 @@ namespace Self_Service_Checkout
         private void barcodeButton_Click(object sender, EventArgs e)
         {
             Barcode barcode = new Barcode();
-            barcode.Show();
+            barcode.ShowDialog();
         }
         //
         //  section for forwarding the appropriate product category to display
@@ -93,7 +93,7 @@ namespace Self_Service_Checkout
         private void OpenProductList(string category)
         {
             ProductsList productsList = new ProductsList(category);
-            productsList.Show();
+            productsList.ShowDialog();
         }
 
         //function for calculate total price of shopping cart
@@ -146,7 +146,7 @@ namespace Self_Service_Checkout
         private void adminButton_Click(object sender, EventArgs e)
         {
             LoginForm loginForm = new LoginForm();
-            loginForm.Show();
+            loginForm.ShowDialog();
         }
 
     }
