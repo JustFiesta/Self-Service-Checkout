@@ -139,8 +139,12 @@ namespace Self_Service_Checkout
             if (cashierList.SelectedRows.Count > 0)
             {
                 int selectedIndex = cashierList.SelectedRows[0].Index;
+                string selectedItem = cashierList.Rows[selectedIndex].Cells["Product"].Value.ToString();
 
-                //remove product fro DataGridView locally
+                //remove product from
+                _mainForm.prohibitedProductsInCart.Remove(selectedItem);
+
+                //remove product from DataGridView locally
                 cashierList.Rows.RemoveAt(selectedIndex);
                 cashierList.Refresh();
 
@@ -173,6 +177,7 @@ namespace Self_Service_Checkout
                         _mainForm.RemoveProductFromCart(rowIndex);
                     }
                 }
+                _mainForm.prohibitedProductsInCart = new List<string>();
             }
         }
 
@@ -209,6 +214,10 @@ namespace Self_Service_Checkout
         private void deleteButton_Click(object sender, EventArgs e)
         {
             removeProduct();
+            if (_mainForm.prohibitedProductsInCart.Count == 0)
+            {
+                confirmBuyerAge();
+            }
         }
     }
 }
