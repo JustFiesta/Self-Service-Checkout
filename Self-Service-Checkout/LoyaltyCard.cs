@@ -21,6 +21,8 @@ namespace Self_Service_Checkout
             RoundButton(yesButton, 20);
             RoundButton(noButton, 20);
             RoundButton(newButton, 20);
+            RoundButton(confirmButton, 20);
+            RoundButton(clearButton, 20);
         }
 
         //super special function that removes applications running in the background
@@ -51,10 +53,45 @@ namespace Self_Service_Checkout
         {
             backButton.Image = Properties.Resources.back;
         }
-
+        //backButton action - exit current window
         private void backButton_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+
+        //view panel for client who have loyalty card
+        private void yesButton_Click(object sender, EventArgs e)
+        {
+            yesPanel.Visible = true;
+        }
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            phoneInput.Clear();
+        }
+
+
+
+        //view panel for client who dont have loyalty card
+        private void noButton_Click(object sender, EventArgs e)
+        {
+            // just pay b*tch
+        }
+
+
+
+
+        //view panel for client who want a loyalty card
+        private void newButton_Click(object sender, EventArgs e)
+        {
+            newPanel.Visible = true;
+        }
+        private void newClearButton_Click(object sender, EventArgs e)
+        {
+            newNameInput.Clear();
+            newSurnameInput.Clear();
+            newPhoneInput.Clear();
+            newEmailInput.Clear();
         }
     }
 }
