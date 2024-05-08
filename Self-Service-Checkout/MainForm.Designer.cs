@@ -324,7 +324,7 @@
             barcodeButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             barcodeButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             barcodeButton.FlatStyle = FlatStyle.Flat;
-            barcodeButton.Location = new Point(693, 624);
+            barcodeButton.Location = new Point(693, 621);
             barcodeButton.Name = "barcodeButton";
             barcodeButton.Size = new Size(80, 78);
             barcodeButton.TabIndex = 20;
