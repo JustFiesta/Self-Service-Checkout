@@ -13,12 +13,7 @@ namespace Self_Service_Checkout
         public mainForm()
         {
             InitializeComponent();
-            //special place for initialization
             this.FormClosed += mainForm_FormClosed;
-            //list.ColumnWidthChanging += list_ColumnWidthChanging;
-            //list.DrawColumnHeader += list_DrawColumnHeader;
-            //list.DrawItem += list_DrawItem;
-            //list.OwnerDraw = true;
             Instance = this;
 
             RoundButton(finishButton, 20);
@@ -149,5 +144,10 @@ namespace Self_Service_Checkout
             loginForm.ShowDialog();
         }
 
+        private void finishButton_Click(object sender, EventArgs e)
+        {
+            LoyaltyCard loyaltyCard = new LoyaltyCard();
+            loyaltyCard.Show();
+        }
     }
 }

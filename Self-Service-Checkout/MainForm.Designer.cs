@@ -53,10 +53,10 @@
             label1 = new Label();
             confirmationLabel = new Label();
             ListViewTest = new DataGridView();
-            productBindingSource = new BindingSource(components);
             Product = new DataGridViewTextBoxColumn();
             Price = new DataGridViewTextBoxColumn();
             Quantity = new DataGridViewTextBoxColumn();
+            productBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ListViewTest).BeginInit();
@@ -106,6 +106,7 @@
             finishButton.Text = "Finish and pay";
             finishButton.TextAlign = ContentAlignment.MiddleRight;
             finishButton.UseVisualStyleBackColor = false;
+            finishButton.Click += finishButton_Click;
             // 
             // vegetableButton
             // 
@@ -436,10 +437,6 @@
             ListViewTest.Size = new Size(390, 578);
             ListViewTest.TabIndex = 24;
             // 
-            // productBindingSource
-            // 
-            productBindingSource.DataSource = typeof(Models.Product);
-            // 
             // Product
             // 
             Product.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -462,6 +459,10 @@
             Quantity.HeaderText = "Quantity";
             Quantity.Name = "Quantity";
             Quantity.ReadOnly = true;
+            // 
+            // productBindingSource
+            // 
+            productBindingSource.DataSource = typeof(Models.Product);
             // 
             // mainForm
             // 
