@@ -164,7 +164,7 @@ namespace Self_Service_Checkout
         private bool IsValidInput(string input)
         {
             bool isValid = false;
-            if (!string.IsNullOrEmpty(input) && decimal.TryParse(input, out decimal value) && value >= 0)
+            if (!string.IsNullOrEmpty(input) && decimal.TryParse(input, out decimal value) && value > 0)
             {
                 if (value <= 50) 
                 {
