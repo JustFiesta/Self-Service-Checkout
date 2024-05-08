@@ -65,7 +65,7 @@
             // 
             informLabel.AutoSize = true;
             informLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            informLabel.Location = new Point(82, 546);
+            informLabel.Location = new Point(83, 518);
             informLabel.Name = "informLabel";
             informLabel.Size = new Size(609, 32);
             informLabel.TabIndex = 2;
@@ -76,7 +76,7 @@
             welcomeLabel.AutoSize = true;
             welcomeLabel.Font = new Font("Segoe UI", 30F, FontStyle.Bold);
             welcomeLabel.ForeColor = Color.Navy;
-            welcomeLabel.Location = new Point(243, 492);
+            welcomeLabel.Location = new Point(244, 464);
             welcomeLabel.Name = "welcomeLabel";
             welcomeLabel.Size = new Size(309, 54);
             welcomeLabel.TabIndex = 3;
@@ -96,17 +96,18 @@
             // startButton
             // 
             startButton.BackColor = Color.RoyalBlue;
-            startButton.BackgroundImage = Properties.Resources.shopping_cart;
             startButton.BackgroundImageLayout = ImageLayout.None;
             startButton.FlatAppearance.BorderColor = Color.LightBlue;
             startButton.FlatAppearance.BorderSize = 2;
             startButton.FlatStyle = FlatStyle.Flat;
-            startButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            startButton.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 238);
             startButton.ForeColor = Color.Transparent;
-            startButton.Location = new Point(312, 611);
+            startButton.Image = Properties.Resources.shopping_cart;
+            startButton.ImageAlign = ContentAlignment.MiddleLeft;
+            startButton.Location = new Point(253, 583);
             startButton.Name = "startButton";
-            startButton.Padding = new Padding(5, 0, 10, 0);
-            startButton.Size = new Size(169, 99);
+            startButton.Padding = new Padding(25, 0, 40, 0);
+            startButton.Size = new Size(300, 124);
             startButton.TabIndex = 1;
             startButton.Text = "START";
             startButton.TextAlign = ContentAlignment.MiddleRight;
