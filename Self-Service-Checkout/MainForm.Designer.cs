@@ -49,14 +49,14 @@
             barcodeButton = new Button();
             panel1 = new Panel();
             amountLabel = new Label();
-            label1 = new Label();
             panel2 = new Panel();
+            label1 = new Label();
             confirmationLabel = new Label();
             ListViewTest = new DataGridView();
+            productBindingSource = new BindingSource(components);
             Product = new DataGridViewTextBoxColumn();
             Price = new DataGridViewTextBoxColumn();
             Quantity = new DataGridViewTextBoxColumn();
-            productBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ListViewTest).BeginInit();
@@ -336,10 +336,11 @@
             // 
             panel1.BackColor = Color.RoyalBlue;
             panel1.Controls.Add(amountLabel);
+            panel1.Controls.Add(panel2);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(12, 664);
+            panel1.Location = new Point(12, 657);
             panel1.Name = "panel1";
-            panel1.Size = new Size(390, 38);
+            panel1.Size = new Size(390, 45);
             panel1.TabIndex = 21;
             // 
             // amountLabel
@@ -348,11 +349,19 @@
             amountLabel.BackColor = Color.Transparent;
             amountLabel.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold);
             amountLabel.ForeColor = Color.White;
-            amountLabel.Location = new Point(258, 0);
+            amountLabel.Location = new Point(256, 10);
             amountLabel.Name = "amountLabel";
             amountLabel.Size = new Size(78, 30);
             amountLabel.TabIndex = 1;
             amountLabel.Text = "0.00 €";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.White;
+            panel2.Location = new Point(23, 3);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(349, 5);
+            panel2.TabIndex = 22;
             // 
             // label1
             // 
@@ -360,19 +369,11 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(36, 0);
+            label1.Location = new Point(36, 10);
             label1.Name = "label1";
             label1.Size = new Size(104, 30);
             label1.TabIndex = 0;
             label1.Text = "Amount:";
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.White;
-            panel2.Location = new Point(29, 653);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(349, 5);
-            panel2.TabIndex = 22;
             // 
             // confirmationLabel
             // 
@@ -397,26 +398,27 @@
             ListViewTest.CellBorderStyle = DataGridViewCellBorderStyle.None;
             ListViewTest.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             ListViewTest.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.RoyalBlue;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Symbol", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.RoyalBlue;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.BottomLeft;
+            dataGridViewCellStyle1.BackColor = Color.MediumBlue;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.MediumBlue;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             ListViewTest.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ListViewTest.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ListViewTest.Columns.AddRange(new DataGridViewColumn[] { Product, Price, Quantity });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.RoyalBlue;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            dataGridViewCellStyle2.ForeColor = Color.White;
             dataGridViewCellStyle2.SelectionBackColor = Color.RoyalBlue;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             ListViewTest.DefaultCellStyle = dataGridViewCellStyle2;
             ListViewTest.EditMode = DataGridViewEditMode.EditProgrammatically;
             ListViewTest.Enabled = false;
+            ListViewTest.EnableHeadersVisualStyles = false;
             ListViewTest.GridColor = Color.RoyalBlue;
             ListViewTest.Location = new Point(12, 93);
             ListViewTest.Name = "ListViewTest";
@@ -434,10 +436,13 @@
             ListViewTest.Size = new Size(390, 578);
             ListViewTest.TabIndex = 24;
             // 
+            // productBindingSource
+            // 
+            productBindingSource.DataSource = typeof(Models.Product);
+            // 
             // Product
             // 
             Product.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Product.FillWeight = 200F;
             Product.HeaderText = "Product";
             Product.Name = "Product";
             Product.ReadOnly = true;
@@ -445,6 +450,7 @@
             // Price
             // 
             Price.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Price.FillWeight = 45F;
             Price.HeaderText = "Price";
             Price.Name = "Price";
             Price.ReadOnly = true;
@@ -452,13 +458,10 @@
             // Quantity
             // 
             Quantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Quantity.FillWeight = 60F;
             Quantity.HeaderText = "Quantity";
             Quantity.Name = "Quantity";
             Quantity.ReadOnly = true;
-            // 
-            // productBindingSource
-            // 
-            productBindingSource.DataSource = typeof(Models.Product);
             // 
             // mainForm
             // 
@@ -466,7 +469,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
             ClientSize = new Size(785, 740);
-            Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(ListViewTest);
             Controls.Add(confirmationLabel);
