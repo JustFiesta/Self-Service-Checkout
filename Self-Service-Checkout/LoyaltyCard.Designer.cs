@@ -52,7 +52,6 @@
             logoBox.SizeMode = PictureBoxSizeMode.StretchImage;
             logoBox.TabIndex = 9;
             logoBox.TabStop = false;
-            logoBox.Click += logoBox_Click;
             // 
             // label1
             // 

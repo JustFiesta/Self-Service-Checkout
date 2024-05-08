@@ -56,10 +56,5 @@ namespace Self_Service_Checkout
         {
             this.Hide();
         }
-
-        private void logoBox_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("explorer.exe", "https://github.com/JustFiesta/Self-Service-Checkout");
-        }
     }
 }
