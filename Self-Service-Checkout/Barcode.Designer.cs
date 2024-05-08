@@ -44,11 +44,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label1.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label1.ForeColor = Color.MidnightBlue;
-            label1.Location = new Point(46, 95);
+            label1.Location = new Point(46, 122);
             label1.Name = "label1";
-            label1.Size = new Size(118, 21);
+            label1.Size = new Size(157, 30);
             label1.TabIndex = 0;
             label1.Text = "enter barcode:";
             // 
@@ -56,28 +56,30 @@
             // 
             barcodeInput.BackColor = SystemColors.ButtonFace;
             barcodeInput.BorderStyle = BorderStyle.FixedSingle;
-            barcodeInput.Location = new Point(188, 95);
+            barcodeInput.Font = new Font("Segoe UI", 16F);
+            barcodeInput.Location = new Point(225, 120);
             barcodeInput.Name = "barcodeInput";
-            barcodeInput.Size = new Size(100, 23);
+            barcodeInput.Size = new Size(100, 36);
             barcodeInput.TabIndex = 1;
             // 
             // quantityInput
             // 
             quantityInput.BackColor = SystemColors.ButtonFace;
             quantityInput.BorderStyle = BorderStyle.FixedSingle;
-            quantityInput.Location = new Point(188, 143);
+            quantityInput.Font = new Font("Segoe UI", 16F);
+            quantityInput.Location = new Point(225, 176);
             quantityInput.Name = "quantityInput";
-            quantityInput.Size = new Size(100, 23);
+            quantityInput.Size = new Size(100, 36);
             quantityInput.TabIndex = 3;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label2.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label2.ForeColor = Color.MidnightBlue;
-            label2.Location = new Point(46, 143);
+            label2.Location = new Point(46, 176);
             label2.Name = "label2";
-            label2.Size = new Size(117, 21);
+            label2.Size = new Size(160, 30);
             label2.TabIndex = 2;
             label2.Text = "enter quantity:";
             // 
@@ -113,9 +115,9 @@
             // infoLabel
             // 
             infoLabel.AutoSize = true;
-            infoLabel.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            infoLabel.ForeColor = Color.MidnightBlue;
-            infoLabel.Location = new Point(46, 207);
+            infoLabel.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 238);
+            infoLabel.ForeColor = Color.Red;
+            infoLabel.Location = new Point(46, 241);
             infoLabel.MaximumSize = new Size(335, 300);
             infoLabel.Name = "infoLabel";
             infoLabel.Size = new Size(335, 30);
@@ -132,7 +134,7 @@
             confirmButton.ForeColor = Color.White;
             confirmButton.Location = new Point(46, 324);
             confirmButton.Name = "confirmButton";
-            confirmButton.Size = new Size(117, 57);
+            confirmButton.Size = new Size(146, 76);
             confirmButton.TabIndex = 12;
             confirmButton.Text = "CONFIRM";
             confirmButton.UseVisualStyleBackColor = false;
@@ -145,9 +147,9 @@
             cancelButton.FlatStyle = FlatStyle.Flat;
             cancelButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
             cancelButton.ForeColor = Color.White;
-            cancelButton.Location = new Point(188, 324);
+            cancelButton.Location = new Point(225, 324);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(117, 57);
+            cancelButton.Size = new Size(146, 76);
             cancelButton.TabIndex = 13;
             cancelButton.Text = "CANCEL";
             cancelButton.UseVisualStyleBackColor = false;
