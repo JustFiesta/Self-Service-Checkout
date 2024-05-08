@@ -203,9 +203,29 @@ namespace Self_Service_Checkout.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap discount {
+            get {
+                object obj = ResourceManager.GetObject("discount", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap drink {
             get {
                 object obj = ResourceManager.GetObject("drink", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap email {
+            get {
+                object obj = ResourceManager.GetObject("email", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -276,6 +296,16 @@ namespace Self_Service_Checkout.Properties {
         internal static System.Drawing.Bitmap person {
             get {
                 object obj = ResourceManager.GetObject("person", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap phone {
+            get {
+                object obj = ResourceManager.GetObject("phone", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

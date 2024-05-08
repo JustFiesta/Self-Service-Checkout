@@ -92,6 +92,7 @@
             logoBox.SizeMode = PictureBoxSizeMode.StretchImage;
             logoBox.TabIndex = 4;
             logoBox.TabStop = false;
+            logoBox.Click += logoBox_Click;
             // 
             // startButton
             // 
