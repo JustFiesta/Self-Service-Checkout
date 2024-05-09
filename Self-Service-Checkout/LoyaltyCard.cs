@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Self_Service_Checkout.Data;
+using Self_Service_Checkout.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -92,6 +94,105 @@ namespace Self_Service_Checkout
             newSurnameInput.Clear();
             newPhoneInput.Clear();
             newEmailInput.Clear();
+        }
+
+
+        //confirm client data
+        private void newConfirmButton_Click(object sender, EventArgs e)
+        {
+            if(validateClientData())
+            {
+                addClientToDB();
+            }
+        }
+
+        private bool validateClientData()
+        {
+            //check if inputs contains whitespace
+            if (string.IsNullOrWhiteSpace(newNameInput.Text) ||
+                string.IsNullOrWhiteSpace(newSurnameInput.Text) ||
+                string.IsNullOrWhiteSpace(newPhoneInput.Text) ||
+                string.IsNullOrWhiteSpace(newEmailInput.Text))
+            {
+                MessageBox.Show("Please fill all the details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // check if name and surname are correct
+            if (ContainsDigits(newNameInput.Text) || ContainsDigits(newSurnameInput.Text))
+            {
+                MessageBox.Show("Name and surname should not contain digits.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // check if phone number is correct
+            if (!IsValidPhoneNumber(newPhoneInput.Text))
+            {
+                MessageBox.Show("Phone namuber must contain only digits and be in this format: XXX XXX XXX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // check if email address is correct
+            if (!IsValidEmail(newEmailInput.Text))
+            {
+                MessageBox.Show("Invalid email address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // everything is okey
+            MessageBox.Show("Clients details are correct.", "Confirm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return true;
+        }
+
+        // check if there is a digit in text input
+        private bool ContainsDigits(string text)
+        {
+            return text.Any(char.IsDigit);
+        }
+
+        // check if phone number is only digits
+        private bool IsValidPhoneNumber(string phone)
+        {
+            phone = phone.Replace(" ", "");
+            // check if only digits 
+            if (!phone.All(char.IsDigit))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //check if email input contains @ and . ???
+        private bool IsValidEmail(string email)
+        {
+            // check if contains special characters
+            return email.Contains("@") && email.Contains(".") && email.Length > 5;
+        }
+
+
+        //method to add " " after 3 chars
+        private void newPhoneInput_TextChanged(object sender, EventArgs e)
+        {
+            if(newPhoneInput.Text.Length == 3)
+            {
+                newPhoneInput.Text += " ";
+            }
+            if(newPhoneInput.Text.Length == 7)
+            {
+                newPhoneInput.Text += " ";
+            }
+            newPhoneInput.SelectionStart = newPhoneInput.Text.Length;
+            newPhoneInput.Focus();
+        }
+
+
+        //method to add new customer to db
+        private void addClientToDB()
+        {
+            SscdbContext context = new SscdbContext();
+            var newCustomer = new Customer { Name = newNameInput.Text, Surname = newSurnameInput.Text, PhoneNumber = newPhoneInput.Text, Email = newEmailInput.Text };
+            context.Customers.Add(newCustomer);
+            context.SaveChanges();
         }
     }
 }
