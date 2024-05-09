@@ -162,7 +162,6 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.discount;
             pictureBox1.Location = new Point(653, 646);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(80, 80);
@@ -279,7 +278,6 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.phone;
             pictureBox2.Location = new Point(107, 139);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(74, 52);
@@ -351,6 +349,7 @@
             newConfirmButton.TabIndex = 32;
             newConfirmButton.Text = "CONFIRM";
             newConfirmButton.UseVisualStyleBackColor = false;
+            newConfirmButton.Click += newConfirmButton_Click;
             // 
             // newEmailInput
             // 
@@ -359,10 +358,9 @@
             newEmailInput.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
             newEmailInput.ForeColor = Color.MidnightBlue;
             newEmailInput.Location = new Point(158, 338);
-            newEmailInput.Multiline = true;
             newEmailInput.Name = "newEmailInput";
             newEmailInput.PlaceholderText = "email@ssc.com";
-            newEmailInput.Size = new Size(221, 34);
+            newEmailInput.Size = new Size(221, 32);
             newEmailInput.TabIndex = 29;
             // 
             // newSurnameInput
@@ -372,10 +370,9 @@
             newSurnameInput.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
             newSurnameInput.ForeColor = Color.MidnightBlue;
             newSurnameInput.Location = new Point(492, 159);
-            newSurnameInput.Multiline = true;
             newSurnameInput.Name = "newSurnameInput";
             newSurnameInput.PlaceholderText = "Kowalski";
-            newSurnameInput.Size = new Size(173, 34);
+            newSurnameInput.Size = new Size(173, 32);
             newSurnameInput.TabIndex = 31;
             // 
             // panel5
@@ -393,15 +390,13 @@
             newNameInput.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
             newNameInput.ForeColor = Color.MidnightBlue;
             newNameInput.Location = new Point(227, 159);
-            newNameInput.Multiline = true;
             newNameInput.Name = "newNameInput";
             newNameInput.PlaceholderText = "Fifonż";
-            newNameInput.Size = new Size(152, 34);
+            newNameInput.Size = new Size(152, 32);
             newNameInput.TabIndex = 30;
             // 
             // pictureBox5
             // 
-            pictureBox5.Image = Properties.Resources.email;
             pictureBox5.Location = new Point(69, 325);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(74, 52);
@@ -446,11 +441,12 @@
             newPhoneInput.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
             newPhoneInput.ForeColor = Color.MidnightBlue;
             newPhoneInput.Location = new Point(158, 246);
-            newPhoneInput.Multiline = true;
+            newPhoneInput.MaxLength = 11;
             newPhoneInput.Name = "newPhoneInput";
             newPhoneInput.PlaceholderText = "xxx xxx xxx";
-            newPhoneInput.Size = new Size(221, 34);
+            newPhoneInput.Size = new Size(221, 32);
             newPhoneInput.TabIndex = 26;
+            newPhoneInput.TextChanged += newPhoneInput_TextChanged;
             // 
             // pictureBox4
             // 
@@ -472,7 +468,6 @@
             // 
             // pictureBox3
             // 
-            pictureBox3.Image = Properties.Resources.phone;
             pictureBox3.Location = new Point(69, 233);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(74, 52);
