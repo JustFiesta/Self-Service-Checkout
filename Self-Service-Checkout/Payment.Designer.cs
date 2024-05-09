@@ -63,6 +63,9 @@
             backButton.Size = new Size(50, 50);
             backButton.TabIndex = 18;
             backButton.UseVisualStyleBackColor = false;
+            backButton.Click += backButton_Click;
+            backButton.MouseEnter += BackButton_MouseEnter;
+            backButton.MouseLeave += BackButton_MouseLeave;
             // 
             // label1
             // 
