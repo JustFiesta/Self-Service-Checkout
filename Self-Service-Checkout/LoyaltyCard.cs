@@ -17,6 +17,10 @@ namespace Self_Service_Checkout
 {
     public partial class LoyaltyCard : Form
     {
+        internal string newName;
+        public static bool discount3;
+        public static bool discount5;
+
         public LoyaltyCard()
         {
             InitializeComponent();
@@ -68,6 +72,12 @@ namespace Self_Service_Checkout
         private void yesButton_Click(object sender, EventArgs e)
         {
             yesPanel.Visible = true;
+            discount3 = true;
+            discount5 = false;
+        }
+        private void confirmButton_Click(object sender, EventArgs e)
+        {
+            discount3 = true;
         }
         private void clearButton_Click(object sender, EventArgs e)
         {
@@ -79,7 +89,12 @@ namespace Self_Service_Checkout
         //view panel for client who dont have loyalty card
         private void noButton_Click(object sender, EventArgs e)
         {
-            // just pay b*tch
+            string emptyName = "";
+            discount3 = false;
+            discount5 = false;
+            this.Hide();
+            Payment paymentForm = new Payment(emptyName);
+            paymentForm.ShowDialog();
         }
 
 
@@ -102,9 +117,19 @@ namespace Self_Service_Checkout
         //confirm client data
         private void newConfirmButton_Click(object sender, EventArgs e)
         {
-            if(validateClientData())
+            if (validateClientData())
             {
                 addClientToDB();
+
+               //set 5% discount
+                discount3 = false;
+                discount5 = true;
+
+                //clear all fields
+                newClearButton.PerformClick();
+                //open payment window with client name
+                OpenPayment(newName);
+ 
             }
         }
 
@@ -130,7 +155,7 @@ namespace Self_Service_Checkout
             // check if phone number is correct
             if (!IsValidPhoneNumber(newPhoneInput.Text))
             {
-                MessageBox.Show("Phone namuber must contain only digits and be in this format: XXX XXX XXX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Phone namuber must contain only 9 digits and be in this format: XXX XXX XXX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -161,7 +186,7 @@ namespace Self_Service_Checkout
             {
                 return false;
             }
-            return true;
+            return phone.Length == 9 && phone.All(char.IsDigit);
         }
 
         //check if email input contains @ and . ???
@@ -175,11 +200,11 @@ namespace Self_Service_Checkout
         //method to add " " after 3 chars
         private void newPhoneInput_TextChanged(object sender, EventArgs e)
         {
-            if(newPhoneInput.Text.Length == 3)
+            if (newPhoneInput.Text.Length == 3)
             {
                 newPhoneInput.Text += " ";
             }
-            if(newPhoneInput.Text.Length == 7)
+            if (newPhoneInput.Text.Length == 7)
             {
                 newPhoneInput.Text += " ";
             }
@@ -195,6 +220,16 @@ namespace Self_Service_Checkout
             var newCustomer = new Customer { Name = newNameInput.Text, Surname = newSurnameInput.Text, PhoneNumber = newPhoneInput.Text, Email = newEmailInput.Text };
             context.Customers.Add(newCustomer);
             context.SaveChanges();
+            newName = newNameInput.Text;
+        }
+
+        private void OpenPayment(string name)
+        {
+            Debug.WriteLine("discount5 FIRST: " + discount5);
+            Debug.WriteLine("discount3 FIRST: " + discount3);
+            this.Hide();
+            Payment paymentForm = new Payment(name);
+            paymentForm.ShowDialog();
         }
     }
 }
