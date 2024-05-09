@@ -316,7 +316,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 238);
             label8.ForeColor = Color.Red;
-            label8.Location = new Point(69, 481);
+            label8.Location = new Point(209, 485);
             label8.Name = "label8";
             label8.Size = new Size(170, 37);
             label8.TabIndex = 23;
@@ -332,7 +332,7 @@
             newClearButton.ForeColor = Color.White;
             newClearButton.Location = new Point(338, 397);
             newClearButton.Name = "newClearButton";
-            newClearButton.Size = new Size(202, 65);
+            newClearButton.Size = new Size(202, 80);
             newClearButton.TabIndex = 33;
             newClearButton.Text = "CLEAR";
             newClearButton.UseVisualStyleBackColor = false;
@@ -347,7 +347,7 @@
             newConfirmButton.ForeColor = Color.White;
             newConfirmButton.Location = new Point(69, 397);
             newConfirmButton.Name = "newConfirmButton";
-            newConfirmButton.Size = new Size(202, 65);
+            newConfirmButton.Size = new Size(202, 80);
             newConfirmButton.TabIndex = 32;
             newConfirmButton.Text = "CONFIRM";
             newConfirmButton.UseVisualStyleBackColor = false;
