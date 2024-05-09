@@ -162,6 +162,7 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Image = Properties.Resources.discount;
             pictureBox1.Location = new Point(653, 646);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(80, 80);
@@ -278,6 +279,7 @@
             // 
             // pictureBox2
             // 
+            pictureBox2.Image = Properties.Resources.phone;
             pictureBox2.Location = new Point(107, 139);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(74, 52);
@@ -397,6 +399,7 @@
             // 
             // pictureBox5
             // 
+            pictureBox5.Image = Properties.Resources.email;
             pictureBox5.Location = new Point(69, 325);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(74, 52);
@@ -468,6 +471,7 @@
             // 
             // pictureBox3
             // 
+            pictureBox3.Image = Properties.Resources.phone;
             pictureBox3.Location = new Point(69, 233);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(74, 52);
