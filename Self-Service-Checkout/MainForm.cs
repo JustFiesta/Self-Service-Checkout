@@ -103,7 +103,7 @@ namespace Self_Service_Checkout
                 decimal price = Convert.ToDecimal(row.Cells[1].Value);
                 totalPrice += quantity * price;
             }
-            amountLabel.Text = $"{totalPrice}€";
+            amountLabel.Text = $"{totalPrice:F2}€";
 
             AmountLabel = amountLabel.Text;
         }

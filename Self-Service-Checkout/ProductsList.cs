@@ -110,9 +110,11 @@ namespace Self_Service_Checkout
             if (e.RowIndex >= 0) // Sprawdzamy, czy kliknięto poprawną komórkę
             {
                 DataGridViewRow selectedRow = dataView.Rows[e.RowIndex]; // Pobieramy kliknięty wiersz
-
-                //adding new item to datagridview instead of listview !! CHECK PLZ IF DELETE
-                _mainForm.ListViewTest.Rows.Add(selectedRow.Cells["ProductName"].Value, selectedRow.Cells["Price"].Value, "1");
+                decimal price = Convert.ToDecimal(selectedRow.Cells["Price"].Value);
+                //price format better
+                string formattedPrice = $"{price:F2}";
+                //adding new item to datagridview instead of listview
+                _mainForm.ListViewTest.Rows.Add(selectedRow.Cells["ProductName"].Value, formattedPrice, "1");
 
                 if (checkProhibitedItems())
                 {
@@ -131,8 +133,12 @@ namespace Self_Service_Checkout
 
             if (selected_item.Length != 0 && IsValidInput(maskedTextBox1.Text))
             {
-                //adding new item to datagridview instead of listview !! CHECK PLZ IF DELETE
-                _mainForm.ListViewTest.Rows.Add(selectedRow.Cells["ProductName"].Value, selectedRow.Cells["Price"].Value, maskedTextBox1.Text);
+                //price format better
+                decimal price = Convert.ToDecimal(selectedRow.Cells["Price"].Value);
+                string formattedPrice = $"{price:F2}";
+
+                //adding new item to datagridview instead of listview
+                _mainForm.ListViewTest.Rows.Add(selectedRow.Cells["ProductName"].Value, formattedPrice, maskedTextBox1.Text);
 
 
                 if (checkProhibitedItems())
