@@ -105,6 +105,13 @@ namespace Self_Service_Checkout
             if(validateClientData())
             {
                 addClientToDB();
+
+                //clear all fields
+                newClearButton.PerformClick();
+
+                this.Hide();
+                Payment paymentForm = new Payment();
+                paymentForm.Show();
             }
         }
 
@@ -130,7 +137,7 @@ namespace Self_Service_Checkout
             // check if phone number is correct
             if (!IsValidPhoneNumber(newPhoneInput.Text))
             {
-                MessageBox.Show("Phone namuber must contain only digits and be in this format: XXX XXX XXX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Phone namuber must contain only 9 digits and be in this format: XXX XXX XXX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -161,7 +168,7 @@ namespace Self_Service_Checkout
             {
                 return false;
             }
-            return true;
+            return phone.Length == 9 && phone.All(char.IsDigit);
         }
 
         //check if email input contains @ and . ???
