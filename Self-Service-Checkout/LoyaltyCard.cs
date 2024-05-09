@@ -25,6 +25,8 @@ namespace Self_Service_Checkout
             RoundButton(newButton, 20);
             RoundButton(confirmButton, 20);
             RoundButton(clearButton, 20);
+            RoundButton(newClearButton, 20);
+            RoundButton(newConfirmButton, 20);
         }
 
         //super special function that removes applications running in the background
