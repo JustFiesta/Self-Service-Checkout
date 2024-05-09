@@ -10,6 +10,8 @@ namespace Self_Service_Checkout
     public partial class mainForm : Form
     {
         public static mainForm Instance { get; private set; }
+        public string AmountLabel;
+
         public mainForm()
         {
             InitializeComponent();
@@ -102,6 +104,8 @@ namespace Self_Service_Checkout
                 totalPrice += quantity * price;
             }
             amountLabel.Text = $"{totalPrice}€";
+
+            AmountLabel = amountLabel.Text;
         }
 
         // Function to update quantity in main ListViewTest
@@ -146,8 +150,40 @@ namespace Self_Service_Checkout
 
         private void finishButton_Click(object sender, EventArgs e)
         {
-            LoyaltyCard loyaltyCard = new LoyaltyCard();
-            loyaltyCard.Show();
+            string textValue = amountLabel.Text;
+            string numericText = RemoveCurrencySymbols(textValue);
+            
+            if(decimal.TryParse(numericText, out decimal totalPrice))
+            {
+                if (totalPrice > 0)
+                {
+                    LoyaltyCard loyaltyCard = new LoyaltyCard();
+                    loyaltyCard.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Shopping cart is empty!!", "Information", MessageBoxButtons.OK);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid amount format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private string RemoveCurrencySymbols(string text)
+        {
+            char[] charsToRemove = { '€', '$', '?', ',', ' ' };
+            foreach (char c in charsToRemove)
+            {
+                text = text.Replace(c.ToString(), "");
+            }
+
+            if (System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator != ".")
+            {
+                text = text.Replace(".", "");
+            }
+
+            return text;
         }
     }
 }

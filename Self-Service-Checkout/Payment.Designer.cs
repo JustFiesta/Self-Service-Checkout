@@ -34,6 +34,10 @@
             label1 = new Label();
             cardButton = new Button();
             blikButton = new Button();
+            label2 = new Label();
+            clientNameLabel = new Label();
+            label3 = new Label();
+            amountToPayLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             SuspendLayout();
             // 
@@ -72,7 +76,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label1.ForeColor = Color.MidnightBlue;
-            label1.Location = new Point(100, 168);
+            label1.Location = new Point(72, 187);
             label1.Name = "label1";
             label1.Size = new Size(566, 65);
             label1.TabIndex = 19;
@@ -113,12 +117,59 @@
             blikButton.Text = "BLIK";
             blikButton.UseVisualStyleBackColor = false;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label2.ForeColor = Color.MidnightBlue;
+            label2.Location = new Point(72, 101);
+            label2.Name = "label2";
+            label2.Size = new Size(148, 65);
+            label2.TabIndex = 22;
+            label2.Text = "Hello";
+            // 
+            // clientNameLabel
+            // 
+            clientNameLabel.AutoSize = true;
+            clientNameLabel.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            clientNameLabel.ForeColor = Color.MidnightBlue;
+            clientNameLabel.Location = new Point(235, 101);
+            clientNameLabel.Name = "clientNameLabel";
+            clientNameLabel.Size = new Size(0, 65);
+            clientNameLabel.TabIndex = 23;
+            clientNameLabel.Visible = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label3.ForeColor = Color.MidnightBlue;
+            label3.Location = new Point(72, 540);
+            label3.Name = "label3";
+            label3.Size = new Size(394, 65);
+            label3.TabIndex = 24;
+            label3.Text = "Amount to pay: ";
+            // 
+            // amountToPayLabel
+            // 
+            amountToPayLabel.AutoSize = true;
+            amountToPayLabel.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            amountToPayLabel.ForeColor = Color.MidnightBlue;
+            amountToPayLabel.Location = new Point(462, 540);
+            amountToPayLabel.Name = "amountToPayLabel";
+            amountToPayLabel.Size = new Size(0, 65);
+            amountToPayLabel.TabIndex = 25;
+            // 
             // Payment
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
             ClientSize = new Size(793, 748);
+            Controls.Add(amountToPayLabel);
+            Controls.Add(label3);
+            Controls.Add(clientNameLabel);
+            Controls.Add(label2);
             Controls.Add(blikButton);
             Controls.Add(cardButton);
             Controls.Add(label1);
@@ -141,5 +192,9 @@
         private Label label1;
         private Button cardButton;
         private Button blikButton;
+        private Label label2;
+        private Label clientNameLabel;
+        private Label label3;
+        private Label amountToPayLabel;
     }
 }

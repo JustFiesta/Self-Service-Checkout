@@ -244,6 +244,7 @@
             confirmButton.TabIndex = 20;
             confirmButton.Text = "CONFIRM";
             confirmButton.UseVisualStyleBackColor = false;
+            confirmButton.Click += confirmButton_Click;
             // 
             // label4
             // 
@@ -305,7 +306,7 @@
             newPanel.Controls.Add(panel3);
             newPanel.Controls.Add(pictureBox3);
             newPanel.Controls.Add(label5);
-            newPanel.Location = new Point(75, 109);
+            newPanel.Location = new Point(64, 109);
             newPanel.Name = "newPanel";
             newPanel.Size = new Size(669, 531);
             newPanel.TabIndex = 22;

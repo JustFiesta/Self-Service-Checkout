@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -13,11 +14,40 @@ namespace Self_Service_Checkout
 {
     public partial class Payment : Form
     {
-        public Payment()
+        private mainForm _mainForm;
+
+        public Payment(string name)
         {
             InitializeComponent();
+            _mainForm = mainForm.Instance;
             RoundButton(cardButton, 20);
             RoundButton(blikButton, 20);
+
+            if(!string.IsNullOrEmpty(name) ) 
+            {
+                clientNameLabel.Visible = true;
+                clientNameLabel.Text = name+" !";
+            }
+            else
+            {
+                clientNameLabel.Visible = false;
+            }
+
+            decimal amount = amountToPay();
+            if(LoyaltyCard.discount5)
+            {
+                amount = amount * 0.95M;
+                amountToPayLabel.Text = amount.ToString("0.00") + "€";
+            }
+            else if(LoyaltyCard.discount3)
+            {
+                amount = amount * 0.97M;
+                amountToPayLabel.Text = amount.ToString("0.00") + "€";
+            }
+            else
+            {
+                amountToPayLabel.Text = amount.ToString("0.00") + "€";
+            }
         }
         //super special function that removes applications running in the background
         private void Form_FormClosed(object sender, FormClosedEventArgs e)
@@ -51,6 +81,25 @@ namespace Self_Service_Checkout
         private void backButton_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        //function for calculate amount to pay, discount too
+        private decimal amountToPay()
+        {
+            string textValue = _mainForm.AmountLabel;
+            string numericText = RemoveCurrencySymbols(textValue);
+            decimal amount = decimal.Parse(numericText);
+            return amount;
+        }
+        private string RemoveCurrencySymbols(string text)
+        {
+            char[] charsToRemove = { '€',' ' };
+            foreach (char c in charsToRemove)
+            {
+                text = text.Replace(c.ToString(), "");
+            }
+
+            return text;
         }
     }
 }
