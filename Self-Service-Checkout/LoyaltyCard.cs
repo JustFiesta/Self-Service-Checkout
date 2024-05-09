@@ -78,6 +78,31 @@ namespace Self_Service_Checkout
         private void confirmButton_Click(object sender, EventArgs e)
         {
             discount3 = true;
+
+            SscdbContext context = new SscdbContext();
+            var customer = context.Customers.SingleOrDefault((c => c.PhoneNumber == phoneInput.Text));
+            if(customer != null)
+            {
+                OpenPayment(customer.Name);
+            } 
+            else
+            {
+                MessageBox.Show("Customer with that phone number doesn't exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void PhoneInput_TextChanged(object sender, EventArgs e)
+        {
+            if (phoneInput.Text.Length == 3)
+            {
+                phoneInput.Text += " ";
+            }
+            if (phoneInput.Text.Length == 7)
+            {
+                phoneInput.Text += " ";
+            }
+            phoneInput.SelectionStart = phoneInput.Text.Length;
+            phoneInput.Focus();
         }
         private void clearButton_Click(object sender, EventArgs e)
         {
@@ -165,9 +190,6 @@ namespace Self_Service_Checkout
                 MessageBox.Show("Invalid email address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
-            // everything is okey
-            MessageBox.Show("Clients details are correct.", "Confirm", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return true;
         }
 
@@ -217,10 +239,21 @@ namespace Self_Service_Checkout
         private void addClientToDB()
         {
             SscdbContext context = new SscdbContext();
-            var newCustomer = new Customer { Name = newNameInput.Text, Surname = newSurnameInput.Text, PhoneNumber = newPhoneInput.Text, Email = newEmailInput.Text };
-            context.Customers.Add(newCustomer);
-            context.SaveChanges();
-            newName = newNameInput.Text;
+
+            //check if number exists in db then add new customer
+            var existingCustomer = context.Customers.FirstOrDefault(c => c.PhoneNumber == newPhoneInput.Text);
+
+            if (existingCustomer == null)
+            {
+                var newCustomer = new Customer { Name = newNameInput.Text, Surname = newSurnameInput.Text, PhoneNumber = newPhoneInput.Text, Email = newEmailInput.Text };
+                context.Customers.Add(newCustomer);
+                context.SaveChanges();
+                MessageBox.Show("Clients details are correct.", "Confirm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Customer with that phone number already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void OpenPayment(string name)
