@@ -264,11 +264,12 @@
             phoneInput.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
             phoneInput.ForeColor = Color.MidnightBlue;
             phoneInput.Location = new Point(196, 152);
-            phoneInput.Multiline = true;
+            phoneInput.MaxLength = 11;
             phoneInput.Name = "phoneInput";
             phoneInput.PlaceholderText = "xxx xxx xxx";
-            phoneInput.Size = new Size(287, 34);
+            phoneInput.Size = new Size(287, 32);
             phoneInput.TabIndex = 18;
+            phoneInput.TextChanged += PhoneInput_TextChanged;
             // 
             // panel1
             // 
@@ -306,7 +307,7 @@
             newPanel.Controls.Add(panel3);
             newPanel.Controls.Add(pictureBox3);
             newPanel.Controls.Add(label5);
-            newPanel.Location = new Point(64, 109);
+            newPanel.Location = new Point(63, 109);
             newPanel.Name = "newPanel";
             newPanel.Size = new Size(669, 531);
             newPanel.TabIndex = 22;
