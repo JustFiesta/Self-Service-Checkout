@@ -364,7 +364,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Payment";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Payment";
+            Text = "Self-Service-Checkout";
             ((System.ComponentModel.ISupportInitialize)logoBox).EndInit();
             blikPanel.ResumeLayout(false);
             blikPanel.PerformLayout();
