@@ -83,6 +83,7 @@
             databaseButton.Text = "Database management";
             databaseButton.TextAlign = ContentAlignment.MiddleRight;
             databaseButton.UseVisualStyleBackColor = false;
+            databaseButton.Click += databaseButton_Click;
             // 
             // reportButton
             // 

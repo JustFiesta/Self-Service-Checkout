@@ -52,5 +52,12 @@ namespace Self_Service_Checkout
         {
             this.Close();
         }
+
+        private void databaseButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DatabaseForm databaseForm = new DatabaseForm();
+            databaseForm.ShowDialog();
+        }
     }
 }
