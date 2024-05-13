@@ -103,7 +103,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.White;
+            panel2.BackColor = Color.MidnightBlue;
             panel2.Location = new Point(0, 636);
             panel2.Name = "panel2";
             panel2.Size = new Size(800, 5);
@@ -112,7 +112,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.wifi;
-            pictureBox1.Location = new Point(30, 647);
+            pictureBox1.Location = new Point(30, 642);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(100, 100);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
