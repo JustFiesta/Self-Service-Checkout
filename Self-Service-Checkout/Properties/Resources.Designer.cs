@@ -333,6 +333,16 @@ namespace Self_Service_Checkout.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap receipt {
+            get {
+                object obj = ResourceManager.GetObject("receipt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap reports {
             get {
                 object obj = ResourceManager.GetObject("reports", resourceCulture);
@@ -386,6 +396,16 @@ namespace Self_Service_Checkout.Properties {
         internal static System.Drawing.Bitmap vegetables {
             get {
                 object obj = ResourceManager.GetObject("vegetables", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wifi {
+            get {
+                object obj = ResourceManager.GetObject("wifi", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
