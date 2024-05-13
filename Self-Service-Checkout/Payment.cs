@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Self_Service_Checkout.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,24 +23,29 @@ namespace Self_Service_Checkout
             _mainForm = mainForm.Instance;
             RoundButton(cardButton, 20);
             RoundButton(blikButton, 20);
+            RoundButton(blikConfirmButton, 20);
 
-            if(!string.IsNullOrEmpty(name) ) 
+            //display the customer's name at checkout
+            if (!string.IsNullOrEmpty(name))
             {
                 clientNameLabel.Visible = true;
-                clientNameLabel.Text = name+" !";
+                clientNameLabel.Text = name + " !";
             }
             else
             {
                 clientNameLabel.Visible = false;
             }
 
+            //calculat discount on purchases
+            //5% - new customers
+            //3% - regular customers
             decimal amount = amountToPay();
-            if(LoyaltyCard.discount5)
+            if (LoyaltyCard.discount5)
             {
                 amount = amount * 0.95M;
                 amountToPayLabel.Text = amount.ToString("0.00") + "€";
             }
-            else if(LoyaltyCard.discount3)
+            else if (LoyaltyCard.discount3)
             {
                 amount = amount * 0.97M;
                 amountToPayLabel.Text = amount.ToString("0.00") + "€";
@@ -91,15 +97,82 @@ namespace Self_Service_Checkout
             decimal amount = decimal.Parse(numericText);
             return amount;
         }
+        //function for remove currency symbol in amount - €
         private string RemoveCurrencySymbols(string text)
         {
-            char[] charsToRemove = { '€',' ' };
+            char[] charsToRemove = { '€', ' ' };
             foreach (char c in charsToRemove)
             {
                 text = text.Replace(c.ToString(), "");
             }
 
             return text;
+        }
+
+        //function for pay by card 
+        private void cardButton_Click(object sender, EventArgs e)
+        {
+            blikPanel.Visible = false;
+            cardPanel.Visible = true;
+            asyncForCardButton();
+        }
+        //excessive use of panels caused display errors
+        //so I used a separate function, this way fixes this error
+        private async void asyncForCardButton()
+        {
+            await Task.Delay(3000);
+            cardPanel.Visible = false;
+            endPanel.Visible = true;
+            await Task.Delay(2500);
+            RestartApplication();
+        }
+
+        //function for pay by blik code
+        private void blikButton_Click(object sender, EventArgs e)
+        {
+            blikPanel.Visible = true;
+        }
+
+        //function for confirm pay, after enter blik code
+        private async void blikConfirmButton_Click(object sender, EventArgs e)
+        {
+            string input = blikInput.Text.Trim();
+            //blik code checking
+            if (input.Length == 6 && IsNumeric(input))
+            {
+                await Task.Delay(500);
+                blikPanel.Visible=false;
+                cardPanel.Visible=false;
+                endPanel.Visible = true;
+
+                await Task.Delay(2500);
+                RestartApplication();
+            }
+            else
+            {
+                blikLabel.Visible = true;
+            }
+        }
+
+        //function to check the correctness of the blik code
+        private bool IsNumeric(string input)
+        {
+            foreach (char c in input)
+            {
+                if (!char.IsDigit(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //function to restart the application
+        private void RestartApplication()
+        {
+            // Zamykanie i ponowne uruchamianie bieżącej aplikacji
+            Application.Restart();
+            Environment.Exit(0); // Zakończ bieżący proces
         }
     }
 }

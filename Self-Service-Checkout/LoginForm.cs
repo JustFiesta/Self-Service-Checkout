@@ -87,7 +87,7 @@ namespace Self_Service_Checkout
             if(nameInput.Text.Equals("") || codeInput.Text.Equals(""))
             {
                 //if yes, error message
-                infoLabel.Visible = true;
+                info1Label.Visible = true;
             } 
             else
             {
@@ -103,29 +103,47 @@ namespace Self_Service_Checkout
                     //checking if employee is null and access code is matching
                     if (employee != null && employee.AccessCode == Int32.Parse(codeInput.Text))
                     {
-                        //setting admin flag if employee type is admin
-                        if (employee.employeeType.Equals(EmployeeType.admin))
+                        if(welcomeForm.isManagement)
                         {
-                            LoginFlag.flag = true;
-                            Debug.WriteLine("Admin logged");
-                        }
+                            //setting admin flag if employee type is admin
+                            if (employee.employeeType.Equals(EmployeeType.admin))
+                            {
+                                LoginFlag.flag = true;
+                                Debug.WriteLine("Admin logged");
+                                AdminForm adminForm = new AdminForm();
+                                adminForm.ShowDialog();
+                                this.Close();
 
-                        //type of window you want to open after succesfull login
-                        CartManagementForm cartManagementForm = new CartManagementForm();
-                        cartManagementForm.ShowDialog();
-                        this.Close();
+                                info2Label.Visible = false;
+                                info1Label.Visible = false; 
+                            }
+                            else
+                            {
+                                info2Label.Visible = true;
+                            }
+                        }
+                        else
+                        {
+                            //type of window you want to open after succesfull login
+                            CartManagementForm cartManagementForm = new CartManagementForm();
+                            cartManagementForm.ShowDialog();
+                            this.Close();
+
+                            info2Label.Visible = false;
+                            info1Label.Visible = false;
+                        }
                     }
                     else
                     {
                         //error if employee is null and code doesnt match
-                        infoLabel.Visible = true;
+                        info1Label.Visible = true;
                     }
                 } 
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
                     //error message if parsing make exception
-                    infoLabel.Visible = true;
+                    info1Label.Visible = true;
                 }
             }
         }

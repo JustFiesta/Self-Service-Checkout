@@ -14,6 +14,8 @@ namespace Self_Service_Checkout
 {
     public partial class welcomeForm : Form
     {
+        public static bool isManagement = true;
+
         public welcomeForm()
         {
             InitializeComponent();

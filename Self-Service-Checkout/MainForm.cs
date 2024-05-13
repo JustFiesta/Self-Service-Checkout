@@ -144,6 +144,7 @@ namespace Self_Service_Checkout
 
         private void adminButton_Click(object sender, EventArgs e)
         {
+            welcomeForm.isManagement = false;
             LoginForm loginForm = new LoginForm();
             loginForm.ShowDialog();
         }

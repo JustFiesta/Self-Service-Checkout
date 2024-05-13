@@ -41,7 +41,8 @@
             codeInput = new TextBox();
             clearLabel = new Label();
             showPassCheckbox = new CheckBox();
-            infoLabel = new Label();
+            info1Label = new Label();
+            info2Label = new Label();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -189,17 +190,29 @@
             showPassCheckbox.UseVisualStyleBackColor = true;
             showPassCheckbox.CheckedChanged += showPassCheckbox_CheckedChanged;
             // 
-            // infoLabel
+            // info1Label
             // 
-            infoLabel.AutoSize = true;
-            infoLabel.Font = new Font("Segoe UI Black", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            infoLabel.ForeColor = Color.Red;
-            infoLabel.Location = new Point(227, 661);
-            infoLabel.Name = "infoLabel";
-            infoLabel.Size = new Size(376, 47);
-            infoLabel.TabIndex = 19;
-            infoLabel.Text = "Invalid login details!";
-            infoLabel.Visible = false;
+            info1Label.AutoSize = true;
+            info1Label.Font = new Font("Segoe UI Black", 32F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 238);
+            info1Label.ForeColor = Color.Red;
+            info1Label.Location = new Point(181, 653);
+            info1Label.Name = "info1Label";
+            info1Label.Size = new Size(459, 59);
+            info1Label.TabIndex = 19;
+            info1Label.Text = "Invalid login details!";
+            info1Label.Visible = false;
+            // 
+            // info2Label
+            // 
+            info2Label.AutoSize = true;
+            info2Label.Font = new Font("Segoe UI Black", 32F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 238);
+            info2Label.ForeColor = Color.Red;
+            info2Label.Location = new Point(132, 653);
+            info2Label.Name = "info2Label";
+            info2Label.Size = new Size(568, 59);
+            info2Label.TabIndex = 20;
+            info2Label.Text = "ONLY ADMIN FUNCTION!";
+            info2Label.Visible = false;
             // 
             // LoginForm
             // 
@@ -207,7 +220,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
             ClientSize = new Size(789, 744);
-            Controls.Add(infoLabel);
+            Controls.Add(info2Label);
+            Controls.Add(info1Label);
             Controls.Add(showPassCheckbox);
             Controls.Add(clearLabel);
             Controls.Add(codeInput);
@@ -246,6 +260,7 @@
         private TextBox codeInput;
         private Label clearLabel;
         private CheckBox showPassCheckbox;
-        private Label infoLabel;
+        private Label info1Label;
+        private Label info2Label;
     }
 }
