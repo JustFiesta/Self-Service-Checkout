@@ -440,7 +440,7 @@ namespace Self_Service_Checkout
                 }
 
                 // Validation for email
-                if (string.IsNullOrEmpty(email) || !email.Contains("@"))
+                if (string.IsNullOrEmpty(email) && !email.Contains("@"))
                 {
                     MessageBox.Show("Invalid email format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return; // Stop the process if email is invalid
