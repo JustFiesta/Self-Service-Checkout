@@ -58,6 +58,9 @@ namespace Self_Service_Checkout
 
                 customerDGV.Visible = true;
                 employeeDGV.Visible = false;
+
+                rowCount = customers.Count;
+
                 return customers;
             }
 
@@ -68,6 +71,9 @@ namespace Self_Service_Checkout
 
                 employeeDGV.Visible = true;
                 customerDGV.Visible = false;
+
+                rowCount = employees.Count;
+
                 return employees;
             }
             return null;
@@ -111,20 +117,18 @@ namespace Self_Service_Checkout
             customerDGV.KeyDown += DataGridView_KeyDown;
             employeeDGV.KeyDown += DataGridView_KeyDown;
 
-            // Get DB contents for corresponding option
-            rowCount = GetDBContents(option.Text).Count;
-
             // Disable editing for the first column (id)
             customerDGV.Columns[0].ReadOnly = true;
             employeeDGV.Columns[0].ReadOnly = true;
         }
 
+        // Update functions - Customer/Employee
         private void DataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView dataGridView = (DataGridView)sender;
 
-            // Sprawdzenie, czy zmiana dotyczyła wiersza w bazie danych
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.ColumnIndex != 0 && e.RowIndex < rowCount)
+            // Check if correct column and row are selected
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.RowIndex <= rowCount)
             {
                 DataGridViewRow row = dataGridView.Rows[e.RowIndex];
 
