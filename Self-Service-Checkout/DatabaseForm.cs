@@ -309,10 +309,9 @@ namespace Self_Service_Checkout
             // Remove any non-digit characters
             string digitsOnly = new string(phoneNumber.Where(char.IsDigit).ToArray());
 
-            // Check if the formatted phone number has 9 digits
-            return digitsOnly.Length == 9;
+            // Check if the formatted phone number has 9 digits and contains spaces
+            return digitsOnly.Length == 9 && phoneNumber.Length == 11 && phoneNumber[3] == ' ' && phoneNumber[7] == ' ';
         }
-
         // ----------------------
 
         // Delete functions - Customer/Employee
