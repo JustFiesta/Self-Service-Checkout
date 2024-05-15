@@ -396,29 +396,72 @@ namespace Self_Service_Checkout
                 SaveNewEmployees();
             }
         }
-
-        // TODO
         private void SaveNewCustomers()
         {
-            foreach (DataGridViewRow row in customerDGV.Rows)
+            Debug.WriteLine("Saving customer");
+            int newRowCounter = customerDGV.NewRowIndex; // Fetches last row id, but i treat it like row counter
+            Debug.WriteLine("New customer row index: " + newRowCounter);
+            Debug.WriteLine("Row count fetched from db at option: " + rowCount);
+
+            List<Customer> newCustomers = new List<Customer>(); // Collection of multiple new users
+
+            for (int i = rowCount; i < newRowCounter; i++) // It operates between indexes from db and new ones
             {
-                if (row.IsNewRow) continue;
+                Debug.WriteLine("Looping in for");
+
+                DataGridViewRow row = customerDGV.Rows[i]; // Get row by its index
+
+                Debug.WriteLine("New names: " + row.Cells[1].Value);
+
+                string name = Convert.ToString(row.Cells[1].Value);
+                string surname = Convert.ToString(row.Cells[2].Value);
+                string phoneNumber = Convert.ToString(row.Cells[3].Value);
+                string email = Convert.ToString(row.Cells[4].Value);
+
+                // Validation for name
+                if (string.IsNullOrEmpty(name))
+                {
+                    MessageBox.Show("Name cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Stop the process if name is empty
+                }
+
+                // Validation for surname
+                if (string.IsNullOrEmpty(surname))
+                {
+                    MessageBox.Show("Surname cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Stop the process if surname is empty
+                }
+
+                // Validation for phone number
+                if (string.IsNullOrEmpty(phoneNumber) || !IsValidPhoneNumber(phoneNumber))
+                {
+                    MessageBox.Show("Invalid phone number format. Please use format: 123 123 123.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Stop the process if phone number is invalid
+                }
+
+                // Validation for email
+                if (string.IsNullOrEmpty(email) || !email.Contains("@"))
+                {
+                    MessageBox.Show("Invalid email format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Stop the process if email is invalid
+                }
 
                 Customer newCustomer = new Customer
                 {
-                    Name = Convert.ToString(row.Cells[1].Value),
-                    Surname = Convert.ToString(row.Cells[2].Value),
-                    PhoneNumber = Convert.ToString(row.Cells[3].Value),
-                    Email = Convert.ToString(row.Cells[4].Value)
+                    Name = name,
+                    Surname = surname,
+                    PhoneNumber = phoneNumber,
+                    Email = email
                 };
 
-                Debug.WriteLine(newCustomer.Name, newCustomer.Surname, newCustomer.PhoneNumber, newCustomer.Email);
+                Debug.WriteLine($"New customer: {newCustomer.Name}, {newCustomer.Surname}, {newCustomer.PhoneNumber}, {newCustomer.Email}");
 
-                context.Customers.Add(newCustomer);
+                newCustomers.Add(newCustomer);
             }
 
-            context.SaveChanges();
-            GetDBContents(option.Text); // Odśwież wyświetlanie danych
+            context.Customers.AddRange(newCustomers); // Add new customers to context
+            context.SaveChanges(); // Persist changes
+            GetDBContents(option.Text); // Refresh DGV
         }
         // TODO
         private void SaveNewEmployees()
