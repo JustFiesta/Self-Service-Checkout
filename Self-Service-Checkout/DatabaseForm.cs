@@ -466,9 +466,20 @@ namespace Self_Service_Checkout
         // TODO
         private void SaveNewEmployees()
         {
-            foreach (DataGridViewRow row in employeeDGV.Rows)
+            Debug.WriteLine("Saving employees");
+            int newRowCounter = employeeDGV.NewRowIndex; 
+            Debug.WriteLine("New employee row index: " + newRowCounter);
+            Debug.WriteLine("Row count fetched from db at option: " + rowCount);
+
+            List<Employee> newEmployees = new List<Employee>(); 
+
+            for (int i = rowCount; i < newRowCounter; i++) 
             {
-                if (row.IsNewRow) continue;
+                Debug.WriteLine("Looping in for");
+
+                DataGridViewRow row = employeeDGV.Rows[i]; 
+
+                Debug.WriteLine("New names: " + row.Cells[1].Value);
 
                 Employee newEmployee = new Employee
                 {
@@ -476,18 +487,19 @@ namespace Self_Service_Checkout
                     Surname = Convert.ToString(row.Cells[2].Value),
                     PhoneNumber = Convert.ToString(row.Cells[3].Value),
                     Email = Convert.ToString(row.Cells[4].Value),
-                    /*employeeType = (EmployeeType)Enum.Parse(typeof(EmployeeType), Convert.ToString(row.Cells[5].Value)),*/
-                    employeeType = EmployeeType.cashier,
+                    //employeeType = (EmployeeType)Enum.Parse(typeof(EmployeeType), Convert.ToString(row.Cells[5].Value)), // Zakładam, że to jest poprawione gdzieś indziej
+                    employeeType = EmployeeType.cashier, // temporary - still throws error
                     AccessCode = Convert.ToInt32(row.Cells[6].Value)
                 };
 
-                Debug.WriteLine(newEmployee.Name, newEmployee.Surname, newEmployee.PhoneNumber, newEmployee.Email, newEmployee.employeeType, newEmployee.AccessCode);
+                Debug.WriteLine($"New employee: {newEmployee.Name}, {newEmployee.Surname}, {newEmployee.PhoneNumber}, {newEmployee.Email}, {newEmployee.employeeType}, {newEmployee.AccessCode}");
 
-                context.Employees.Add(newEmployee);
+                newEmployees.Add(newEmployee);
             }
 
+            context.Employees.AddRange(newEmployees);
             context.SaveChanges();
-            GetDBContents(option.Text); // Odśwież wyświetlanie danych
+            GetDBContents(option.Text); 
         }
 
         private void option_SelectedIndexChanged(object sender, EventArgs e)
