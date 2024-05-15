@@ -50,7 +50,7 @@ namespace Self_Service_Checkout
 
             if (category.Equals("Customers"))
             {
-                customers = context.Customers.ToList();
+                customers = context.Customers.OrderBy(e => e.Id).ToList();
                 customerDGV.Rows.AddRange(customers.Select(c => ConvertCustomerToRow(c)).ToArray());
 
                 customerDGV.Visible = true;
@@ -60,9 +60,9 @@ namespace Self_Service_Checkout
 
             if (category.Equals("Employees"))
             {
-                employees = context.Employees.ToList();
+                employees = context.Employees.Where(e => e.Id != 1).OrderBy(e => e.Id).ToList();
                 employeeDGV.Rows.AddRange(employees.Select(e => ConvertEmployeeToRow(e)).ToArray());
-
+                
                 employeeDGV.Visible = true;
                 customerDGV.Visible = false;
                 return employees;
@@ -104,14 +104,22 @@ namespace Self_Service_Checkout
             customerDGV.CellValueChanged += DataGridView_CellValueChanged;
             employeeDGV.CellValueChanged += DataGridView_CellValueChanged;
 
+            // Assign key action
+            customerDGV.KeyDown += DataGridView_KeyDown;
+            employeeDGV.KeyDown += DataGridView_KeyDown;
+
             // Get DB contents for corresponding option
             GetDBContents(option.Text);
+
+            // Disable editing for the first column (id)
+            customerDGV.Columns[0].ReadOnly = true;
+            employeeDGV.Columns[0].ReadOnly = true;
         }
 
         private void DataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             // Check if cell was changed
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.ColumnIndex != 0)
             {
                 DataGridView dataGridView = (DataGridView)sender;
                 DataGridViewRow row = dataGridView.Rows[e.RowIndex];
@@ -134,7 +142,7 @@ namespace Self_Service_Checkout
             }
         }
 
-        // Edit functions - Customer/Employee
+        // Update functions - Customer/Employee
         private void UpdateCustomerData(int customerId, int columnIndex, string newValue)
         {
             // Find customer in db
@@ -212,8 +220,72 @@ namespace Self_Service_Checkout
         }
         // ----------------------
 
-        // Update functions - Customer/Employee
+        // Delete functions - Customer/Employee
+        private void DeleteCustomer(int customerId)
+        {
+            // Find customer in db
+            Customer customer = context.Customers.Find(customerId);
 
+            // Check if customer exists
+            if (customer != null)
+            {
+                // Remove customer from db
+                context.Customers.Remove(customer);
+
+                // Save changes
+                context.SaveChanges();
+            }
+        }
+
+        private void DeleteEmployee(int employeeId)
+        {
+            // Find employee in db
+            Employee employee = context.Employees.Find(employeeId);
+
+            // Check if employee exists
+            if (employee != null)
+            {
+                // Remove employee from db
+                context.Employees.Remove(employee);
+
+                // Save changes
+                context.SaveChanges();
+            }
+        }
+        private void DataGridView_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Check if Delete key was pressed
+            if (e.KeyCode == Keys.Delete)
+            {
+                DataGridView dataGridView = (DataGridView)sender;
+
+                // Get selected row
+                DataGridViewRow selectedRow = dataGridView.CurrentRow;
+
+                // Check if any row is selected
+                if (selectedRow != null)
+                {
+                    // Get row ID
+                    int id = Convert.ToInt32(selectedRow.Cells[0].Value);
+
+                    // Check which table is it and remove it from DB
+                    if (dataGridView == customerDGV)
+                    {
+                        DeleteCustomer(id);
+                    }
+                    else if (dataGridView == employeeDGV)
+                    {
+                        DeleteEmployee(id);
+                    }
+
+                    // Remove it from DataGridView
+                    dataGridView.Rows.Remove(selectedRow);
+                }
+            }
+        }
+        // ----------------------
+
+        // Create functions - Customer/Employee
 
         private void option_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -242,6 +242,7 @@
             employeeDGV.TabIndex = 20;
             employeeDGV.Visible = false;
             employeeDGV.CellValueChanged += DataGridView_CellValueChanged;
+            employeeDGV.KeyDown += DataGridView_KeyDown;
             // 
             // dataGridViewTextBoxColumn1
             // 
