@@ -38,11 +38,16 @@ namespace Self_Service_Checkout
             this.Hide();
         }
 
-        private void customerDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+
+        private void saveButton_Click(object sender, EventArgs e)
         {
+            //TO DO
+        }
 
-
-
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            //TO DO
         }
     }
 }
