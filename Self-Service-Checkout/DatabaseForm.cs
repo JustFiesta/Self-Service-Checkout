@@ -184,14 +184,14 @@ namespace Self_Service_Checkout
                     break;
                 case 3:
                     // Validation for customer phone number
-                    if (!string.IsNullOrEmpty(newValue))
+                    if (!string.IsNullOrEmpty(newValue) && IsValidPhoneNumber(newValue))
                     {
                     customer.PhoneNumber = newValue;
                     }
                     else
                     {
-                        MessageBox.Show("Phone number cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return; // Stop the update if phone number is empty
+                        MessageBox.Show("Invalid phone number format. Please use format: 123 123 123.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop the update if phone number is invalid
                     }
                     break;
                 case 4:
@@ -216,6 +216,7 @@ namespace Self_Service_Checkout
 
         private void UpdateEmployeeData(int employeeId, int columnIndex, string newValue)
         {
+            Debug.WriteLine("Updating employee");
             // Find employee in db
             Employee employee = context.Employees.Find(employeeId);
 
@@ -248,14 +249,14 @@ namespace Self_Service_Checkout
                     break;
                 case 3:
                     // Validation for employee phone number
-                    if (!string.IsNullOrEmpty(newValue))
+                    if (!string.IsNullOrEmpty(newValue) && IsValidPhoneNumber(newValue))
                     {
                     employee.PhoneNumber = newValue;
                     }
                     else
                     {
-                        MessageBox.Show("Phone number cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return; // Stop the update if phone number is empty
+                        MessageBox.Show("Invalid phone number format. Please use format: 123 123 123.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop the update if phone number is invalid
                     }
                     break;
                 case 4:
@@ -301,6 +302,17 @@ namespace Self_Service_Checkout
             // Save changes
             context.SaveChanges();
         }
+
+        // Validation function for phone number format
+        private bool IsValidPhoneNumber(string phoneNumber)
+        {
+            // Remove any non-digit characters
+            string digitsOnly = new string(phoneNumber.Where(char.IsDigit).ToArray());
+
+            // Check if the formatted phone number has 9 digits
+            return digitsOnly.Length == 9;
+        }
+
         // ----------------------
 
         // Delete functions - Customer/Employee
