@@ -16,5 +16,33 @@ namespace Self_Service_Checkout
         {
             InitializeComponent();
         }
+        //super special function that removes applications running in the background
+        private void Form_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        //changing the image when you hover over the button
+        private void BackButton_MouseEnter(object sender, EventArgs e)
+        {
+            backButton.Image = Properties.Resources.backHover;
+        }
+        //changing the image when you leave the button
+        private void BackButton_MouseLeave(object sender, EventArgs e)
+        {
+            backButton.Image = Properties.Resources.back;
+        }
+        //backButton action - exit current window
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void customerDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+
+        }
     }
 }
