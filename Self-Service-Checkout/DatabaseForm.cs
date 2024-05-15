@@ -315,8 +315,6 @@ namespace Self_Service_Checkout
         // ----------------------
 
         // Delete functions - Customer/Employee
-
-        // TODO
         private void DeleteCustomer(int customerId)
         {
             Debug.WriteLine("Removing customer with id: " + customerId);
