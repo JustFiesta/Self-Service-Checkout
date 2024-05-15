@@ -76,6 +76,7 @@
             option.Name = "option";
             option.Size = new Size(200, 40);
             option.TabIndex = 0;
+            option.SelectedIndexChanged += option_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -240,6 +241,7 @@
             employeeDGV.Size = new Size(801, 572);
             employeeDGV.TabIndex = 20;
             employeeDGV.Visible = false;
+            employeeDGV.CellValueChanged += DataGridView_CellValueChanged;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -295,7 +297,6 @@
             saveButton.SizeMode = PictureBoxSizeMode.Zoom;
             saveButton.TabIndex = 22;
             saveButton.TabStop = false;
-            saveButton.Click += saveButton_Click;
             // 
             // deleteButton
             // 
@@ -306,7 +307,6 @@
             deleteButton.SizeMode = PictureBoxSizeMode.Zoom;
             deleteButton.TabIndex = 23;
             deleteButton.TabStop = false;
-            deleteButton.Click += deleteButton_Click;
             // 
             // DatabaseForm
             // 
