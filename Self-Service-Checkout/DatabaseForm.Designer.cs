@@ -298,6 +298,7 @@
             saveButton.SizeMode = PictureBoxSizeMode.Zoom;
             saveButton.TabIndex = 22;
             saveButton.TabStop = false;
+            saveButton.Click += saveButton_Click;
             // 
             // deleteButton
             // 

@@ -16,6 +16,7 @@ namespace Self_Service_Checkout
     public partial class DatabaseForm : Form
     {
         private SscdbContext context = new SscdbContext();
+        private int rowCount = 0;
         public DatabaseForm()
         {
             InitializeComponent();
@@ -47,6 +48,8 @@ namespace Self_Service_Checkout
         {
             List<Customer> customers = null;
             List<Employee> employees = null;
+            customerDGV.Rows.Clear();
+            employeeDGV.Rows.Clear();
 
             if (category.Equals("Customers"))
             {
@@ -62,7 +65,7 @@ namespace Self_Service_Checkout
             {
                 employees = context.Employees.Where(e => e.Id != 1).OrderBy(e => e.Id).ToList();
                 employeeDGV.Rows.AddRange(employees.Select(e => ConvertEmployeeToRow(e)).ToArray());
-                
+
                 employeeDGV.Visible = true;
                 customerDGV.Visible = false;
                 return employees;
@@ -109,7 +112,7 @@ namespace Self_Service_Checkout
             employeeDGV.KeyDown += DataGridView_KeyDown;
 
             // Get DB contents for corresponding option
-            GetDBContents(option.Text);
+            rowCount = GetDBContents(option.Text).Count;
 
             // Disable editing for the first column (id)
             customerDGV.Columns[0].ReadOnly = true;
@@ -118,10 +121,11 @@ namespace Self_Service_Checkout
 
         private void DataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            // Check if cell was changed
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.ColumnIndex != 0)
+            DataGridView dataGridView = (DataGridView)sender;
+
+            // Sprawdzenie, czy zmiana dotyczyła wiersza w bazie danych
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.ColumnIndex != 0 && e.RowIndex < rowCount)
             {
-                DataGridView dataGridView = (DataGridView)sender;
                 DataGridViewRow row = dataGridView.Rows[e.RowIndex];
 
                 // Get new value
@@ -221,8 +225,11 @@ namespace Self_Service_Checkout
         // ----------------------
 
         // Delete functions - Customer/Employee
+
+        // TODO
         private void DeleteCustomer(int customerId)
         {
+            Debug.WriteLine("Removing customer with id: ", customerId);
             // Find customer in db
             Customer customer = context.Customers.Find(customerId);
 
@@ -252,12 +259,14 @@ namespace Self_Service_Checkout
                 context.SaveChanges();
             }
         }
+
         private void DataGridView_KeyDown(object sender, KeyEventArgs e)
         {
             // Check if Delete key was pressed
             if (e.KeyCode == Keys.Delete)
             {
                 DataGridView dataGridView = (DataGridView)sender;
+                Debug.WriteLine("Selected datagridview: ", dataGridView);
 
                 // Get selected row
                 DataGridViewRow selectedRow = dataGridView.CurrentRow;
@@ -271,6 +280,7 @@ namespace Self_Service_Checkout
                     // Check which table is it and remove it from DB
                     if (dataGridView == customerDGV)
                     {
+                        Debug.WriteLine("Customerid to delete: ", id);
                         DeleteCustomer(id);
                     }
                     else if (dataGridView == employeeDGV)
@@ -286,6 +296,68 @@ namespace Self_Service_Checkout
         // ----------------------
 
         // Create functions - Customer/Employee
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            if (option.Text.Equals("Customers"))
+            {
+                SaveNewCustomers();
+            }
+            else if (option.Text.Equals("Employees"))
+            {
+                SaveNewEmployees();
+            }
+        }
+
+        // TODO
+        private void SaveNewCustomers()
+        {
+            foreach (DataGridViewRow row in customerDGV.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                Customer newCustomer = new Customer
+                {
+                    Name = Convert.ToString(row.Cells[1].Value),
+                    Surname = Convert.ToString(row.Cells[2].Value),
+                    PhoneNumber = Convert.ToString(row.Cells[3].Value),
+                    Email = Convert.ToString(row.Cells[4].Value)
+                };
+
+                Debug.WriteLine(newCustomer.Name, newCustomer.Surname, newCustomer.PhoneNumber, newCustomer.Email);
+
+                context.Customers.Add(newCustomer);
+            }
+
+            context.SaveChanges();
+            GetDBContents(option.Text); // Odśwież wyświetlanie danych
+        }
+        // TODO
+        private void SaveNewEmployees()
+        {
+            foreach (DataGridViewRow row in employeeDGV.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                Employee newEmployee = new Employee
+                {
+                    Name = Convert.ToString(row.Cells[1].Value),
+                    Surname = Convert.ToString(row.Cells[2].Value),
+                    PhoneNumber = Convert.ToString(row.Cells[3].Value),
+                    Email = Convert.ToString(row.Cells[4].Value),
+                    /*employeeType = (EmployeeType)Enum.Parse(typeof(EmployeeType), Convert.ToString(row.Cells[5].Value)),*/
+                    employeeType = EmployeeType.cashier,
+                    AccessCode = Convert.ToInt32(row.Cells[6].Value)
+                };
+
+                Debug.WriteLine(newEmployee.Name, newEmployee.Surname, newEmployee.PhoneNumber, newEmployee.Email, newEmployee.employeeType, newEmployee.AccessCode);
+
+                context.Employees.Add(newEmployee);
+            }
+
+            context.SaveChanges();
+            GetDBContents(option.Text); // Odśwież wyświetlanie danych
+        }
 
         private void option_SelectedIndexChanged(object sender, EventArgs e)
         {
