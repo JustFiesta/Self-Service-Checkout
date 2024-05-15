@@ -128,7 +128,7 @@ namespace Self_Service_Checkout
             DataGridView dataGridView = (DataGridView)sender;
 
             // Check if correct column and row are selected
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.RowIndex <= rowCount)
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.RowIndex > rowCount)
             {
                 DataGridViewRow row = dataGridView.Rows[e.RowIndex];
 
