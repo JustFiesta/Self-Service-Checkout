@@ -150,26 +150,61 @@ namespace Self_Service_Checkout
             }
         }
 
-        // Update functions - Customer/Employee
         private void UpdateCustomerData(int customerId, int columnIndex, string newValue)
         {
             // Find customer in db
             Customer customer = context.Customers.Find(customerId);
 
-            // Update corresponding
+            // Update corresponding fields
             switch (columnIndex)
             {
                 case 1:
+                    // Validation for customer name
+                    if (!string.IsNullOrEmpty(newValue))
+                    {
                     customer.Name = newValue;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Name cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop the update if name is empty
+                    }
                     break;
                 case 2:
+                    // Validation for customer surname
+                    if (!string.IsNullOrEmpty(newValue))
+                    {
                     customer.Surname = newValue;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Surname cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop the update if surname is empty
+                    }
                     break;
                 case 3:
+                    // Validation for customer phone number
+                    if (!string.IsNullOrEmpty(newValue))
+                    {
                     customer.PhoneNumber = newValue;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Phone number cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop the update if phone number is empty
+                    }
                     break;
                 case 4:
+                    // Validation for customer email address
+                    if (!string.IsNullOrEmpty(newValue) && newValue.Contains("@"))
+                    {
                     customer.Email = newValue;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid email format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop the update if email address is invalid
+                    }
                     break;
                 default:
                     break;
@@ -188,18 +223,55 @@ namespace Self_Service_Checkout
             switch (columnIndex)
             {
                 case 1:
+                    // Validation for employee name
+                    if (!string.IsNullOrEmpty(newValue))
+                    {
                     employee.Name = newValue;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Name cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop the update if name is empty
+                    }
                     break;
                 case 2:
+                    // Validation for employee surname
+                    if (!string.IsNullOrEmpty(newValue))
+                    {
                     employee.Surname = newValue;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Surname cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop the update if surname is empty
+                    }
                     break;
                 case 3:
+                    // Validation for employee phone number
+                    if (!string.IsNullOrEmpty(newValue))
+                    {
                     employee.PhoneNumber = newValue;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Phone number cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop the update if phone number is empty
+                    }
                     break;
                 case 4:
+                    // Validation for employee email address
+                    if (!string.IsNullOrEmpty(newValue) && newValue.Contains("@"))
+                    {
                     employee.Email = newValue;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid email format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop the update if email address is invalid
+                    }
                     break;
                 case 5:
+                    // Validation for employee type
                     if (Enum.TryParse(newValue, out EmployeeType employeeType))
                     {
                         employee.employeeType = employeeType;
@@ -207,9 +279,11 @@ namespace Self_Service_Checkout
                     else
                     {
                         MessageBox.Show("Invalid employee type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop the update if employee type is invalid
                     }
                     break;
                 case 6:
+                    // Validation for access code
                     if (int.TryParse(newValue, out int accessCode))
                     {
                         employee.AccessCode = accessCode;
@@ -217,6 +291,7 @@ namespace Self_Service_Checkout
                     else
                     {
                         MessageBox.Show("Invalid access code.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Stop the update if access code is invalid
                     }
                     break;
                 default:
@@ -233,7 +308,7 @@ namespace Self_Service_Checkout
         // TODO
         private void DeleteCustomer(int customerId)
         {
-            Debug.WriteLine("Removing customer with id: ", customerId);
+            Debug.WriteLine("Removing customer with id: " + customerId);
             // Find customer in db
             Customer customer = context.Customers.Find(customerId);
 
@@ -270,7 +345,7 @@ namespace Self_Service_Checkout
             if (e.KeyCode == Keys.Delete)
             {
                 DataGridView dataGridView = (DataGridView)sender;
-                Debug.WriteLine("Selected datagridview: ", dataGridView);
+                Debug.WriteLine("Selected datagridview: " + dataGridView);
 
                 // Get selected row
                 DataGridViewRow selectedRow = dataGridView.CurrentRow;
@@ -284,7 +359,7 @@ namespace Self_Service_Checkout
                     // Check which table is it and remove it from DB
                     if (dataGridView == customerDGV)
                     {
-                        Debug.WriteLine("Customerid to delete: ", id);
+                        Debug.WriteLine("Customerid to delete: " + id);
                         DeleteCustomer(id);
                     }
                     else if (dataGridView == employeeDGV)
