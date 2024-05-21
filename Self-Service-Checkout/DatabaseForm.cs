@@ -384,6 +384,7 @@ namespace Self_Service_Checkout
         // ----------------------
 
         // Create functions - Customer/Employee
+        // DISCLAMER!!! After providing each box one needs to switch to other cell (not in row for adding)
 
         private void saveButton_Click(object sender, EventArgs e)
         {
