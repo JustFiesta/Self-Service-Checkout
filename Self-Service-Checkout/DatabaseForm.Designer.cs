@@ -58,12 +58,10 @@
             employee_type = new DataGridViewTextBoxColumn();
             access_code = new DataGridViewTextBoxColumn();
             saveButton = new PictureBox();
-            deleteButton = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)customerDGV).BeginInit();
             ((System.ComponentModel.ISupportInitialize)employeeDGV).BeginInit();
             ((System.ComponentModel.ISupportInitialize)saveButton).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)deleteButton).BeginInit();
             SuspendLayout();
             // 
             // option
@@ -76,6 +74,7 @@
             option.Name = "option";
             option.Size = new Size(200, 40);
             option.TabIndex = 0;
+            option.SelectedIndexChanged += option_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -161,6 +160,8 @@
             customerDGV.Size = new Size(801, 572);
             customerDGV.TabIndex = 19;
             customerDGV.Visible = false;
+            customerDGV.CellValueChanged += DataGridView_CellValueChanged;
+            customerDGV.KeyDown += DataGridView_KeyDown;
             // 
             // idUser
             // 
@@ -240,6 +241,8 @@
             employeeDGV.Size = new Size(801, 572);
             employeeDGV.TabIndex = 20;
             employeeDGV.Visible = false;
+            employeeDGV.CellValueChanged += DataGridView_CellValueChanged;
+            employeeDGV.KeyDown += DataGridView_KeyDown;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -289,24 +292,13 @@
             // saveButton
             // 
             saveButton.Image = Properties.Resources.saveHover;
-            saveButton.Location = new Point(12, 680);
+            saveButton.Location = new Point(717, 690);
             saveButton.Name = "saveButton";
-            saveButton.Size = new Size(79, 73);
+            saveButton.Size = new Size(68, 63);
             saveButton.SizeMode = PictureBoxSizeMode.Zoom;
             saveButton.TabIndex = 22;
             saveButton.TabStop = false;
             saveButton.Click += saveButton_Click;
-            // 
-            // deleteButton
-            // 
-            deleteButton.Image = Properties.Resources.deleteHover;
-            deleteButton.Location = new Point(97, 680);
-            deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(83, 73);
-            deleteButton.SizeMode = PictureBoxSizeMode.Zoom;
-            deleteButton.TabIndex = 23;
-            deleteButton.TabStop = false;
-            deleteButton.Click += deleteButton_Click;
             // 
             // DatabaseForm
             // 
@@ -314,7 +306,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
             ClientSize = new Size(797, 752);
-            Controls.Add(deleteButton);
             Controls.Add(saveButton);
             Controls.Add(employeeDGV);
             Controls.Add(customerDGV);
@@ -331,7 +322,6 @@
             ((System.ComponentModel.ISupportInitialize)customerDGV).EndInit();
             ((System.ComponentModel.ISupportInitialize)employeeDGV).EndInit();
             ((System.ComponentModel.ISupportInitialize)saveButton).EndInit();
-            ((System.ComponentModel.ISupportInitialize)deleteButton).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

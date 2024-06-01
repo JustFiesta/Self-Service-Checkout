@@ -21,10 +21,4 @@ namespace Self_Service_Checkout.Models
         alcohol,
         energy_drink
     }
-    public enum EmployeeType
-    {
-        cashier,
-        beginner,
-        admin
-    }
 }

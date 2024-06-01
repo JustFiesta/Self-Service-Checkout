@@ -106,7 +106,7 @@ namespace Self_Service_Checkout
                         if(welcomeForm.isManagement)
                         {
                             //setting admin flag if employee type is admin
-                            if (employee.employeeType.Equals(EmployeeType.admin))
+                            if (employee.employeeType.Equals("admin"))
                             {
                                 LoginFlag.flag = true;
                                 Debug.WriteLine("Admin logged");

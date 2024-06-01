@@ -33,10 +33,8 @@ public partial class SscdbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
-            .HasPostgresEnum("employee_type", new[] { "cashier", "beginner", "admin" })
             .HasPostgresEnum("product_category", new[] { "fruit", "vegetable", "breadstuff", "meat", "drink", "dairy", "sweet", "frozen food", "alcohol", "energy drink" })
-            .HasPostgresEnum<Product_Category>("product_category")
-            .HasPostgresEnum<EmployeeType>("employee_type");
+            .HasPostgresEnum<Product_Category>("product_category");
 
         modelBuilder.Entity<Customer>(entity =>
         {
@@ -67,8 +65,9 @@ public partial class SscdbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.AccessCode).HasColumnName("access_code");
-            entity.Property(e => e.employeeType).HasColumnName("employee_type")
-                    .HasConversion<string>();
+            entity.Property(e => e.employeeType)
+                .HasColumnType("character varying")
+                .HasColumnName("employee_type");
             entity.Property(e => e.Email)
                 .HasColumnType("character varying")
                 .HasColumnName("email");
