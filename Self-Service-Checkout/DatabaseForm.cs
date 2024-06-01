@@ -273,9 +273,9 @@ namespace Self_Service_Checkout
                     break;
                 case 5:
                     // Validation for employee type
-                    if (Enum.TryParse(newValue, out EmployeeType employeeType))
+                    if (newValue.Equals("admin") || newValue.Equals("cashier"))
                     {
-                        employee.employeeType = employeeType;
+                        employee.employeeType = newValue;
                     }
                     else
                     {
@@ -488,8 +488,7 @@ namespace Self_Service_Checkout
                     Surname = Convert.ToString(row.Cells[2].Value),
                     PhoneNumber = Convert.ToString(row.Cells[3].Value),
                     Email = Convert.ToString(row.Cells[4].Value),
-                    //employeeType = (EmployeeType)Enum.Parse(typeof(EmployeeType), Convert.ToString(row.Cells[5].Value)), // Zakładam, że to jest poprawione gdzieś indziej
-                    employeeType = EmployeeType.cashier, // temporary - still throws error
+                    employeeType = Convert.ToString(row.Cells[5].Value),
                     AccessCode = Convert.ToInt32(row.Cells[6].Value)
                 };
 
