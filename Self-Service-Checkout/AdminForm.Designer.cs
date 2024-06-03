@@ -101,6 +101,7 @@
             reportButton.Text = "Reports";
             reportButton.TextAlign = ContentAlignment.MiddleRight;
             reportButton.UseVisualStyleBackColor = false;
+            reportButton.Click += reportButton_Click;
             // 
             // panel2
             // 
