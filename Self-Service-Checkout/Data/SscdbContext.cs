@@ -152,4 +152,20 @@ public partial class SscdbContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+    // Get products from DB
+    public async Task<List<Product>> GetAllProductsAsync()
+    {
+        return await Products.FromSqlRaw("SELECT * FROM get_all_products()").ToListAsync();
+    }
+
+    // Add products to DB
+    public async Task AddProductAsync(string productName, double price, double weight, int barcode, string productType)
+    {
+        await Database.ExecuteSqlRawAsync(
+            "SELECT add_product({0}, {1}, {2}, {3}, {4})",
+            productName, price, weight, barcode, productType
+        );
+    }
+
 }
