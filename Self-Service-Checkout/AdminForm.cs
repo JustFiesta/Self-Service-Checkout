@@ -59,5 +59,12 @@ namespace Self_Service_Checkout
             DatabaseForm databaseForm = new DatabaseForm();
             databaseForm.ShowDialog();
         }
+
+        private void reportButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ProductManagament productManagament = new ProductManagament();
+            productManagament.ShowDialog();
+        }
     }
 }
