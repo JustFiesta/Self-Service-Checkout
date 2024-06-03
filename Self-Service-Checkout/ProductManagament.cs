@@ -24,8 +24,9 @@ namespace Self_Service_Checkout
 
             // Inicjalizuj kontekst w konstruktorze
             var optionsBuilder = new DbContextOptionsBuilder<SscdbContext>();
-            optionsBuilder.UseNpgsql("Host=localhost;Database=SSCDB;Username=postgres;Password=P@ssw0rd");
             _context = new SscdbContext(optionsBuilder.Options);
+
+            DisplayProductsAsync();
         }
 
         // Super special function that removes applications running in the background
@@ -34,17 +35,40 @@ namespace Self_Service_Checkout
             Application.Exit();
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        // Display
+        private async Task DisplayProductsAsync()
         {
-            // Wywołaj metodę GetAllProductsAsync i wyświetl produkty
             var products = await _context.GetAllProductsAsync();
             LogProductsToConsole(products);
             DisplayProducts(products);
         }
 
+        private async void button1_Click(object sender, EventArgs e)
+        {
+
+            await DisplayProductsAsync();
+
+            // Wywołaj metodę GetAllProductsAsync i wyświetl produkty
+            var products = await _context.GetAllProductsAsync();
+
+            //Debug
+            LogProductsToConsole(products);
+
+
+            await RefreshProductListAsync();
+        }
+
+        // debug display products
+        private void LogProductsToConsole(List<Product> products)
+        {
+            foreach (var product in products)
+            {
+                Debug.WriteLine($"ID: {product.Id}, Name: {product.ProductName}, Price: {product.Price}, Weight: {product.Weight}, Barcode: {product.Barcode}, Type: {product.ProductCategory}");
+            }
+        }
+
         private void DisplayProducts(List<Product> products)
         {
-            // Przykład wyświetlania produktów w kontrolce ListView
             listViewProducts.Items.Clear();
 
             foreach (var product in products)
@@ -63,16 +87,13 @@ namespace Self_Service_Checkout
             }
         }
 
-        // debug pulled products
-        private void LogProductsToConsole(List<Product> products)
+        // Refresh product list
+        private async Task RefreshProductListAsync()
         {
-            foreach (var product in products)
-            {
-                Debug.WriteLine($"ID: {product.Id}, Name: {product.ProductName}, Price: {product.Price}, Weight: {product.Weight}, Barcode: {product.Barcode}, Type: {product.ProductCategory}");
-            }
+            await DisplayProductsAsync();
         }
 
-
+        // Add
         private async void buttonAddProduct_Click(object sender, EventArgs e)
         {
             var productName = textBoxProductName.Text;
@@ -81,12 +102,74 @@ namespace Self_Service_Checkout
             var barcode = int.Parse(textBoxBarcode.Text);
             var productType = comboBoxProductType.SelectedItem.ToString();
 
-            // Wywołaj metodę dodawania produktu
             await _context.AddProductAsync(productName, price, weight, barcode, productType);
 
-            // Zaktualizuj wyświetlaną listę produktów
-            var products = await _context.GetAllProductsAsync();
-            DisplayProducts(products);
+            await RefreshProductListAsync();
+        }
+
+        // Update
+        private async void buttonUpdateProduct_Click(object sender, EventArgs e)
+        {
+            var selectedItemId = GetSelectedProductId();
+            if (selectedItemId == null)
+            {
+                MessageBox.Show("Please select a product to update.");
+                return;
+            }
+
+            var id = selectedItemId.Value;
+            var productName = textBoxProductName.Text;
+            var price = double.Parse(textBoxPrice.Text);
+            var weight = double.Parse(textBoxWeight.Text);
+            var barcode = int.Parse(textBoxBarcode.Text);
+            var productType = comboBoxProductType.SelectedItem.ToString();
+
+            await _context.UpdateProductAsync(id, productName, price, weight, barcode, productType);
+
+            await RefreshProductListAsync();
+        }
+
+        // Delete
+        private async void buttonDeleteProduct_Click(object sender, EventArgs e)
+        {
+            var selectedItemId = GetSelectedProductId();
+            if (selectedItemId == null)
+            {
+                MessageBox.Show("Please select a product to delete.");
+                return;
+            }
+
+            var confirmation = MessageBox.Show("Are you sure you want to delete this product?", "Confirmation", MessageBoxButtons.YesNo);
+            if (confirmation == DialogResult.Yes)
+            {
+                var productId = selectedItemId.Value;
+                await _context.DeleteProductAsync(productId);
+
+                await RefreshProductListAsync();
+            }
+        }
+
+        // Metoda pomocnicza do pobierania ID wybranego produktu z kontrolki ListView
+        private int? GetSelectedProductId()
+        {
+            if (listViewProducts.SelectedItems.Count > 0)
+            {
+                return int.Parse(listViewProducts.SelectedItems[0].Text);
+            }
+            return null;
+        }
+
+        private void listViewProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewProducts.SelectedItems.Count > 0)
+            {
+                var selectedItem = listViewProducts.SelectedItems[0];
+                textBoxProductName.Text = selectedItem.SubItems[1].Text;
+                textBoxPrice.Text = selectedItem.SubItems[2].Text;
+                textBoxWeight.Text = selectedItem.SubItems[3].Text;
+                textBoxBarcode.Text = selectedItem.SubItems[4].Text;
+                comboBoxProductType.SelectedItem = selectedItem.SubItems[5].Text;
+            }
         }
     }
 }

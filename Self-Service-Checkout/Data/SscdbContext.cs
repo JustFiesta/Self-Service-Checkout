@@ -92,7 +92,7 @@ public partial class SscdbContext : DbContext
             entity.Property(e => e.Barcode).HasColumnName("barcode");
             entity.Property(e => e.Price).HasColumnName("price");
             entity.Property(e => e.ProductCategory).HasColumnName("product_type")
-                    .HasConversion<string>(); 
+                    .HasConversion<string>();
 
             entity.Property(e => e.ProductName)
                 .HasColumnType("character varying")
@@ -168,4 +168,18 @@ public partial class SscdbContext : DbContext
         );
     }
 
+    // Update products to DB
+    public async Task UpdateProductAsync(int id, string productName, double price, double weight, int barcode, string productType)
+    {
+        await Database.ExecuteSqlRawAsync(
+            "SELECT update_product({0}, {1}, {2}, {3}, {4}, {5})",
+            id, productName, price, weight, barcode, productType
+        );
+    }
+
+    // Delete product from DB
+    public async Task DeleteProductAsync(int productId)
+    {
+        await Database.ExecuteSqlInterpolatedAsync($"CALL delete_product({productId})");
+    }
 }

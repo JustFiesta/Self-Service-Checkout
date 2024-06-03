@@ -35,9 +35,14 @@
             comboBoxProductType = new ComboBox();
             buttonAddProduct = new Button();
             listViewProducts = new ListView();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
+            columnHeader5 = new ColumnHeader();
             button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            buttonUpdateProduct = new Button();
+            buttonDeleteProduct = new Button();
             SuspendLayout();
             // 
             // textBoxProductName
@@ -94,58 +99,60 @@
             // 
             // listViewProducts
             // 
-            listViewProducts.FullRowSelect = true;
-            listViewProducts.GridLines = true;
-            listViewProducts.Location = new Point(45, 43);
+            listViewProducts.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
+            listViewProducts.Location = new Point(45, 72);
             listViewProducts.Name = "listViewProducts";
-            listViewProducts.Size = new Size(798, 574);
-            listViewProducts.TabIndex = 0;
+            listViewProducts.Size = new Size(774, 545);
+            listViewProducts.TabIndex = 7;
             listViewProducts.UseCompatibleStateImageBehavior = false;
             listViewProducts.View = View.Details;
+            listViewProducts.SelectedIndexChanged += listViewProducts_SelectedIndexChanged;
             // 
             // button1
             // 
-            button1.Location = new Point(45, 673);
+            button1.Location = new Point(83, 697);
             button1.Name = "button1";
-            button1.Size = new Size(142, 75);
-            button1.TabIndex = 0;
-            button1.Text = "dodaj produkt";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 8;
+            button1.Text = "Wyświetl";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // button2
+            // buttonUpdateProduct
             // 
-            button2.Location = new Point(331, 664);
-            button2.Name = "button2";
-            button2.Size = new Size(154, 92);
-            button2.TabIndex = 1;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            buttonUpdateProduct.Location = new Point(323, 704);
+            buttonUpdateProduct.Name = "buttonUpdateProduct";
+            buttonUpdateProduct.Size = new Size(75, 23);
+            buttonUpdateProduct.TabIndex = 9;
+            buttonUpdateProduct.Text = "Zapisz zmiany";
+            buttonUpdateProduct.UseVisualStyleBackColor = true;
+            buttonUpdateProduct.Click += buttonUpdateProduct_Click;
             // 
-            // button3
+            // buttonDeleteProduct
             // 
-            button3.Location = new Point(689, 664);
-            button3.Name = "button3";
-            button3.Size = new Size(154, 92);
-            button3.TabIndex = 2;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            buttonDeleteProduct.Location = new Point(621, 698);
+            buttonDeleteProduct.Name = "buttonDeleteProduct";
+            buttonDeleteProduct.Size = new Size(75, 23);
+            buttonDeleteProduct.TabIndex = 10;
+            buttonDeleteProduct.Text = "Usuń";
+            buttonDeleteProduct.UseVisualStyleBackColor = true;
+            buttonDeleteProduct.Click += buttonDeleteProduct_Click;
             // 
             // ProductManagament
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(855, 753);
+            Controls.Add(buttonDeleteProduct);
+            Controls.Add(buttonUpdateProduct);
+            Controls.Add(button1);
+            Controls.Add(listViewProducts);
             Controls.Add(textBoxProductName);
             Controls.Add(textBoxPrice);
             Controls.Add(textBoxWeight);
             Controls.Add(textBoxBarcode);
             Controls.Add(comboBoxProductType);
             Controls.Add(buttonAddProduct);
-            Controls.Add(listViewProducts);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
             Name = "ProductManagament";
             Text = "ProductManagament";
             ResumeLayout(false);
@@ -154,15 +161,20 @@
 
         #endregion
 
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private System.Windows.Forms.ListView listViewProducts;
         private System.Windows.Forms.TextBox textBoxProductName;
         private System.Windows.Forms.TextBox textBoxPrice;
         private System.Windows.Forms.TextBox textBoxWeight;
         private System.Windows.Forms.TextBox textBoxBarcode;
         private System.Windows.Forms.ComboBox comboBoxProductType;
         private System.Windows.Forms.Button buttonAddProduct;
+        private ListView listViewProducts;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
+        private ColumnHeader columnHeader5;
+        private Button button1;
+        private Button buttonUpdateProduct;
+        private Button buttonDeleteProduct;
     }
 }
