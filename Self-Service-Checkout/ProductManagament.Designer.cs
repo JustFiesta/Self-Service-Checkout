@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductManagament));
             textBoxProductName = new TextBox();
             textBoxPrice = new TextBox();
             textBoxWeight = new TextBox();
@@ -40,6 +41,7 @@
             columnHeader3 = new ColumnHeader();
             columnHeader4 = new ColumnHeader();
             columnHeader5 = new ColumnHeader();
+            columnHeader6 = new ColumnHeader();
             button1 = new Button();
             buttonUpdateProduct = new Button();
             buttonDeleteProduct = new Button();
@@ -47,49 +49,53 @@
             // 
             // textBoxProductName
             // 
-            textBoxProductName.Location = new Point(130, 623);
+            textBoxProductName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBoxProductName.Location = new Point(40, 610);
             textBoxProductName.Name = "textBoxProductName";
             textBoxProductName.PlaceholderText = "Product Name";
-            textBoxProductName.Size = new Size(100, 23);
+            textBoxProductName.Size = new Size(100, 25);
             textBoxProductName.TabIndex = 1;
             // 
             // textBoxPrice
             // 
-            textBoxPrice.Location = new Point(236, 623);
+            textBoxPrice.Font = new Font("Segoe UI", 9.75F);
+            textBoxPrice.Location = new Point(160, 610);
             textBoxPrice.Name = "textBoxPrice";
             textBoxPrice.PlaceholderText = "Price";
-            textBoxPrice.Size = new Size(100, 23);
+            textBoxPrice.Size = new Size(100, 25);
             textBoxPrice.TabIndex = 2;
             // 
             // textBoxWeight
             // 
-            textBoxWeight.Location = new Point(342, 623);
+            textBoxWeight.Font = new Font("Segoe UI", 9.75F);
+            textBoxWeight.Location = new Point(283, 610);
             textBoxWeight.Name = "textBoxWeight";
             textBoxWeight.PlaceholderText = "Weight";
-            textBoxWeight.Size = new Size(100, 23);
+            textBoxWeight.Size = new Size(100, 25);
             textBoxWeight.TabIndex = 3;
             // 
             // textBoxBarcode
             // 
-            textBoxBarcode.Location = new Point(448, 623);
+            textBoxBarcode.Font = new Font("Segoe UI", 9.75F);
+            textBoxBarcode.Location = new Point(407, 610);
             textBoxBarcode.Name = "textBoxBarcode";
             textBoxBarcode.PlaceholderText = "Barcode";
-            textBoxBarcode.Size = new Size(100, 23);
+            textBoxBarcode.Size = new Size(100, 25);
             textBoxBarcode.TabIndex = 4;
             // 
             // comboBoxProductType
             // 
             comboBoxProductType.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxProductType.FormattingEnabled = true;
-            comboBoxProductType.Items.AddRange(new object[] { "fruit", "vegetable", "breadstuff", "meat", "drink", "dairy", "sweet", "frozen food", "alcohol", "energy drink" });
-            comboBoxProductType.Location = new Point(554, 624);
+            comboBoxProductType.Items.AddRange(new object[] { "fruit", "vegetable", "breadstuff", "meat", "drink", "dairy", "sweet", "frozen_food", "alcohol", "energy_drink" });
+            comboBoxProductType.Location = new Point(523, 612);
             comboBoxProductType.Name = "comboBoxProductType";
             comboBoxProductType.Size = new Size(121, 23);
             comboBoxProductType.TabIndex = 5;
             // 
             // buttonAddProduct
             // 
-            buttonAddProduct.Location = new Point(681, 623);
+            buttonAddProduct.Location = new Point(659, 612);
             buttonAddProduct.Name = "buttonAddProduct";
             buttonAddProduct.Size = new Size(75, 23);
             buttonAddProduct.TabIndex = 6;
@@ -99,20 +105,52 @@
             // 
             // listViewProducts
             // 
-            listViewProducts.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
-            listViewProducts.Location = new Point(45, 72);
+            listViewProducts.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6 });
+            listViewProducts.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            listViewProducts.FullRowSelect = true;
+            listViewProducts.Location = new Point(40, 12);
             listViewProducts.Name = "listViewProducts";
-            listViewProducts.Size = new Size(774, 545);
+            listViewProducts.Size = new Size(694, 573);
             listViewProducts.TabIndex = 7;
             listViewProducts.UseCompatibleStateImageBehavior = false;
             listViewProducts.View = View.Details;
             listViewProducts.SelectedIndexChanged += listViewProducts_SelectedIndexChanged;
             // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Id";
+            columnHeader1.Width = 80;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Product name";
+            columnHeader2.Width = 180;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Price";
+            columnHeader3.Width = 100;
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Weight";
+            columnHeader4.Width = 100;
+            // 
+            // columnHeader5
+            // 
+            columnHeader5.Text = "Barcode";
+            columnHeader5.Width = 100;
+            // 
+            // columnHeader6
+            // 
+            columnHeader6.Text = "type";
+            columnHeader6.Width = 100;
+            // 
             // button1
             // 
-            button1.Location = new Point(83, 697);
+            button1.Location = new Point(93, 662);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(115, 58);
             button1.TabIndex = 8;
             button1.Text = "Wyświetl";
             button1.UseVisualStyleBackColor = true;
@@ -120,9 +158,9 @@
             // 
             // buttonUpdateProduct
             // 
-            buttonUpdateProduct.Location = new Point(323, 704);
+            buttonUpdateProduct.Location = new Point(322, 662);
             buttonUpdateProduct.Name = "buttonUpdateProduct";
-            buttonUpdateProduct.Size = new Size(75, 23);
+            buttonUpdateProduct.Size = new Size(115, 58);
             buttonUpdateProduct.TabIndex = 9;
             buttonUpdateProduct.Text = "Zapisz zmiany";
             buttonUpdateProduct.UseVisualStyleBackColor = true;
@@ -130,9 +168,9 @@
             // 
             // buttonDeleteProduct
             // 
-            buttonDeleteProduct.Location = new Point(621, 698);
+            buttonDeleteProduct.Location = new Point(578, 662);
             buttonDeleteProduct.Name = "buttonDeleteProduct";
-            buttonDeleteProduct.Size = new Size(75, 23);
+            buttonDeleteProduct.Size = new Size(115, 58);
             buttonDeleteProduct.TabIndex = 10;
             buttonDeleteProduct.Text = "Usuń";
             buttonDeleteProduct.UseVisualStyleBackColor = true;
@@ -142,7 +180,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(855, 753);
+            BackColor = Color.LightBlue;
+            ClientSize = new Size(797, 752);
             Controls.Add(buttonDeleteProduct);
             Controls.Add(buttonUpdateProduct);
             Controls.Add(button1);
@@ -153,8 +192,11 @@
             Controls.Add(textBoxBarcode);
             Controls.Add(comboBoxProductType);
             Controls.Add(buttonAddProduct);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ProductManagament";
-            Text = "ProductManagament";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Self-Service-Checkout";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -176,5 +218,6 @@
         private Button button1;
         private Button buttonUpdateProduct;
         private Button buttonDeleteProduct;
+        private ColumnHeader columnHeader6;
     }
 }

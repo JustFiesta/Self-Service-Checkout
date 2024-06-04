@@ -96,15 +96,26 @@ namespace Self_Service_Checkout
         // Add
         private async void buttonAddProduct_Click(object sender, EventArgs e)
         {
-            var productName = textBoxProductName.Text;
-            var price = double.Parse(textBoxPrice.Text);
-            var weight = double.Parse(textBoxWeight.Text);
-            var barcode = int.Parse(textBoxBarcode.Text);
-            var productType = comboBoxProductType.SelectedItem.ToString();
+            try
+            {
+                var productName = textBoxProductName.Text;
+                var price = double.Parse(textBoxPrice.Text);
+                var weight = double.Parse(textBoxWeight.Text);
+                var barcode = int.Parse(textBoxBarcode.Text);
+                var productType = comboBoxProductType.SelectedItem.ToString();
 
-            await _context.AddProductAsync(productName, price, weight, barcode, productType);
+                await _context.AddProductAsync(productName, price, weight, barcode, productType);
 
-            await RefreshProductListAsync();
+                await RefreshProductListAsync();
+            }
+            catch (ApplicationException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Update
@@ -117,16 +128,27 @@ namespace Self_Service_Checkout
                 return;
             }
 
-            var id = selectedItemId.Value;
-            var productName = textBoxProductName.Text;
-            var price = double.Parse(textBoxPrice.Text);
-            var weight = double.Parse(textBoxWeight.Text);
-            var barcode = int.Parse(textBoxBarcode.Text);
-            var productType = comboBoxProductType.SelectedItem.ToString();
+            try
+            {
+                var id = selectedItemId.Value;
+                var productName = textBoxProductName.Text;
+                var price = double.Parse(textBoxPrice.Text);
+                var weight = double.Parse(textBoxWeight.Text);
+                var barcode = int.Parse(textBoxBarcode.Text);
+                var productType = comboBoxProductType.SelectedItem.ToString();
 
-            await _context.UpdateProductAsync(id, productName, price, weight, barcode, productType);
+                await _context.UpdateProductAsync(id, productName, price, weight, barcode, productType);
 
-            await RefreshProductListAsync();
+                await RefreshProductListAsync();
+            }
+            catch (ApplicationException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Delete
@@ -142,10 +164,21 @@ namespace Self_Service_Checkout
             var confirmation = MessageBox.Show("Are you sure you want to delete this product?", "Confirmation", MessageBoxButtons.YesNo);
             if (confirmation == DialogResult.Yes)
             {
-                var productId = selectedItemId.Value;
-                await _context.DeleteProductAsync(productId);
+                try
+                {
+                    var productId = selectedItemId.Value;
+                    await _context.DeleteProductAsync(productId);
 
-                await RefreshProductListAsync();
+                    await RefreshProductListAsync();
+                }
+                catch (ApplicationException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An unexpected error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
