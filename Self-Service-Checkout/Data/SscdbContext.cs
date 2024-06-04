@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Self_Service_Checkout.Models;
 
@@ -92,7 +93,7 @@ public partial class SscdbContext : DbContext
             entity.Property(e => e.Barcode).HasColumnName("barcode");
             entity.Property(e => e.Price).HasColumnName("price");
             entity.Property(e => e.ProductCategory).HasColumnName("product_type")
-                    .HasConversion<string>(); 
+                    .HasConversion<string>();
 
             entity.Property(e => e.ProductName)
                 .HasColumnType("character varying")
@@ -152,4 +153,72 @@ public partial class SscdbContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+    // Get products from DB
+    public async Task<List<Product>> GetAllProductsAsync()
+    {
+        return await Products.FromSqlRaw("SELECT * FROM get_all_products()").ToListAsync();
+    }
+
+    // Add products to DB
+    public async Task AddProductAsync(string productName, double price, double weight, int barcode, string productType)
+    {
+        try
+        {
+            await Database.ExecuteSqlRawAsync(
+                "SELECT add_product({0}, {1}, {2}, {3}, {4})",
+                productName, price, weight, barcode, productType
+            );
+        }
+        catch (Exception ex)
+        {
+            // Log the error
+            Debug.WriteLine(ex.Message);
+            // Optionally, rethrow or handle in a way that informs the user
+            throw new ApplicationException("Error adding product: " + ex.Message, ex);
+        }
+    }
+
+    // Update products to DB
+    public async Task UpdateProductAsync(int id, string productName, double price, double weight, int barcode, string productType)
+    {
+        try
+        {
+            await Database.ExecuteSqlRawAsync(
+                "SELECT update_product({0}, {1}, {2}, {3}, {4}, {5})",
+                id, productName, price, weight, barcode, productType
+            );
+        }
+        catch (Exception ex)
+        {
+            // Log the error
+            Debug.WriteLine(ex.Message);
+            // Optionally, rethrow or handle in a way that informs the user
+            throw new ApplicationException("Error updating product: " + ex.Message, ex);
+        }
+    }
+
+    // Delete product from DB
+    public async Task DeleteProductAsync(int productId)
+    {
+        try
+        {
+            await Database.ExecuteSqlInterpolatedAsync($"CALL delete_product({productId})");
+        }
+        catch (Exception ex)
+        {
+            // Log the error
+            Debug.WriteLine(ex.Message);
+            // Optionally, rethrow or handle in a way that informs the user
+            throw new ApplicationException("Error deleting product: " + ex.Message, ex);
+        }
+    }
+
+    // SHOW product by id, cursor
+    public async Task<List<Product>> GetProductByIdAsync(int id)
+    {
+        return await Products
+            .FromSqlInterpolated($"SELECT * FROM get_product_by_id({id})")
+            .ToListAsync();
+    }
 }
