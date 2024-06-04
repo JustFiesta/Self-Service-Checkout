@@ -213,4 +213,12 @@ public partial class SscdbContext : DbContext
             throw new ApplicationException("Error deleting product: " + ex.Message, ex);
         }
     }
+
+    // SHOW product by id, cursor
+    public async Task<List<Product>> GetProductByIdAsync(int id)
+    {
+        return await Products
+            .FromSqlInterpolated($"SELECT * FROM get_product_by_id({id})")
+            .ToListAsync();
+    }
 }
