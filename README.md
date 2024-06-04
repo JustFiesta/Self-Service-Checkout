@@ -2,19 +2,30 @@
 
 This repository contains code for self service checkout using PL/pgSQL project. Made in C#, with Microsoft Forms.
 
+<hr>
+
 ## Preparation and installation
 
-1. Download the zip file with installer
-2. Run the setup.exe or .msi file
+1. Install postgresql
+2. Create database named SSCDB
+3. Import database via "psql -d SSCDB -U postgres -f .\dbexport_utf8.pgsql" (if needed change DB name or user)
+4. Download the installer
+5. Run the setup.exe or .msi file
+
+NOTE: postgres is reqiured running. Change initial DB credentials in Sscdb_context connection string if needed
+
+<hr>
+
+## Functionality
 
 ### UI Usage - User
 
-1. Click to enter the shop catalog panel
-2. Scan the product code (insert product code) / choose product from the list panel
-3. Confirm amout of product
-4. Checkout
-5. *Insert loyality card / create new card
-6. Choose payment method
+* Click to enter the shop catalog panel
+* Scan the product code (insert product code) / choose product from the list panel
+* Confirm amout of product
+* Checkout
+* Insert loyality card / create new card
+* Choose payment method
 
 ### UI Usage - Checkout Assistant Panel
 
@@ -26,7 +37,10 @@ This repository contains code for self service checkout using PL/pgSQL project. 
 
 ### UI Usage - Admin
 
-* Database CRUD UI
+1. In start panel click red login icon in top left corner
+2. Log as administrator
+
+Database CRUD:
+* Employee CRUD - based on Entity Framework
+* Product CRUD - based on PGSQL
   
-#### Tests
-TODO
