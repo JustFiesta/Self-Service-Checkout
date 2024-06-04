@@ -28,7 +28,7 @@ namespace Self_Service_Checkout
             DisplayProductsAsync();
 
             //round buttons
-            RoundButton(button1, 20);
+            RoundButton(buttonRefresh, 20);
             RoundButton(buttonDeleteProduct, 20);
             RoundButton(buttonUpdateProduct, 20);
             RoundButton(buttonSearchById, 20);
@@ -57,17 +57,7 @@ namespace Self_Service_Checkout
         private async Task DisplayProductsAsync()
         {
             var products = await _context.GetAllProductsAsync();
-            LogProductsToConsole(products);
             DisplayProducts(products);
-        }
-
-        // debug display products
-        private void LogProductsToConsole(List<Product> products)
-        {
-            foreach (var product in products)
-            {
-                Debug.WriteLine($"ID: {product.Id}, Name: {product.ProductName}, Price: {product.Price}, Weight: {product.Weight}, Barcode: {product.Barcode}, Type: {product.ProductCategory}");
-            }
         }
 
         private void DisplayProducts(List<Product> products)
@@ -189,7 +179,7 @@ namespace Self_Service_Checkout
             }
         }
 
-        // Metoda pomocnicza do pobierania ID wybranego produktu z kontrolki ListView
+        // Helper methods for fetching product id from listView
         private int? GetSelectedProductId()
         {
             if (listViewProducts.SelectedItems.Count > 0)
@@ -227,17 +217,12 @@ namespace Self_Service_Checkout
         }
 
         // refresh listview
-        private async void button1_Click(object sender, EventArgs e)
+        private async void buttonRefresh_Click(object sender, EventArgs e)
         {
             textBoxProductId.Text = "";
             await DisplayProductsAsync();
 
-            // Wywołaj metodę GetAllProductsAsync i wyświetl produkty
             var products = await _context.GetAllProductsAsync();
-
-            //Debug
-            LogProductsToConsole(products);
-
 
             await RefreshProductListAsync();
         }
