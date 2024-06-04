@@ -80,7 +80,7 @@
             databaseButton.Name = "databaseButton";
             databaseButton.Size = new Size(405, 143);
             databaseButton.TabIndex = 7;
-            databaseButton.Text = "Database management";
+            databaseButton.Text = "Employee management";
             databaseButton.TextAlign = ContentAlignment.MiddleRight;
             databaseButton.UseVisualStyleBackColor = false;
             databaseButton.Click += databaseButton_Click;
@@ -98,7 +98,7 @@
             reportButton.Name = "reportButton";
             reportButton.Size = new Size(405, 143);
             reportButton.TabIndex = 8;
-            reportButton.Text = "Reports";
+            reportButton.Text = "Product Management";
             reportButton.TextAlign = ContentAlignment.MiddleRight;
             reportButton.UseVisualStyleBackColor = false;
             reportButton.Click += reportButton_Click;
