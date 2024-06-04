@@ -45,7 +45,7 @@
             buttonUpdateProduct = new Button();
             buttonDeleteProduct = new Button();
             textBoxProductId = new TextBox();
-            button1 = new Button();
+            buttonRefresh = new Button();
             buttonSearchById = new Button();
             logoBox = new PictureBox();
             clearLabel = new Label();
@@ -195,20 +195,20 @@
             textBoxProductId.Size = new Size(100, 33);
             textBoxProductId.TabIndex = 12;
             // 
-            // button1
+            // buttonRefresh
             // 
-            button1.BackColor = Color.RoyalBlue;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(12, 682);
-            button1.Name = "button1";
-            button1.Size = new Size(115, 58);
-            button1.TabIndex = 13;
-            button1.Text = "Refresh";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            buttonRefresh.BackColor = Color.RoyalBlue;
+            buttonRefresh.FlatAppearance.BorderSize = 0;
+            buttonRefresh.FlatStyle = FlatStyle.Flat;
+            buttonRefresh.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            buttonRefresh.ForeColor = Color.White;
+            buttonRefresh.Location = new Point(12, 682);
+            buttonRefresh.Name = "buttonRefresh";
+            buttonRefresh.Size = new Size(115, 58);
+            buttonRefresh.TabIndex = 13;
+            buttonRefresh.Text = "Refresh";
+            buttonRefresh.UseVisualStyleBackColor = false;
+            buttonRefresh.Click += buttonRefresh_Click;
             // 
             // buttonSearchById
             // 
@@ -258,7 +258,7 @@
             Controls.Add(listViewProducts);
             Controls.Add(logoBox);
             Controls.Add(buttonSearchById);
-            Controls.Add(button1);
+            Controls.Add(buttonRefresh);
             Controls.Add(textBoxProductId);
             Controls.Add(buttonDeleteProduct);
             Controls.Add(buttonUpdateProduct);
@@ -296,7 +296,7 @@
         private Button buttonDeleteProduct;
         private ColumnHeader columnHeader6;
         private TextBox textBoxProductId;
-        private Button button1;
+        private Button buttonRefresh;
         private Button buttonSearchById;
         private PictureBox logoBox;
         private Label clearLabel;
