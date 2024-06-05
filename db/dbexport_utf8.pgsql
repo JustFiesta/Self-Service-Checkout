@@ -45,10 +45,25 @@ ALTER TYPE public.product_category OWNER TO postgres;
 CREATE FUNCTION public.add_product(_product_name character varying, _price double precision, _weight double precision, _barcode integer, _product_type character varying) RETURNS void
     LANGUAGE plpgsql
     AS $$
+
+
+
 BEGIN
+
+
+
     INSERT INTO products (product_name, price, weight, barcode, product_type)
+
+
+
     VALUES (_product_name, _price, _weight, _barcode, _product_type);
+
+
+
 END;
+
+
+
 $$;
 
 
@@ -61,9 +76,21 @@ ALTER FUNCTION public.add_product(_product_name character varying, _price double
 CREATE PROCEDURE public.delete_product(IN _id integer)
     LANGUAGE plpgsql
     AS $$
+
+
+
 BEGIN
+
+
+
   DELETE FROM products WHERE id = _id;
+
+
+
 END;
+
+
+
 $$;
 
 
@@ -76,10 +103,25 @@ ALTER PROCEDURE public.delete_product(IN _id integer) OWNER TO postgres;
 CREATE FUNCTION public.get_all_products() RETURNS TABLE(id integer, product_name character varying, price double precision, weight double precision, barcode integer, product_type character varying)
     LANGUAGE plpgsql
     AS $$
+
+
+
 BEGIN
+
+
+
     RETURN QUERY SELECT * FROM products
+
+
+
 	ORDER BY id;
+
+
+
 END;
+
+
+
 $$;
 
 
@@ -92,41 +134,178 @@ ALTER FUNCTION public.get_all_products() OWNER TO postgres;
 CREATE FUNCTION public.get_product_by_id(product_id integer) RETURNS TABLE(id integer, product_name character varying, price double precision, weight double precision, barcode integer, product_type character varying)
     LANGUAGE plpgsql
     AS $$
+
+
+
 DECLARE
+
+
+
     product_cursor CURSOR FOR
+
+
+
         SELECT 
+
+
+
             p.id AS product_id,
+
+
+
             p.product_name,
+
+
+
             p.price,
+
+
+
             p.weight,
+
+
+
             p.barcode,
+
+
+
             p.product_type
+
+
+
         FROM products p
+
+
+
         WHERE p.id = product_id;
+
+
+
     product_record RECORD;
+
+
+
 BEGIN
+
+
+
     OPEN product_cursor;
 
+
+
+
+
+
+
     LOOP
+
+
+
         FETCH product_cursor INTO product_record;
+
+
+
         EXIT WHEN NOT FOUND;
 
+
+
+
+
+
+
         id := product_record.product_id;
+
+
+
         product_name := product_record.product_name;
+
+
+
         price := product_record.price;
+
+
+
         weight := product_record.weight;
+
+
+
         barcode := product_record.barcode;
+
+
+
         product_type := product_record.product_type;
 
+
+
+
+
+
+
         RETURN NEXT;
+
+
+
     END LOOP;
 
+
+
+
+
+
+
     CLOSE product_cursor;
+
+
+
 END;
+
+
+
 $$;
 
 
 ALTER FUNCTION public.get_product_by_id(product_id integer) OWNER TO postgres;
+
+--
+-- Name: get_transactions_by_customer(integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.get_transactions_by_customer(customer_id integer) RETURNS TABLE(id integer, date timestamp without time zone, total_amount double precision, employees_fk integer, customer_fk integer)
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    transaction_cursor CURSOR FOR
+        SELECT 
+            t.id,
+            t.date,
+            t.total_amount,
+            t.employees_fk,
+            t.customer_fk
+        FROM transactions t
+        WHERE t.customer_fk = customer_id;
+    transaction_record RECORD;
+BEGIN
+    OPEN transaction_cursor;
+
+    LOOP
+        FETCH transaction_cursor INTO transaction_record;
+        EXIT WHEN NOT FOUND;
+
+        id := transaction_record.id;
+        date := transaction_record.date;
+        total_amount := transaction_record.total_amount;
+        employees_fk := transaction_record.employees_fk;
+        customer_fk := transaction_record.customer_fk;
+
+        RETURN NEXT;
+    END LOOP;
+
+    CLOSE transaction_cursor;
+END;
+$$;
+
+
+ALTER FUNCTION public.get_transactions_by_customer(customer_id integer) OWNER TO postgres;
 
 --
 -- Name: prod_stamp(); Type: FUNCTION; Schema: public; Owner: postgres
@@ -135,36 +314,129 @@ ALTER FUNCTION public.get_product_by_id(product_id integer) OWNER TO postgres;
 CREATE FUNCTION public.prod_stamp() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
+
+
+
   BEGIN
+
+
+
     IF NEW.product_name IS NULL OR NEW.product_name = '' THEN
+
+
+
       RAISE EXCEPTION 'product name cannot be null';
+
+
+
     END IF;
+
+
+
     IF NEW.price IS NULL THEN
+
+
+
       RAISE EXCEPTION '% cannot have null price', NEW.product_name;
+
+
+
     END IF;
+
+
+
     IF NEW.price < 0 THEN
+
+
+
       RAISE EXCEPTION '% cannot have a negative price', NEW.product_name;
+
+
+
     END IF;
+
+
+
     IF NEW.weight IS NULL THEN
+
+
+
       RAISE EXCEPTION '% cannot have null weight', NEW.product_name;
+
+
+
     END IF;
+
+
+
     IF NEW.weight < 0 THEN
+
+
+
       RAISE EXCEPTION '% cannot have a negative weight', NEW.product_name;
+
+
+
     END IF;
+
+
+
     IF NEW.barcode < 100000 OR NEW.barcode > 999999 THEN
+
+
+
       RAISE EXCEPTION '% must have a 6-digit barcode', NEW.product_name;
+
+
+
     END IF;
+
+
+
     IF EXISTS (SELECT 1 FROM products WHERE barcode = NEW.barcode AND id != NEW.id) THEN
+
+
+
       RAISE EXCEPTION 'Barcode % already exists', NEW.barcode;
+
+
+
     END IF;
+
+
+
     IF NEW.barcode IS NULL THEN
+
+
+
       RAISE EXCEPTION '% cannot have null barcode', NEW.product_name;
+
+
+
     END IF;
+
+
+
     IF NEW.product_type IS NULL OR NEW.product_type = '' THEN
+
+
+
       RAISE EXCEPTION '% cannot have null product type', NEW.product_name;
+
+
+
     END IF;
+
+
+
     RETURN NEW;
+
+
+
   END;
+
+
+
 $$;
 
 
@@ -177,15 +449,45 @@ ALTER FUNCTION public.prod_stamp() OWNER TO postgres;
 CREATE FUNCTION public.update_product(_id integer, _product_name character varying, _price double precision, _weight double precision, _barcode integer, _product_type character varying) RETURNS void
     LANGUAGE plpgsql
     AS $$
+
+
+
 BEGIN
+
+
+
     UPDATE products
+
+
+
     SET product_name = _product_name,
+
+
+
         price = _price,
+
+
+
         weight = _weight,
+
+
+
         barcode = _barcode,
+
+
+
         product_type = _product_type
+
+
+
     WHERE id = _id;
+
+
+
 END;
+
+
+
 $$;
 
 
@@ -317,43 +619,6 @@ ALTER SEQUENCE public.products_id_seq OWNED BY public.products.id;
 
 
 --
--- Name: transaction_items; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.transaction_items (
-    id integer NOT NULL,
-    quantity integer NOT NULL,
-    amount double precision NOT NULL,
-    product_fk integer NOT NULL,
-    transaction_fk integer NOT NULL
-);
-
-
-ALTER TABLE public.transaction_items OWNER TO postgres;
-
---
--- Name: transaction_items_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.transaction_items_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER SEQUENCE public.transaction_items_id_seq OWNER TO postgres;
-
---
--- Name: transaction_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.transaction_items_id_seq OWNED BY public.transaction_items.id;
-
-
---
 -- Name: transactions; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -409,13 +674,6 @@ ALTER TABLE ONLY public.employees ALTER COLUMN id SET DEFAULT nextval('public.em
 --
 
 ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.products_id_seq'::regclass);
-
-
---
--- Name: transaction_items id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.transaction_items ALTER COLUMN id SET DEFAULT nextval('public.transaction_items_id_seq'::regclass);
 
 
 --
@@ -610,17 +868,6 @@ COPY public.products (id, product_name, price, weight, barcode, product_type) FR
 
 
 --
--- Data for Name: transaction_items; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.transaction_items (id, quantity, amount, product_fk, transaction_fk) FROM stdin;
-1	3	55.08	4	1
-2	1	90.85	9	1
-3	2	18.68	15	1
-\.
-
-
---
 -- Data for Name: transactions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -648,13 +895,6 @@ SELECT pg_catalog.setval('public.employees_id_seq', 30, true);
 --
 
 SELECT pg_catalog.setval('public.products_id_seq', 113, true);
-
-
---
--- Name: transaction_items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.transaction_items_id_seq', 3, true);
 
 
 --
@@ -689,14 +929,6 @@ ALTER TABLE ONLY public.products
 
 
 --
--- Name: transaction_items id_transaction_items; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.transaction_items
-    ADD CONSTRAINT id_transaction_items PRIMARY KEY (id);
-
-
---
 -- Name: transactions id_transactions; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -725,22 +957,6 @@ ALTER TABLE ONLY public.transactions
 
 ALTER TABLE ONLY public.transactions
     ADD CONSTRAINT employee_fk FOREIGN KEY (employees_fk) REFERENCES public.employees(id);
-
-
---
--- Name: transaction_items product_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.transaction_items
-    ADD CONSTRAINT product_fk FOREIGN KEY (product_fk) REFERENCES public.products(id);
-
-
---
--- Name: transaction_items transaction_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.transaction_items
-    ADD CONSTRAINT transaction_fk FOREIGN KEY (transaction_fk) REFERENCES public.transactions(id);
 
 
 --
