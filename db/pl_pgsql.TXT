@@ -1,0 +1,197 @@
+//wyświetl
+CREATE OR REPLACE FUNCTION get_all_products()
+RETURNS TABLE (
+    id INTEGER,
+    product_name VARCHAR,
+    price DOUBLE PRECISION,
+    weight DOUBLE PRECISION,
+    barcode INTEGER,
+    product_type VARCHAR
+) AS $$
+BEGIN
+    RETURN QUERY SELECT * FROM products
+	ORDER BY id;
+END;
+$$ LANGUAGE plpgsql;
+
+//dodaj
+CREATE OR REPLACE FUNCTION add_product(
+    _product_name VARCHAR,
+    _price DOUBLE PRECISION,
+    _weight DOUBLE PRECISION,
+    _barcode INTEGER,
+    _product_type VARCHAR
+)
+RETURNS VOID AS $$
+BEGIN
+    INSERT INTO products (product_name, price, weight, barcode, product_type)
+    VALUES (_product_name, _price, _weight, _barcode, _product_type);
+END;
+$$ LANGUAGE plpgsql;
+
+//aktualizacja
+CREATE OR REPLACE FUNCTION update_product(
+    _id INTEGER,
+    _product_name VARCHAR,
+    _price DOUBLE PRECISION,
+    _weight DOUBLE PRECISION,
+    _barcode INTEGER,
+    _product_type VARCHAR
+)
+RETURNS VOID AS $$
+BEGIN
+    UPDATE products
+    SET product_name = _product_name,
+        price = _price,
+        weight = _weight,
+        barcode = _barcode,
+        product_type = _product_type
+    WHERE id = _id;
+END;
+$$ LANGUAGE plpgsql;
+
+//usun
+CREATE OR REPLACE PROCEDURE delete_product(_id INTEGER)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  DELETE FROM products WHERE id = _id;
+END;
+$$;
+
+
+//triger do walidacji
+CREATE FUNCTION prod_stamp() RETURNS trigger AS $prod_stamp$
+  BEGIN
+    IF NEW.product_name IS NULL OR NEW.product_name = '' THEN
+      RAISE EXCEPTION 'product name cannot be null';
+    END IF;
+    IF NEW.price IS NULL THEN
+      RAISE EXCEPTION '% cannot have null price', NEW.product_name;
+    END IF;
+    IF NEW.price < 0 THEN
+      RAISE EXCEPTION '% cannot have a negative price', NEW.product_name;
+    END IF;
+    IF NEW.weight IS NULL THEN
+      RAISE EXCEPTION '% cannot have null weight', NEW.product_name;
+    END IF;
+    IF NEW.weight < 0 THEN
+      RAISE EXCEPTION '% cannot have a negative weight', NEW.product_name;
+    END IF;
+    IF NEW.barcode < 100000 OR NEW.barcode > 999999 THEN
+      RAISE EXCEPTION '% must have a 6-digit barcode', NEW.product_name;
+    END IF;
+    IF EXISTS (SELECT 1 FROM products WHERE barcode = NEW.barcode AND id != NEW.id) THEN
+      RAISE EXCEPTION 'Barcode % already exists', NEW.barcode;
+    END IF;
+    IF NEW.barcode IS NULL THEN
+      RAISE EXCEPTION '% cannot have null barcode', NEW.product_name;
+    END IF;
+    IF NEW.product_type IS NULL OR NEW.product_type = '' THEN
+      RAISE EXCEPTION '% cannot have null product type', NEW.product_name;
+    END IF;
+    RETURN NEW;
+  END;
+$prod_stamp$ LANGUAGE plpgsql;
+
+CREATE TRIGGER prod_stamp BEFORE INSERT OR UPDATE ON products
+  FOR EACH ROW EXECUTE FUNCTION prod_stamp();
+
+
+//kursor dla szukania produktu po id
+CREATE OR REPLACE FUNCTION get_product_by_id(product_id INTEGER)
+RETURNS TABLE (
+    id INTEGER,
+    product_name VARCHAR,
+    price DOUBLE PRECISION,
+    weight DOUBLE PRECISION,
+    barcode INTEGER,
+    product_type VARCHAR
+) AS $$
+DECLARE
+    product_cursor CURSOR FOR
+        SELECT 
+            p.id AS product_id,
+            p.product_name,
+            p.price,
+            p.weight,
+            p.barcode,
+            p.product_type
+        FROM products p
+        WHERE p.id = product_id;
+    product_record RECORD;
+BEGIN
+    OPEN product_cursor;
+
+    LOOP
+        FETCH product_cursor INTO product_record;
+        EXIT WHEN NOT FOUND;
+
+        id := product_record.product_id;
+        product_name := product_record.product_name;
+        price := product_record.price;
+        weight := product_record.weight;
+        barcode := product_record.barcode;
+        product_type := product_record.product_type;
+
+        RETURN NEXT;
+    END LOOP;
+
+    CLOSE product_cursor;
+END;
+$$ LANGUAGE plpgsql;
+
+
+//kursor dla szukania transakcji dla użytkownika o przekazanym id
+CREATE OR REPLACE FUNCTION get_transactions_by_customer(customer_id INTEGER)
+RETURNS TABLE (
+    id INTEGER,
+    date TIMESTAMP,
+    total_amount DOUBLE PRECISION,
+    employees_fk INTEGER,
+    customer_fk INTEGER
+) AS $$
+DECLARE
+    transaction_cursor CURSOR FOR
+        SELECT 
+            t.id,
+            t.date,
+            t.total_amount,
+            t.employees_fk,
+            t.customer_fk
+        FROM transactions t
+        WHERE t.customer_fk = customer_id;
+    transaction_record RECORD;
+BEGIN
+    OPEN transaction_cursor;
+
+    LOOP
+        FETCH transaction_cursor INTO transaction_record;
+        EXIT WHEN NOT FOUND;
+
+        id := transaction_record.id;
+        date := transaction_record.date;
+        total_amount := transaction_record.total_amount;
+        employees_fk := transaction_record.employees_fk;
+        customer_fk := transaction_record.customer_fk;
+
+        RETURN NEXT;
+    END LOOP;
+
+    CLOSE transaction_cursor;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
