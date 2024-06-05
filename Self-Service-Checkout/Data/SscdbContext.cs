@@ -221,4 +221,12 @@ public partial class SscdbContext : DbContext
             .FromSqlInterpolated($"SELECT * FROM get_product_by_id({id})")
             .ToListAsync();
     }
+
+    // SHOW transaction by customer id, cursor
+    public async Task<List<Transaction>> GetTransactionByIdAsync(int customer_id)
+    {
+        return await Transactions
+            .FromSqlInterpolated($"SELECT * FROM get_transactions_by_customer({customer_id})")
+            .ToListAsync();
+    }
 }
