@@ -108,25 +108,31 @@ namespace Self_Service_Checkout
                             //setting admin flag if employee type is admin
                             if (employee.employeeType.Equals("admin"))
                             {
+                                LoginFlag.emploeeID = employee.Id;
                                 LoginFlag.flag = true;
                                 Debug.WriteLine("Admin logged");
                                 AdminForm adminForm = new AdminForm();
                                 adminForm.ShowDialog();
+                                
                                 this.Close();
 
                                 info2Label.Visible = false;
-                                info1Label.Visible = false; 
+                                info1Label.Visible = false;
                             }
                             else
                             {
+                                LoginFlag.emploeeID = employee.Id;
                                 info2Label.Visible = true;
                             }
                         }
                         else
                         {
+                            LoginFlag.emploeeID = employee.Id;
+                            Debug.WriteLine("Emploee ID: "+LoginFlag.emploeeID);
                             //type of window you want to open after succesfull login
                             CartManagementForm cartManagementForm = new CartManagementForm();
                             cartManagementForm.ShowDialog();
+
                             this.Close();
 
                             info2Label.Visible = false;
@@ -152,6 +158,7 @@ namespace Self_Service_Checkout
     // employee type flag
     public class LoginFlag
     {
+        public static int? emploeeID = null;
         //false if no admin permission
         public static Boolean flag = false;
     }
