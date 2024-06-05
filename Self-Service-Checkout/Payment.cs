@@ -170,9 +170,9 @@ namespace Self_Service_Checkout
         //function to restart the application
         private void RestartApplication()
         {
-            // Zamykanie i ponowne uruchamianie bieżącej aplikacji
+            // restarting current app
             Application.Restart();
-            Environment.Exit(0); // Zakończ bieżący proces
+            Environment.Exit(0); // terminate current process
         }
     }
 }

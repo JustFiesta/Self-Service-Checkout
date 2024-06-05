@@ -149,8 +149,7 @@ namespace Self_Service_Checkout
         }
     }
 
-
-    //proposal for login flag like this?
+    // employee type flag
     public class LoginFlag
     {
         //false if no admin permission

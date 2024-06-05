@@ -107,11 +107,11 @@ namespace Self_Service_Checkout
         //function to adding one product after double clicking
         private void dataView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // Sprawdzamy, czy kliknięto poprawną komórkę
+            if (e.RowIndex >= 0) // check if correct cell was clicked
             {
-                DataGridViewRow selectedRow = dataView.Rows[e.RowIndex]; // Pobieramy kliknięty wiersz
+                DataGridViewRow selectedRow = dataView.Rows[e.RowIndex]; // get selected row
                 decimal price = Convert.ToDecimal(selectedRow.Cells["Price"].Value);
-                //price format better
+                //better price format
                 string formattedPrice = $"{price:F2}";
                 //adding new item to datagridview instead of listview
                 _mainForm.ListViewTest.Rows.Add(selectedRow.Cells["ProductName"].Value, formattedPrice, "1");
@@ -133,7 +133,7 @@ namespace Self_Service_Checkout
 
             if (selected_item.Length != 0 && IsValidInput(maskedTextBox1.Text))
             {
-                //price format better
+                //better price format
                 decimal price = Convert.ToDecimal(selectedRow.Cells["Price"].Value);
                 string formattedPrice = $"{price:F2}";
 
