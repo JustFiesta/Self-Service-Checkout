@@ -150,6 +150,10 @@ namespace Self_Service_Checkout
 
                 //remove product in main cart
                 _mainForm.RemoveProductFromCart(selectedIndex);
+
+                //clearing textbox and label after deleting product from cart
+                label11.Text = "";
+                textBox3.Clear();
             }
             else
             {
