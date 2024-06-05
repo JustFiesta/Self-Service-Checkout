@@ -123,14 +123,14 @@ namespace Self_Service_Checkout
         // Function to change product quantity
         public void updateProductQuantity(int newQuantity)
         {
-            // Get index of selected row
-            int selectedRowIndex = cashierList.SelectedCells[0].RowIndex;
+                // Get index of selected row
+                int selectedRowIndex = cashierList.SelectedCells[0].RowIndex;
 
-            // Update quantity in selected row - in cartManagementForm
-            cashierList.SelectedCells[2].Value = newQuantity;
+                // Update quantity in selected row - in cartManagementForm
+                cashierList.SelectedCells[2].Value = newQuantity;
 
-            // Update quantity in selected row - in mainForm
-            _mainForm.UpdateProductQuantity(selectedRowIndex, newQuantity);
+                // Update quantity in selected row - in mainForm
+                _mainForm.UpdateProductQuantity(selectedRowIndex, newQuantity);
         }
 
         // Function for removing products
@@ -150,10 +150,14 @@ namespace Self_Service_Checkout
 
                 //remove product in main cart
                 _mainForm.RemoveProductFromCart(selectedIndex);
+
+                //clearing textbox and label after deleting product from cart
+                label11.Text = "";
+                textBox3.Clear();
             }
             else
             {
-                // Jeśli żaden wiersz nie jest zaznaczony, wyświetl komunikat lub podejmij odpowiednie działania
+                // if none row is selected, display popup message
                 MessageBox.Show("Select a row to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -201,7 +205,7 @@ namespace Self_Service_Checkout
             // Check if correct column was selected
             if (e.RowIndex >= 0)
             {
-                // Get vaslues from Product and Quantity fields
+                // Get values from Product and Quantity fields
                 string quantity = cashierList.Rows[e.RowIndex].Cells["Quantity"].Value.ToString();
                 string productName = cashierList.Rows[e.RowIndex].Cells["Product"].Value.ToString();
 

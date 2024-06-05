@@ -18,6 +18,7 @@ namespace Self_Service_Checkout
     public partial class LoyaltyCard : Form
     {
         internal string newName;
+        internal int newCustomerID;
         public static bool discount3;
         public static bool discount5;
 
@@ -83,7 +84,7 @@ namespace Self_Service_Checkout
             var customer = context.Customers.SingleOrDefault((c => c.PhoneNumber == phoneInput.Text));
             if(customer != null)
             {
-                OpenPayment(customer.Name);
+                OpenPayment(customer.Name, customer.Id);
             } 
             else
             {
@@ -118,7 +119,7 @@ namespace Self_Service_Checkout
             discount3 = false;
             discount5 = false;
             this.Hide();
-            Payment paymentForm = new Payment(emptyName);
+            Payment paymentForm = new Payment(emptyName, 0);
             paymentForm.ShowDialog();
         }
 
@@ -153,7 +154,7 @@ namespace Self_Service_Checkout
                 //clear all fields
                 newClearButton.PerformClick();
                 //open payment window with client name
-                OpenPayment(newName);
+                OpenPayment(newName, newCustomerID);
  
             }
         }
@@ -246,8 +247,12 @@ namespace Self_Service_Checkout
             if (existingCustomer == null)
             {
                 var newCustomer = new Customer { Name = newNameInput.Text, Surname = newSurnameInput.Text, PhoneNumber = newPhoneInput.Text, Email = newEmailInput.Text };
-                context.Customers.Add(newCustomer);
+                var entityEntry = context.Customers.Add(newCustomer);
                 context.SaveChanges();
+
+                // Get the ID of the newly added customer
+                newCustomerID = entityEntry.Entity.Id;
+
                 MessageBox.Show("Clients details are correct.", "Confirm", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -256,12 +261,12 @@ namespace Self_Service_Checkout
             }
         }
 
-        private void OpenPayment(string name)
+        private void OpenPayment(string name, int customerID)
         {
             Debug.WriteLine("discount5 FIRST: " + discount5);
             Debug.WriteLine("discount3 FIRST: " + discount3);
             this.Hide();
-            Payment paymentForm = new Payment(name);
+            Payment paymentForm = new Payment(name, customerID);
             paymentForm.ShowDialog();
         }
     }

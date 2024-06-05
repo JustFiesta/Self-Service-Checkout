@@ -1,4 +1,6 @@
-﻿using Self_Service_Checkout.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Self_Service_Checkout.Data;
+using Self_Service_Checkout.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,10 +18,17 @@ namespace Self_Service_Checkout
     public partial class Payment : Form
     {
         private mainForm _mainForm;
-
-        public Payment(string name)
+        private SscdbContext _context;
+        private int? _customerId;
+        public Payment(string name, int id)
         {
+
             InitializeComponent();
+            var optionsBuilder = new DbContextOptionsBuilder<SscdbContext>();
+            _context = new SscdbContext(optionsBuilder.Options);
+
+            _customerId = id;
+
             _mainForm = mainForm.Instance;
             RoundButton(cardButton, 20);
             RoundButton(blikButton, 20);
@@ -123,6 +132,9 @@ namespace Self_Service_Checkout
             await Task.Delay(3000);
             cardPanel.Visible = false;
             endPanel.Visible = true;
+
+            transactionSave();
+
             await Task.Delay(2500);
             RestartApplication();
         }
@@ -144,6 +156,8 @@ namespace Self_Service_Checkout
                 blikPanel.Visible=false;
                 cardPanel.Visible=false;
                 endPanel.Visible = true;
+
+                transactionSave();
 
                 await Task.Delay(2500);
                 RestartApplication();
@@ -170,9 +184,32 @@ namespace Self_Service_Checkout
         //function to restart the application
         private void RestartApplication()
         {
-            // Zamykanie i ponowne uruchamianie bieżącej aplikacji
+            // restarting current app
             Application.Restart();
-            Environment.Exit(0); // Zakończ bieżący proces
+            Environment.Exit(0); // terminate current process
+        }
+
+        private void transactionSave()
+        {
+            Transaction transaction = new Transaction();
+            transaction.TotalAmount = double.Parse(amountToPay().ToString());
+            transaction.Date = DateTime.Now;
+            if(_customerId == 0)
+            {
+                transaction.CustomerFk = null;
+            } else
+            {
+                transaction.CustomerFk = _customerId;
+            }
+            transaction.EmployeesFk = LoginFlag.emploeeID;
+
+            Debug.WriteLine(amountToPay());
+            
+            // Add the transaction to the context
+            _context.Transactions.Add(transaction);
+
+            // Save changes to the database
+            _context.SaveChanges();
         }
     }
 }

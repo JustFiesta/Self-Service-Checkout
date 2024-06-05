@@ -78,6 +78,7 @@ namespace Self_Service_Checkout
             }
             return null;
         }
+        //turn Customer object into row object
         private DataGridViewRow ConvertCustomerToRow(Customer customer)
         {
             DataGridViewRow row = new DataGridViewRow();
@@ -89,6 +90,8 @@ namespace Self_Service_Checkout
             row.Cells[4].Value = customer.Email;
             return row;
         }
+
+        //turn Employee object into row object
         private DataGridViewRow ConvertEmployeeToRow(Employee employee)
         {
             DataGridViewRow row = new DataGridViewRow();
@@ -103,6 +106,7 @@ namespace Self_Service_Checkout
             return row;
         }
 
+        //set datagrid view settings
         private void DatabaseForm_Load(object sender, EventArgs e)
         {
             // Set edit type to EditProgrammatically
@@ -150,6 +154,7 @@ namespace Self_Service_Checkout
             }
         }
 
+        //method to update customer data 
         private void UpdateCustomerData(int customerId, int columnIndex, string newValue)
         {
             // Find customer in db
@@ -214,6 +219,7 @@ namespace Self_Service_Checkout
             context.SaveChanges();
         }
 
+        //method to update employee data
         private void UpdateEmployeeData(int employeeId, int columnIndex, string newValue)
         {
             Debug.WriteLine("Updating employee");
@@ -464,7 +470,8 @@ namespace Self_Service_Checkout
             context.SaveChanges(); // Persist changes
             GetDBContents(option.Text); // Refresh DGV
         }
-        // TODO
+        
+        
         private void SaveNewEmployees()
         {
             Debug.WriteLine("Saving employees");

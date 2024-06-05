@@ -90,7 +90,7 @@ namespace Self_Service_Checkout
             await DisplayProductsAsync();
         }
 
-        // Add
+        // Add product 
         private async void buttonAddProduct_Click(object sender, EventArgs e)
         {
             try
@@ -115,7 +115,7 @@ namespace Self_Service_Checkout
             }
         }
 
-        // Update
+        // Update selected product
         private async void buttonUpdateProduct_Click(object sender, EventArgs e)
         {
             var selectedItemId = GetSelectedProductId();
@@ -148,7 +148,7 @@ namespace Self_Service_Checkout
             }
         }
 
-        // Delete
+        // Delete selected product
         private async void buttonDeleteProduct_Click(object sender, EventArgs e)
         {
             var selectedItemId = GetSelectedProductId();
