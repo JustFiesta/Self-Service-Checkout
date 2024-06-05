@@ -29,7 +29,7 @@ if %errorlevel% neq 0 (
 
 REM Instalacja aplikacji (kopiowanie plików)
 echo Installing application...
-xcopy "%APP_DIR%Self-Service-Checkout\bin\release\net8.0-windows" "C:\Program Files\SSC" /E /I /Y
+xcopy "%APP_DIR%Self-Service-Checkout\bin\release\net8.0-windows\win-x64\publish" "C:\Program Files\SSC" /E /I /Y
 if %errorlevel% neq 0 (
     echo Failed to copy application files.
     pause
