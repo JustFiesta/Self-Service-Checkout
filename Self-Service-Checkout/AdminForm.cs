@@ -18,6 +18,7 @@ namespace Self_Service_Checkout
             InitializeComponent();
             RoundButton(databaseButton, 20);
             RoundButton(reportButton, 20);
+            RoundButton(transactionButton, 20);
         }
 
         //super special function that removes applications running in the background
@@ -65,6 +66,14 @@ namespace Self_Service_Checkout
             this.Hide();
             ProductManagament productManagament = new ProductManagament();
             productManagament.ShowDialog();
+        }
+
+        //transaction management form
+        private void transactionButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            TransactionManagement transactionManagement = new TransactionManagement();
+            transactionManagement.ShowDialog();
         }
     }
 }

@@ -40,6 +40,7 @@
             pictureBox2 = new PictureBox();
             label4 = new Label();
             backButton = new Button();
+            transactionButton = new Button();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -49,7 +50,7 @@
             // 
             logoBox.BackgroundImageLayout = ImageLayout.Zoom;
             logoBox.Image = Properties.Resources.logo;
-            logoBox.Location = new Point(340, 12);
+            logoBox.Location = new Point(342, 0);
             logoBox.Name = "logoBox";
             logoBox.Size = new Size(110, 110);
             logoBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -61,7 +62,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 36F, FontStyle.Bold, GraphicsUnit.Point, 238);
             label1.ForeColor = Color.MidnightBlue;
-            label1.Location = new Point(67, 125);
+            label1.Location = new Point(68, 102);
             label1.Name = "label1";
             label1.Size = new Size(653, 65);
             label1.TabIndex = 6;
@@ -76,11 +77,11 @@
             databaseButton.ForeColor = Color.White;
             databaseButton.Image = Properties.Resources.database;
             databaseButton.ImageAlign = ContentAlignment.MiddleLeft;
-            databaseButton.Location = new Point(186, 222);
+            databaseButton.Location = new Point(186, 170);
             databaseButton.Name = "databaseButton";
             databaseButton.Size = new Size(405, 143);
             databaseButton.TabIndex = 7;
-            databaseButton.Text = "Employee management";
+            databaseButton.Text = "Employee / Customer management";
             databaseButton.TextAlign = ContentAlignment.MiddleRight;
             databaseButton.UseVisualStyleBackColor = false;
             databaseButton.Click += databaseButton_Click;
@@ -92,9 +93,9 @@
             reportButton.FlatStyle = FlatStyle.Flat;
             reportButton.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
             reportButton.ForeColor = Color.White;
-            reportButton.Image = Properties.Resources.reports;
+            reportButton.Image = Properties.Resources.products;
             reportButton.ImageAlign = ContentAlignment.MiddleLeft;
-            reportButton.Location = new Point(186, 405);
+            reportButton.Location = new Point(186, 330);
             reportButton.Name = "reportButton";
             reportButton.Size = new Size(405, 143);
             reportButton.TabIndex = 8;
@@ -182,12 +183,31 @@
             backButton.MouseEnter += BackButton_MouseEnter;
             backButton.MouseLeave += BackButton_MouseLeave;
             // 
+            // transactionButton
+            // 
+            transactionButton.BackColor = Color.RoyalBlue;
+            transactionButton.FlatAppearance.BorderColor = Color.LightBlue;
+            transactionButton.FlatStyle = FlatStyle.Flat;
+            transactionButton.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            transactionButton.ForeColor = Color.White;
+            transactionButton.Image = Properties.Resources.reports;
+            transactionButton.ImageAlign = ContentAlignment.MiddleLeft;
+            transactionButton.Location = new Point(186, 487);
+            transactionButton.Name = "transactionButton";
+            transactionButton.Size = new Size(405, 143);
+            transactionButton.TabIndex = 16;
+            transactionButton.Text = "Transaction Management";
+            transactionButton.TextAlign = ContentAlignment.MiddleRight;
+            transactionButton.UseVisualStyleBackColor = false;
+            transactionButton.Click += transactionButton_Click;
+            // 
             // AdminForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
             ClientSize = new Size(793, 748);
+            Controls.Add(transactionButton);
             Controls.Add(backButton);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -224,5 +244,6 @@
         private PictureBox pictureBox2;
         private Label label4;
         private Button backButton;
+        private Button transactionButton;
     }
 }
